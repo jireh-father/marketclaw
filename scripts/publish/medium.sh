@@ -5,6 +5,12 @@
 # Stdout: JSON {url, post_id, status, platform}
 set -euo pipefail
 
+# Validate required credentials
+if [ -z "${MEDIUM_INTEGRATION_TOKEN:-}" ]; then
+  echo '{"error": "Missing required environment variable: MEDIUM_INTEGRATION_TOKEN", "platform": "medium"}' >&2
+  exit 1
+fi
+
 PAYLOAD=$(cat)
 TITLE=$(echo "$PAYLOAD" | jq -r '.title')
 CONTENT=$(echo "$PAYLOAD" | jq -r '.content')

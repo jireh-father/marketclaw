@@ -17,29 +17,49 @@ generating AI images, verifying quality, and inserting into content.
 
 ## Process
 
+### 0. Check Available Image Services
+
+Before sourcing any images, check which API keys are configured:
+
+```
+AVAILABLE_SERVICES = []
+IF env UNSPLASH_ACCESS_KEY is set and non-empty → add "unsplash"
+IF env PEXELS_API_KEY is set and non-empty → add "pexels"
+IF env OPENAI_API_KEY is set and non-empty → add "dall-e-3"
+```
+
+Log available services in `image_verification.json` under `"available_services"`.
+If NO image services are configured at all, skip image processing entirely —
+leave `[IMAGE: ...]` markers as-is and add `"image_warning": "No image service API keys configured"` to metadata.json.
+
 ### 1. Parse Image Markers
 Scan content for `[IMAGE: description]` placeholders. List all needed images.
 
-### 2. Source Images (Priority Order)
+### 2. Source Images (Priority Order — only use configured services)
 
-**Priority 1: Free Stock Photos**
+**Priority 1: Free Stock Photos (only if API key is configured)**
+
+If "unsplash" in AVAILABLE_SERVICES:
 ```bash
-# Unsplash API
 curl "https://api.unsplash.com/search/photos?query={query}&per_page=5" \
   -H "Authorization: Client-ID ${UNSPLASH_ACCESS_KEY}"
+```
 
-# Pexels API
+If "pexels" in AVAILABLE_SERVICES:
+```bash
 curl "https://api.pexels.com/v1/search?query={query}&per_page=5" \
   -H "Authorization: ${PEXELS_API_KEY}"
 ```
+
 - Search with topic-relevant keywords
 - Prefer high-resolution (min 1200x630 for OG images)
 - Verify license allows commercial use
+- If neither Unsplash nor Pexels is configured, skip to Priority 2
 
-**Priority 2: AI Image Generation**
-When stock photos don't match the needed context:
+**Priority 2: AI Image Generation (only if OPENAI_API_KEY is configured)**
+
+If "dall-e-3" in AVAILABLE_SERVICES and stock photos didn't match:
 ```bash
-# DALL-E 3 via OpenAI API
 curl "https://api.openai.com/v1/images/generations" \
   -H "Authorization: Bearer ${OPENAI_API_KEY}" \
   -H "Content-Type: application/json" \
@@ -53,8 +73,9 @@ curl "https://api.openai.com/v1/images/generations" \
 - Write specific, detailed prompts
 - Avoid requesting text in images (AI weakness)
 - Request clean, professional style matching blog tone
+- If OPENAI_API_KEY is NOT configured, skip to Priority 3
 
-**Priority 3: Web Images (with license check)**
+**Priority 3: Web Images (always available — no API key needed)**
 - Creative Commons licensed images via WebSearch
 - Official product screenshots from press kits
 - Always note the source and license

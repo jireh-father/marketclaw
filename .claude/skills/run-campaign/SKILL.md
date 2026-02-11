@@ -29,7 +29,19 @@ If `workspace/progress/task_queue.json` does NOT exist:
    insights,logs,progress}
    ```
 2. Initialize `workspace/config/platforms.json` with user's platform selection
-3. Initialize `workspace/progress/task_queue.json`:
+   - Set `enabled: true` only for platforms the user specified
+   - Set `enabled: false` for all other platforms
+3. **Validate Credentials (CRITICAL):**
+   For each enabled platform in `platforms.json`:
+   - Read the `credentials_env` field
+   - Check if the corresponding environment variable is set and non-empty
+   - If credentials are missing for an enabled platform:
+     - Log a WARNING: "Platform {name} is enabled but {credentials_env} is not set"
+     - Set that platform to `enabled: false` in platforms.json
+   - If NO platforms have valid credentials after this check:
+     - ABORT the campaign with error: "No platforms have valid credentials configured. See docs/setup-guide.md"
+   - Report the final list of active platforms to the user
+4. Initialize `workspace/progress/task_queue.json`:
    ```json
    {
      "session_id": "YYYY-MM-DD-001",
@@ -109,7 +121,7 @@ WHILE completed_count < goal:
      IF < 5.0: discard, move to next topic
 
   8. PUBLISH: Delegate to publisher
-     → Publish to all configured platforms
+     → Publish to enabled platforms with valid credentials (from platforms.json)
 
   9. UPDATE: Delegate to planner
      → Update progress, dashboard, logs

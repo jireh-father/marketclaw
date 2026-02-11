@@ -26,10 +26,12 @@ Read `.claude/rules/writing-style-ko.md` for detailed guidelines. Key points:
 - Strategy from `workspace/strategy/current_strategy.md`
 - Winning patterns from `workspace/insights/winning_patterns.md` (if exists)
 - Outline from `workspace/drafts/{topic_id}/outline.md` (if exists)
+- Platform config from `workspace/config/platforms.json`
 
 ## Process
 
-1. Read all source materials and the current strategy
+1. Read `workspace/config/platforms.json` and identify which Korean platforms are enabled (where `language` = "ko" and `enabled` = true). Set `target_platforms` in metadata to only the enabled Korean platforms.
+2. Read all source materials and the current strategy
 2. Read winning_patterns.md for proven patterns to incorporate
 3. If no outline exists, create one first
 4. Write the draft:
@@ -79,6 +81,6 @@ Read `.claude/rules/writing-style-ko.md` for detailed guidelines. Key points:
     "keywords": ["..."],
     "word_count_ko": 3200,
     "content_type": "how-to",
-    "target_platforms": ["naver", "tistory"]
+    "target_platforms": ["<only platforms from platforms.json where language=ko AND enabled=true>"]
   }
   ```

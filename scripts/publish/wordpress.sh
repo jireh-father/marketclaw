@@ -5,6 +5,14 @@
 # Stdout: JSON {url, post_id, status, platform}
 set -euo pipefail
 
+# Validate required credentials
+for var in WP_SITE_URL WP_USERNAME WP_APP_PASSWORD; do
+  if [ -z "${!var:-}" ]; then
+    echo "{\"error\": \"Missing required environment variable: $var\", \"platform\": \"wordpress\"}" >&2
+    exit 1
+  fi
+done
+
 PAYLOAD=$(cat)
 TITLE=$(echo "$PAYLOAD" | jq -r '.title')
 CONTENT=$(echo "$PAYLOAD" | jq -r '.content')

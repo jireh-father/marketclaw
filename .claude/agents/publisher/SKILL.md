@@ -23,9 +23,31 @@ for browser-automated platforms.
 2. Verify `metadata.json` has `weighted_overall >= 7.0` (or >= 6.0 after max iterations)
 3. If checks fail, ABORT and report to orchestrator
 
+## Platform Selection (CRITICAL)
+
+Before publishing, you MUST determine which platforms to publish to:
+
+1. Read `workspace/config/platforms.json`
+2. Build a list of target platforms by filtering:
+   - `enabled` must be `true`
+   - `language` must match the content language (ko or en)
+3. For each target platform, verify credentials are available:
+   - Read the `credentials_env` field from platforms.json
+   - Check if that environment variable is set and non-empty
+   - If credentials are missing, SKIP that platform and log a warning to `workspace/logs/errors.md`
+4. Only publish to platforms that pass BOTH checks (enabled + credentials present)
+5. If NO platforms pass the checks, ABORT and report "No configured platforms available" to orchestrator
+
+```
+Example: platforms.json has naver(enabled:true), tistory(enabled:false), medium(enabled:true)
+Content language: ko
+→ Only "naver" matches (enabled + language=ko). Tistory is disabled, so skip it.
+→ Check if NAVER_BLOG_ACCESS_TOKEN is set. If yes, publish. If no, skip with warning.
+```
+
 ## Publishing Process
 
-For each enabled platform matching the content language:
+For each platform that passed the Platform Selection checks above:
 
 ### API Platforms (Naver, Medium, WordPress, Dev.to, Hashnode)
 

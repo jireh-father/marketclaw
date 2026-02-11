@@ -5,6 +5,14 @@
 # Stdout: JSON with browser_automation instructions for publisher agent
 set -euo pipefail
 
+# Validate required credentials
+for var in TISTORY_USERNAME TISTORY_PASSWORD TISTORY_BLOG_NAME; do
+  if [ -z "${!var:-}" ]; then
+    echo "{\"error\": \"Missing required environment variable: $var\", \"platform\": \"tistory\"}" >&2
+    exit 1
+  fi
+done
+
 PAYLOAD=$(cat)
 
 # Output instructions for the publisher agent to use Playwright MCP

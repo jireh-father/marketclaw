@@ -14,6 +14,7 @@ You decide WHAT to do next — you never create content or do research yourself.
 - `workspace/progress/task_queue.json` — current campaign state
 - `workspace/progress/completion_tracker.json` — completion stats
 - `workspace/strategy/content_calendar.md` — planned content topics
+- `workspace/config/platforms.json` — enabled platforms (read to include platform info in dashboard)
 
 ## Process
 

@@ -26,10 +26,12 @@ Read `.claude/rules/writing-style-en.md` for detailed guidelines. Key points:
 - Strategy from `workspace/strategy/current_strategy.md`
 - Winning patterns from `workspace/insights/winning_patterns.md` (if exists)
 - Outline from `workspace/drafts/{topic_id}/outline.md` (if exists)
+- Platform config from `workspace/config/platforms.json`
 
 ## Process
 
-1. Read all source materials and the current strategy
+1. Read `workspace/config/platforms.json` and identify which English platforms are enabled (where `language` = "en" and `enabled` = true). Set `target_platforms` in metadata to only the enabled English platforms.
+2. Read all source materials and the current strategy
 2. Read winning_patterns.md for proven patterns to incorporate
 3. If no outline exists, create one first (can share with writer-ko)
 4. Write the draft:
@@ -77,6 +79,6 @@ Read `.claude/rules/writing-style-en.md` for detailed guidelines. Key points:
   {
     "title_en": "...",
     "word_count_en": 2100,
-    "target_platforms": ["medium", "wordpress", "devto"]
+    "target_platforms": ["<only platforms from platforms.json where language=en AND enabled=true>"]
   }
   ```
