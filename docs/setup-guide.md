@@ -54,43 +54,26 @@ cp workspace/config/credentials.env.example .env
 
 ### 2.1 네이버 블로그 (한국어)
 
-**방식:** REST API (자동 발행)
+**방식:** 브라우저 자동화 (Playwright MCP) — 글쓰기 API가 2020년 5월에 폐쇄됨
 
 #### 준비 단계:
 
 1. **네이버 블로그 개설**
    - https://blog.naver.com 에서 블로그 생성
-   - 블로그 주소 확인 (예: blog.naver.com/your_id)
+   - 블로그 ID 확인 (예: blog.naver.com/**your_id** ← 이 부분)
 
-2. **네이버 개발자 앱 등록**
-   - https://developers.naver.com 접속 → 로그인
-   - "Application" → "애플리케이션 등록" 클릭
-   - 애플리케이션 이름: MarketClaw (자유)
-   - 사용 API: "블로그" 선택
-   - 환경: "WEB 설정" → 서비스 URL: `http://localhost` 입력
-   - Callback URL: `http://localhost/callback` 입력
-   - 등록 완료 후 **Client ID**와 **Client Secret** 메모
+2. **로그인 정보 준비**
+   - 네이버 계정 아이디와 비밀번호 필요
+   - 2단계 인증이 활성화되어 있다면 **비활성화** 권장 (자동 로그인에 방해)
 
-3. **OAuth 2.0 Access Token 발급**
+3. **환경변수 설정**
    ```
-   # 브라우저에서 아래 URL 접속 (Client ID 교체)
-   https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=YOUR_CLIENT_ID&redirect_uri=http://localhost/callback&state=random_state
-
-   # 로그인 후 동의 → 리다이렉트된 URL에서 code 값 복사
-   # http://localhost/callback?code=AUTHORIZATION_CODE&state=random_state
-
-   # 토큰 교환
-   curl "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET&code=AUTHORIZATION_CODE&state=random_state"
-
-   # 응답에서 access_token 값 복사
+   NAVER_USERNAME=네이버_아이디
+   NAVER_PASSWORD=네이버_비밀번호
+   NAVER_BLOG_ID=your_id    # blog.naver.com/ 뒤의 ID
    ```
 
-4. **환경변수 설정**
-   ```
-   NAVER_BLOG_ACCESS_TOKEN=발급받은_access_token
-   ```
-
-> **주의:** 네이버 Access Token은 만료 기간이 있습니다. refresh_token으로 갱신하거나 만료 시 재발급이 필요합니다.
+> **주의:** 브라우저 자동화 방식이므로 첫 실행 시 CAPTCHA나 기기 인증이 나올 수 있습니다. 처음 한 번은 수동으로 로그인하여 기기 인증을 완료해 두세요. 하루 3~5개 이상 대량 발행 시 계정 제한이 걸릴 수 있으므로 주의하세요.
 
 ---
 
@@ -317,7 +300,9 @@ cp workspace/config/credentials.env.example .env
 
 ```env
 # === 한국어 플랫폼 ===
-NAVER_BLOG_ACCESS_TOKEN=AAAA....
+NAVER_USERNAME=your_naver_id
+NAVER_PASSWORD=your_password
+NAVER_BLOG_ID=your_blog_id
 TISTORY_USERNAME=your@email.com
 TISTORY_PASSWORD=your_password
 TISTORY_BLOG_NAME=yourblog
@@ -363,7 +348,7 @@ direnv allow
     "naver": {
       "enabled": true,       // ← 사용할 플랫폼만 true
       "language": "ko",
-      "method": "api"
+      "method": "browser"
     },
     "tistory": {
       "enabled": false,      // ← 사용하지 않으면 false
@@ -397,7 +382,7 @@ direnv allow
 ### 권장 항목
 - [ ] 최소 1개 이미지 서비스 API 키 등록 (Unsplash 권장)
 - [ ] 각 플랫폼에 테스트 글 1개 수동으로 발행하여 계정 정상 확인
-- [ ] 브라우저 자동화 플랫폼(Tistory/Velog) 사용 시 수동 로그인 1회 완료
+- [ ] 브라우저 자동화 플랫폼(Naver/Tistory/Velog) 사용 시 수동 로그인 1회 완료
 
 ### API 연결 테스트
 
@@ -416,9 +401,7 @@ curl -u "$WP_USERNAME:$WP_APP_PASSWORD" \
 curl -H "api-key: $DEVTO_API_KEY" \
   https://dev.to/api/articles/me?per_page=1
 
-# Naver API 테스트 (블로그 정보 조회)
-curl -H "Authorization: Bearer $NAVER_BLOG_ACCESS_TOKEN" \
-  https://openapi.naver.com/v1/blog/listPost
+# Naver: API 없음 (브라우저 자동화). 수동 로그인으로 계정 정상 확인
 
 # Unsplash API 테스트
 curl -H "Authorization: Client-ID $UNSPLASH_ACCESS_KEY" \
@@ -489,14 +472,12 @@ set -a && source .env && set +a
 
 ## 9. 문제 해결 (FAQ)
 
-### Q: 네이버 Access Token이 만료되었습니다
-**A:** Refresh Token으로 갱신하거나, 섹션 2.1의 과정을 다시 수행하여 재발급하세요.
-
-### Q: 티스토리/Velog 브라우저 자동화가 실패합니다
+### Q: 네이버/티스토리/Velog 브라우저 자동화가 실패합니다
 **A:**
 1. 수동으로 해당 사이트에 로그인하여 CAPTCHA/기기 인증 완료
 2. 2단계 인증 비활성화
 3. 비밀번호에 특수문자가 있다면 환경변수에서 따옴표로 감싸기
+4. 네이버의 경우 새로운 기기에서 로그인 시 추가 인증이 필요할 수 있음
 
 ### Q: Medium API가 작동하지 않습니다
 **A:** Medium API는 deprecated이지만 작동합니다. Integration Token을 재발급하고, `https://api.medium.com/v1/me`로 테스트하세요.

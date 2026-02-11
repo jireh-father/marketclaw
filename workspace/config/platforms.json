@@ -3,11 +3,11 @@
     "naver": {
       "enabled": true,
       "language": "ko",
-      "method": "api",
+      "method": "browser",
       "script": "scripts/publish/naver.sh",
-      "credentials_env": "NAVER_BLOG_ACCESS_TOKEN",
+      "credentials_env": "NAVER_USERNAME",
       "auto_publish": true,
-      "notes": "Naver Blog REST API. HTML content only."
+      "notes": "Blog writePost API shut down May 2020. Uses Playwright MCP browser automation."
     },
     "tistory": {
       "enabled": false,

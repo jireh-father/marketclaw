@@ -42,14 +42,14 @@ Before publishing, you MUST determine which platforms to publish to:
 Example: platforms.json has naver(enabled:true), tistory(enabled:false), medium(enabled:true)
 Content language: ko
 → Only "naver" matches (enabled + language=ko). Tistory is disabled, so skip it.
-→ Check if NAVER_BLOG_ACCESS_TOKEN is set. If yes, publish. If no, skip with warning.
+→ Check if NAVER_USERNAME is set. If yes, publish via browser automation. If no, skip with warning.
 ```
 
 ## Publishing Process
 
 For each platform that passed the Platform Selection checks above:
 
-### API Platforms (Naver, Medium, WordPress, Dev.to, Hashnode)
+### API Platforms (Medium, WordPress, Dev.to, Hashnode)
 
 1. Prepare JSON payload:
    ```json
@@ -64,9 +64,9 @@ For each platform that passed the Platform Selection checks above:
    }
    ```
 
-2. For platforms needing HTML (Naver, WordPress):
+2. For platforms needing HTML (WordPress):
    ```bash
-   cat workspace/drafts/{topic_id}/final_ko.md | node scripts/publish/md2html.js > /tmp/content.html
+   cat workspace/drafts/{topic_id}/final_en.md | node scripts/publish/md2html.js > /tmp/content.html
    ```
 
 3. Invoke the platform script:
@@ -76,11 +76,27 @@ For each platform that passed the Platform Selection checks above:
 
 4. Capture the response JSON (url, post_id, status)
 
-### Browser-Automated Platforms (Tistory, Velog)
+### Browser-Automated Platforms (Naver, Tistory, Velog)
 
-Use Playwright MCP tools for browser automation:
+Use Playwright MCP tools for browser automation.
+First, convert markdown to HTML for the content:
+```bash
+cat workspace/drafts/{topic_id}/final_ko.md | node scripts/publish/md2html.js > /tmp/content.html
+```
 
-**Tistory:**
+**Naver Blog:** (API shut down May 2020)
+1. `browser_navigate` to `https://nid.naver.com/nidlogin.login`
+2. Login with credentials (NAVER_USERNAME, NAVER_PASSWORD)
+3. Navigate to blog editor (https://blog.naver.com/{NAVER_BLOG_ID})
+4. Click the write/new post button
+5. `browser_type` to fill title
+6. Switch to HTML editor mode if available
+7. `browser_evaluate` to inject HTML content into SmartEditor
+8. Add tags if tag input is available
+9. `browser_click` the publish button
+10. `browser_snapshot` to capture the published URL
+
+**Tistory:** (API shut down Feb 2024)
 1. `browser_navigate` to `https://www.tistory.com/auth/login`
 2. Login with credentials (TISTORY_USERNAME, TISTORY_PASSWORD)
 3. Navigate to new post editor
@@ -90,7 +106,7 @@ Use Playwright MCP tools for browser automation:
 7. `browser_click` the publish button
 8. `browser_snapshot` to capture the published URL
 
-**Velog:**
+**Velog:** (No official API)
 1. `browser_navigate` to `https://velog.io`
 2. Login flow
 3. Navigate to `https://velog.io/write`

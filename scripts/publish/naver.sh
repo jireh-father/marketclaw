@@ -1,46 +1,28 @@
 #!/usr/bin/env bash
-# Publishes to Naver Blog via Open API
-# Env: NAVER_BLOG_ACCESS_TOKEN
+# Naver Blog publish via Playwright MCP browser automation
+# Naver Blog writePost API was shut down May 2020 — browser automation is the only path
 # Stdin: JSON {title, content, content_format, tags}
-# Stdout: JSON {url, post_id, status, platform}
+# Stdout: JSON with browser_automation instructions for publisher agent
 set -euo pipefail
 
 # Validate required credentials
-if [ -z "${NAVER_BLOG_ACCESS_TOKEN:-}" ]; then
-  echo '{"error": "Missing required environment variable: NAVER_BLOG_ACCESS_TOKEN", "platform": "naver"}' >&2
-  exit 1
-fi
+for var in NAVER_USERNAME NAVER_PASSWORD; do
+  if [ -z "${!var:-}" ]; then
+    echo "{\"error\": \"Missing required environment variable: $var\", \"platform\": \"naver\"}" >&2
+    exit 1
+  fi
+done
 
 PAYLOAD=$(cat)
-TITLE=$(echo "$PAYLOAD" | jq -r '.title')
-CONTENT=$(echo "$PAYLOAD" | jq -r '.content')
-FORMAT=$(echo "$PAYLOAD" | jq -r '.content_format // "markdown"')
 
-# Naver requires HTML content
-if [ "$FORMAT" = "markdown" ]; then
-  CONTENT=$(echo "$CONTENT" | node "$(dirname "$0")/md2html.js")
-fi
-
-RESPONSE=$(curl -s -w "\n%{http_code}" \
-  -X POST "https://openapi.naver.com/blog/writePost.json" \
-  -H "Authorization: Bearer ${NAVER_BLOG_ACCESS_TOKEN}" \
-  --data-urlencode "title=${TITLE}" \
-  --data-urlencode "contents=${CONTENT}" \
-  2>/dev/null)
-
-HTTP_CODE=$(echo "$RESPONSE" | tail -1)
-BODY=$(echo "$RESPONSE" | sed '$d')
-
-if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
-  BLOG_URL=$(echo "$BODY" | jq -r '.message.result.blogUrl // empty')
-  LOG_NO=$(echo "$BODY" | jq -r '.message.result.logNo // empty')
-  if [ -n "$BLOG_URL" ] && [ -n "$LOG_NO" ]; then
-    jq -n --arg url "${BLOG_URL}/${LOG_NO}" --arg post_id "$LOG_NO" \
-      '{url: $url, post_id: $post_id, status: "published", platform: "naver"}'
-  else
-    echo "$BODY" | jq '. + {platform: "naver", status: "published"}'
-  fi
-else
-  echo "$BODY" | jq '{error: (.errorMessage // "unknown error"), code: (.errorCode // "unknown"), platform: "naver"}' >&2
-  exit 1
-fi
+# Output instructions for the publisher agent to use Playwright MCP
+echo "$PAYLOAD" | jq '{
+  platform: "naver",
+  method: "browser_automation",
+  instructions: "Use Playwright MCP tools to publish to Naver Blog:\n1. browser_navigate to https://nid.naver.com/nidlogin.login\n2. Login with NAVER_USERNAME and NAVER_PASSWORD\n3. Navigate to https://blog.naver.com/BLOG_ID (use NAVER_BLOG_ID if set)\n4. Click the write/new post button to open the editor\n5. browser_type the title into the title field\n6. Switch to the HTML editor mode if available\n7. browser_evaluate to inject HTML content into the SmartEditor\n8. Add tags if the tag input is available\n9. browser_click the publish/save button\n10. browser_snapshot to capture the published URL\n11. Return the URL and post ID",
+  title: .title,
+  content: .content,
+  content_format: (.content_format // "html"),
+  tags: (.tags // []),
+  daily_limit_warning: "Avoid posting more than 3-5 posts per day to prevent account restrictions"
+}'
