@@ -196,7 +196,27 @@ claude -p "분야: 부동산 투자, 키워드: 갭투자,전세,청약, 목표:
     → workspace/drafts/{topic_id}/final_ko.md
     → workspace/drafts/{topic_id}/final_en.md
 
-[Phase 5: 발행]
+[Phase 5: 이미지 처리]
+    - 콘텐츠 내 [IMAGE: 설명] 마커 분석
+    - Unsplash/Pexels API로 관련 무료 이미지 검색
+    - 적합한 이미지 없으면 AI 생성 (DALL-E 3 / Stable Diffusion)
+    - 생성된 이미지 품질 자체 검증 (텍스트 깨짐, 부자연스러움 체크)
+    - 이미지 URL/경로를 콘텐츠에 삽입
+    - ALT 텍스트 최적화 (SEO + 접근성)
+    → workspace/drafts/{topic_id}/images/
+    → workspace/drafts/{topic_id}/final_{lang}.md (이미지 삽입 버전)
+
+[Phase 6: 휴먼라이크 검증]
+    - Content-Verifier 에이전트가 독립적으로 검증
+    - AI 작성 패턴 감지 (뻔한 도입부, 균일한 구조, AI 버즈워드)
+    - 개인 관점/감정 표현 충분한지 확인
+    - 구어체 비율, 문단 길이 변동성 측정
+    - 팩트체크 (주요 수치/사실 WebSearch로 교차 검증)
+    - 이미지 적절성 검증 (콘텐츠 맥락과 일치하는지)
+    - PASS/REVISE/FAIL 판정
+    → workspace/drafts/{topic_id}/verification.json
+
+[Phase 7: 발행]
     - 블로그 플랫폼 API로 자동 발행
     - 발행 결과 기록
     → workspace/published/{topic_id}/metadata.json
@@ -366,7 +386,12 @@ workspace/
 │       ├── draft_en.md              # 영어 초안
 │       ├── final_ko.md              # 한국어 최종본
 │       ├── final_en.md              # 영어 최종본
-│       └── metadata.json            # 메타데이터
+│       ├── metadata.json            # 메타데이터
+│       ├── verification.json        # 검증 결과 (Content-Verifier)
+│       └── images/                  # 이미지 파일
+│           ├── cover.png            # 커버/썸네일 이미지
+│           ├── body_001.png         # 본문 이미지
+│           └── image_verification.json  # 이미지 검증 결과
 │
 ├── published/                       # 발행된 콘텐츠
 │   └── {topic_id}/
@@ -477,6 +502,8 @@ MarketClaw는 Claude Code의 기능만으로 구현된다. 별도 프레임워�
 │   ├── writer-ko/SKILL.md           # 한국어 콘텐츠 작성 에이전트
 │   ├── writer-en/SKILL.md           # 영어 콘텐츠 작성 에이전트
 │   ├── seo-optimizer/SKILL.md       # SEO 최적화 에이전트
+│   ├── content-verifier/SKILL.md    # 콘텐츠 검증 에이전트 (휴먼라이크 + 팩트체크)
+│   ├── image-manager/SKILL.md       # 이미지 수집/생성/검증 에이전트
 │   ├── publisher/SKILL.md           # 블로그 발행 에이전트
 │   ├── analyst/SKILL.md             # 트래픽 분석 에이전트
 │   └── planner/SKILL.md             # 작업 계획 & 추적 에이전트
@@ -503,6 +530,8 @@ MarketClaw는 Claude Code의 기능만으로 구현된다. 별도 프레임워�
 | **Writer-KO** | 한국어 콘텐츠 작성 (네이버/티스토리 최적화) | Read, Write, Edit, WebSearch |
 | **Writer-EN** | 영어 콘텐츠 작성 (Medium/WP 최적화) | Read, Write, Edit, WebSearch |
 | **SEO-Optimizer** | SEO 분석 및 콘텐츠 최적화 | Read, Edit, WebSearch, WebFetch |
+| **Content-Verifier** | 휴먼라이크 검증, 팩트체크, AI감지 방지 | Read, Write, Edit, WebSearch |
+| **Image-Manager** | 이미지 검색/수집/AI생성/검증 | WebSearch, WebFetch, Bash, Read, Write |
 | **Publisher** | 블로그 플랫폼에 콘텐츠 발행 | Bash, Read, Write |
 | **Analyst** | 트래픽 분석, 성과 리포트 생성 | Bash, Read, Write, WebFetch |
 | **Planner** | 작업 계획, 진행 추적, 의사결정 | Read, Write, Edit |
@@ -538,6 +567,21 @@ MarketClaw는 Claude Code의 기능만으로 구현된다. 별도 프레임워�
 │    ├─ [Phase 5] SEO-Optimizer: 최적화               │
 │    │   ├── SEO 점수 측정 & 개선                      │
 │    │   └── drafts/ → final 버전 갱신                 │
+│    │                                                │
+│    ├─ [Phase 5.5] Image-Manager: 이미지 처리         │
+│    │   ├── 콘텐츠 내 [IMAGE] 마커 분석               │
+│    │   ├── 무료 이미지 검색 (Unsplash/Pexels)        │
+│    │   ├── 필요시 AI 이미지 생성 (DALL-E/SD)         │
+│    │   ├── 생성된 이미지 자체 품질 검증               │
+│    │   └── 이미지 URL/경로를 콘텐츠에 삽입            │
+│    │                                                │
+│    ├─ [Phase 5.7] Content-Verifier: 검증             │
+│    │   ├── 휴먼라이크 검증 (AI 작성 티 감지)          │
+│    │   ├── 팩트체크 (사실 정확성 확인)                │
+│    │   ├── 이미지 적절성 검증                         │
+│    │   ├── PASS → Publisher로 이동                   │
+│    │   ├── REVISE → Writer에게 수정 지시 후 재검증    │
+│    │   └── FAIL → 로그 기록 후 스킵                  │
 │    │                                                │
 │    ├─ [Phase 6] Publisher: 발행                      │
 │    │   ├── 지정된 플랫폼에 자동 발행                   │
@@ -702,7 +746,339 @@ claude --resume $SESSION_ID -p "이전 진행 상황을 확인하고 남은 작�
 | **Tool Review** | 도구 리뷰 & 비교 | "I Tested 5 AI Writing Tools So You Don't Have To" |
 | **Prediction/Forecast** | 예측 콘텐츠로 공유 유도 | "5 AI Predictions That Will Define 2026" |
 
-### 6.2 SEO 최적화 기법
+### 6.2 휴먼라이크 작성 전략 (Human-Like Writing)
+
+AI가 작성했다는 티가 나면 독자 신뢰도와 SEO 모두 망한다. MarketClaw는 **사람이 직접 쓴 것처럼 자연스러운 글**을 생산하는 것을 최우선 원칙으로 둔다.
+
+#### 6.2.1 AI 글 특징 (반드시 피해야 할 것)
+
+```
+[AI가 쓴 티가 나는 패턴 - 절대 금지]
+
+1. 뻔한 도입부
+   ✗ "오늘날 빠르게 변화하는 디지털 환경에서..."
+   ✗ "In today's rapidly evolving landscape..."
+   ✗ "~에 대해 알아보겠습니다"
+   ✗ "Let's dive into..."
+
+2. 과도하게 정돈된 구조
+   ✗ 모든 문단이 정확히 같은 길이
+   ✗ 매 섹션마다 동일한 패턴 반복
+   ✗ 너무 깔끔한 전환어 (Furthermore, Moreover, Additionally)
+   ✗ 한국어에서 "또한", "더불어", "아울러" 연속 사용
+
+3. 감정 없는 서술
+   ✗ 지나치게 중립적이고 객관적인 톤만 유지
+   ✗ 개인 경험이나 의견이 전혀 없음
+   ✗ "~것으로 알려져 있습니다", "~라고 할 수 있습니다" 반복
+
+4. 단어 선택의 문제
+   ✗ "혁신적인", "획기적인", "강력한" 등 AI 선호 형용사 남발
+   ✗ "Revolutionize", "Cutting-edge", "Leverage", "Harness" 남발
+   ✗ 같은 문장 구조가 3번 이상 연속
+
+5. 리스트 항목의 균일성
+   ✗ 모든 불릿 포인트가 비슷한 길이와 구조
+   ✗ 항목마다 "~합니다", "~됩니다" 로 동일하게 끝남
+```
+
+#### 6.2.2 휴먼라이크 작성 원칙
+
+```
+[사람처럼 쓰는 핵심 기법]
+
+1. 불완전함을 의도적으로 남기기
+   ✓ 문단 길이를 일부러 불규칙하게 (2줄, 5줄, 1줄, 4줄...)
+   ✓ 가끔 짧은 한 줄 문장으로 임팩트 ("진짜다.", "It works.")
+   ✓ 리스트 항목도 길이 불균일하게
+   ✓ 완벽한 문법보다 자연스러운 구어체 섞기
+
+2. 개인적 관점 삽입 (페르소나)
+   ✓ "직접 써봤는데 솔직히 놀랐다"
+   ✓ "처음엔 반신반의했는데..."
+   ✓ "I was skeptical at first, but..."
+   ✓ "Here's what surprised me:"
+   ✓ 구체적인 체험 디테일 (날짜, 상황, 감정)
+
+3. 대화하는 듯한 톤
+   ✓ 독자에게 직접 말 걸기 ("이거 아셨나요?", "You know what?")
+   ✓ 수사적 질문 활용 ("근데 진짜 그럴까?")
+   ✓ 구어체 표현 자연스럽게 섞기
+   ✓ 한국어: "~거든요", "~잖아요", "~더라고요" 등 말투 변화
+   ✓ 영어: contractions (don't, isn't, I've), 구어 표현
+
+4. 정보의 비균일 배치
+   ✓ 핵심 인사이트를 예상치 못한 위치에 배치
+   ✓ 때로는 결론부터, 때로는 이야기부터
+   ✓ "아, 그리고 하나 더" 같은 추가 정보 패턴
+   ✓ 완벽한 서론-본론-결론이 아닌 자연스러운 흐름
+
+5. 감정적 리액션과 솔직한 의견
+   ✓ "솔직히 이건 좀 별로였다"
+   ✓ "이 부분은 정말 미쳤다고 생각한다"
+   ✓ "Honestly, this blew my mind"
+   ✓ "Not gonna lie, I expected more"
+   ✓ 장점과 단점을 솔직하게 (장점만 나열하면 AI 티 남)
+
+6. 구체적 디테일로 신뢰성 확보
+   ✓ 추상적 서술 대신 구체적 수치 ("3일 써봤는데 응답률 23% 올랐다")
+   ✓ 실제 스크린샷 위치 표시 ("[IMAGE: 실제 대시보드 캡처]")
+   ✓ 비교 시 구체적 기준 명시 ("가격 기준으로 비교하면...")
+   ✓ 시간적 맥락 ("지난 주에 업데이트된 버전 기준으로")
+```
+
+#### 6.2.3 언어별 휴먼라이크 전략
+
+**한국어 - 블로그 감성 살리기**
+```
+[네이버/티스토리 블로거 페르소나]
+
+톤 변화 패턴:
+  "요즘 ~ 때문에 고민인 분들 많으시죠?"        (공감 유도)
+  "저도 처음에 똑같은 고민을 했거든요."          (경험 공유)
+  "그래서 직접 이것저것 써보면서 비교해봤습니다." (체험 강조)
+  "결론부터 말하면, ~ 가 압도적이었어요."        (결론 선제)
+  "근데 단점도 있어요. 솔직하게 말할게요."       (솔직함)
+
+금지 패턴:
+  ✗ 매 문단 "~입니다" 로 끝내기
+  ✗ "이러한", "이와 같은", "상기" 등 논문투
+  ✗ 감정 표현 없이 나열만 하기
+  ✗ 모든 제품을 좋게만 평가하기
+
+필수 요소:
+  ✓ 최소 2-3곳에서 톤 변화 (진지→유머→진지)
+  ✓ 개인 경험 에피소드 1-2개
+  ✓ "~거든요", "~더라고요" 등 구어체 30% 이상
+  ✓ 가끔 맞춤법 수준의 자연스러운 표현 (띄어쓰기 변형 등)
+```
+
+**영어 - 오피니언 블로거 페르소나**
+```
+[Medium/WordPress 블로거 페르소나]
+
+톤 변화 패턴:
+  "I've been using ~ for the past month."     (경험 시작)
+  "Let me be real with you —"                  (솔직한 전환)
+  "Here's the thing nobody talks about:"       (인사이트)
+  "Is it perfect? No. But here's why I..."     (균형잡힌 평가)
+  "Look, if you're on a budget, skip this."    (직설적 조언)
+
+금지 패턴:
+  ✗ "In conclusion" 로 끝내기
+  ✗ "It is important to note that" 반복
+  ✗ 모든 문장을 같은 길이로
+  ✗ Passive voice 과다 사용
+
+필수 요소:
+  ✓ 1인칭 시점 유지 (I, my, we)
+  ✓ Contractions 자연스럽게 사용
+  ✓ 최소 1개의 anecdote나 story
+  ✓ 독자에게 직접 말 걸기 (you, your)
+  ✓ Hedging 줄이기 ("seems to", "might be" 최소화)
+```
+
+#### 6.2.4 콘텐츠 검증 에이전트 (Content Verifier)
+
+작성된 콘텐츠가 발행 전에 반드시 거쳐야 하는 **독립 검증 게이트**. Writer와 SEO-Optimizer와 완전히 분리된 제3의 에이전트가 객관적으로 평가한다.
+
+```
+[검증 에이전트 역할]
+
+                Writer-KO/EN
+                     │
+                     ▼
+              SEO-Optimizer
+                     │
+                     ▼
+            ┌────────────────┐
+            │Content Verifier│ ← 독립 검증 게이트
+            │   (검증 에이전트)  │
+            └───────┬────────┘
+                    │
+           ┌───────┼───────┐
+           │       │       │
+         PASS    REVISE   FAIL
+           │       │       │
+           ▼       ▼       ▼
+       Publisher  Writer   로그 기록
+                  재작성    & 스킵
+```
+
+**검증 체크리스트:**
+
+```json
+{
+  "verification_result": {
+    "human_likeness": {
+      "score": 8,
+      "checks": {
+        "no_ai_opener": true,
+        "varied_paragraph_lengths": true,
+        "personal_voice_present": true,
+        "conversational_tone": true,
+        "no_repetitive_structure": true,
+        "emotional_reactions_included": true,
+        "specific_details_present": true,
+        "natural_transitions": true,
+        "imperfection_intentional": true,
+        "no_ai_buzzwords": true
+      },
+      "flagged_sentences": [
+        {"line": 23, "issue": "AI투 도입부", "suggestion": "개인 에피소드로 교체"},
+        {"line": 45, "issue": "'Furthermore' 사용", "suggestion": "삭제하거나 구어체로"}
+      ]
+    },
+    "factual_accuracy": {
+      "score": 9,
+      "unverified_claims": [],
+      "sources_checked": 3
+    },
+    "seo_compliance": {
+      "score": 8,
+      "issues": []
+    },
+    "overall_verdict": "PASS",
+    "revision_required": false
+  }
+}
+```
+
+**검증 기준:**
+
+| 항목 | 기준 | PASS | REVISE | FAIL |
+|------|------|:---:|:---:|:---:|
+| **AI 감지 점수** | AI 작성 티가 나는 정도 | 2점 이하 | 3-5점 | 6점 이상 |
+| **휴먼라이크** | 사람이 쓴 듯한 자연스러움 | 8점 이상 | 5-7점 | 4점 이하 |
+| **개인 관점** | 페르소나 경험/의견 포함 | 3개 이상 | 1-2개 | 0개 |
+| **구어체 비율** | 전체 대비 자연스러운 구어체 | 25%+ | 10-25% | 10% 미만 |
+| **구조 다양성** | 문단/리스트 길이 변동 | CV 30%+ | CV 15-30% | CV 15% 미만 |
+| **감정 표현** | 솔직한 반응, 감정 포함 | 5회+ | 2-4회 | 1회 이하 |
+| **전환어 자연스러움** | AI 전환어 패턴 회피 | 0개 감지 | 1-2개 | 3개 이상 |
+| **사실 정확성** | 검증 가능한 정보 정확도 | 100% | 95%+ | 95% 미만 |
+
+> **핵심 원칙**: "이 글을 읽은 사람 10명 중 10명이 사람이 쓴 거라고 확신할 수 있어야 PASS"
+
+### 6.3 이미지 전략 (Image Strategy)
+
+블로그 콘텐츠에서 이미지는 체류 시간, 공유율, SEO 순위에 직접 영향을 준다. MarketClaw는 이미지를 단순 장식이 아닌 **전략적 도구**로 활용한다.
+
+#### 6.3.1 이미지 소싱 우선순위
+
+```
+[이미지 확보 방법 - 우선순위]
+
+1순위: 무료 스톡 이미지 검색
+   ├── Unsplash API (무료, 고품질, 상업 이용 가능)
+   ├── Pexels API (무료, 고품질, API 지원)
+   ├── Pixabay API (무료, 다양한 종류)
+   └── 검색 키워드: 콘텐츠 주제 + 분위기 키워드 조합
+
+2순위: AI 이미지 생성
+   ├── DALL-E 3 API (OpenAI) - 고품질, 텍스트 이해 우수
+   ├── Stable Diffusion API - 오픈소스, 커스터마이징 가능
+   └── 생성 시나리오:
+       ├── 스톡에 적합한 이미지 없을 때
+       ├── 브랜드 특화 인포그래픽 필요 시
+       ├── 추상적 개념 시각화 필요 시
+       └── 썸네일/커버 이미지 제작 시
+
+3순위: 웹 이미지 수집 (라이선스 확인 필수)
+   ├── Creative Commons 라이선스 이미지
+   ├── WebFetch로 공식 제품 이미지 (보도자료용)
+   └── 반드시 출처 표기
+```
+
+#### 6.3.2 이미지 배치 전략
+
+```
+[콘텐츠 내 이미지 배치 규칙]
+
+필수 이미지:
+  ✓ 커버/썸네일 이미지 (1개) - 클릭률 직접 영향
+  ✓ 본문 중간 이미지 (2-4개) - 가독성 & 체류시간
+  ✓ 스크린샷/예시 이미지 - 신뢰도 향상
+
+배치 간격:
+  ✓ 300-500자(한국어) / 200-300 words(영어) 마다 1개
+  ✓ 긴 텍스트 블록 사이에 시각적 브레이크로 삽입
+  ✓ H2 소제목 바로 아래에 관련 이미지 배치
+
+플랫폼별 최적화:
+  네이버 블로그: 이미지 크게 (가로 최대), 텍스트 사이사이 배치
+  티스토리: 커버 이미지 필수, 본문 이미지 중심 정렬
+  Medium: 고해상도, 와이드 이미지, 캡션 적극 활용
+  WordPress: Featured Image 필수, 본문 내 반응형 이미지
+  Dev.to: 커버 이미지 + 코드 스크린샷 위주
+```
+
+#### 6.3.3 AI 생성 이미지 검증
+
+AI로 생성한 이미지는 **반드시 자체 검증**을 거친다.
+
+```
+[AI 이미지 검증 체크리스트]
+
+1. 텍스트 품질 검증
+   □ 이미지 내 텍스트가 깨지지 않았는지 (AI 이미지 최대 약점)
+   □ 철자가 정확한지
+   □ 텍스트가 필요없는 이미지면 텍스트 없이 생성했는지
+
+2. 시각적 품질 검증
+   □ 손가락/신체 비율이 자연스러운지 (인물 이미지)
+   □ 배경이 자연스럽게 이어지는지
+   □ 이상한 아티팩트가 없는지
+   □ 해상도가 충분한지 (최소 1200x630 for OG image)
+
+3. 콘텐츠 적합성 검증
+   □ 글의 주제와 이미지 내용이 일치하는지
+   □ 분위기/톤이 글과 맞는지
+   □ 대상 독자층에 적합한지
+   □ 문화적으로 부적절한 요소가 없는지
+
+4. 법적 안전성
+   □ 실존 인물/브랜드 로고가 포함되지 않았는지
+   □ 저작권 침해 소지가 없는지
+   □ AI 생성 이미지 표시 필요 여부 확인
+
+검증 결과:
+  PASS → 이미지 사용
+  REGENERATE → 프롬프트 수정 후 재생성 (최대 3회)
+  SKIP → 스톡 이미지로 대체
+```
+
+```json
+// workspace/drafts/{topic_id}/images/image_verification.json
+{
+  "images": [
+    {
+      "id": "img_001",
+      "type": "ai_generated",
+      "generator": "dall-e-3",
+      "prompt": "modern workspace with AI chatbot dashboard on screen, clean minimal style",
+      "file": "cover.png",
+      "verification": {
+        "text_quality": "PASS",
+        "visual_quality": "PASS",
+        "content_relevance": "PASS",
+        "legal_safety": "PASS",
+        "overall": "PASS"
+      },
+      "attempts": 1
+    },
+    {
+      "id": "img_002",
+      "type": "stock",
+      "source": "unsplash",
+      "url": "https://unsplash.com/photos/...",
+      "alt_text": "AI 챗봇 인터페이스 예시",
+      "license": "Unsplash License (free commercial use)"
+    }
+  ]
+}
+```
+
+### 6.4 SEO 최적화 기법
 
 ```
 [온페이지 SEO]
@@ -842,6 +1218,35 @@ claude --resume $SESSION_ID -p "이전 진행 상황을 확인하고 남은 작�
     │   ├── 키워드 밀도 확인/조정
     │   ├── 헤딩 구조 최적화
     │   └── → drafts/{topic_id}/final_{lang}.md
+    │
+    ├── 5.5. 이미지 처리
+    │   ├── [IMAGE: 설명] 마커 분석
+    │   ├── Unsplash/Pexels에서 적합한 이미지 검색
+    │   ├── 없으면 AI 생성 (DALL-E 3 / Stable Diffusion)
+    │   ├── AI 생성 이미지 자체 검증 (텍스트 깨짐, 비율 등)
+    │   ├── 검증 실패 시 프롬프트 수정 후 재생성 (최대 3회)
+    │   ├── ALT 텍스트 최적화
+    │   └── → drafts/{topic_id}/images/
+    │
+    ├── 5.7. 콘텐츠 검증 (Content-Verifier)
+    │   ├── 휴먼라이크 검증 (AI 작성 패턴 10개 항목 스캔)
+    │   ├── 개인 관점/감정 표현 카운트
+    │   ├── 팩트체크 (WebSearch 교차 검증)
+    │   ├── 이미지 적절성 검증
+    │   ├── PASS → 품질 게이트로 이동
+    │   ├── REVISE → Writer에게 구체적 수정 지시 → 재검증
+    │   └── FAIL → 전면 재작성 또는 스킵
+    │
+    ├── 5.9. 최종 품질 게이트 (Quality Gate)
+    │   ├── 8개 영역 다면 평가 (콘텐츠, 휴먼라이크, SEO, 바이럴, 가독성, 이미지, 독자가치, 브랜드)
+    │   ├── 가중 평균 종합 점수 산출
+    │   ├── >= 7.0 → 발행 진행
+    │   ├── 5.0-6.9 → 약점 영역 타겟 개선
+    │   │   ├── 약점 2-3개 영역 식별
+    │   │   ├── 해당 에이전트 재호출 (Writer/SEO/Image 등)
+    │   │   ├── 재평가 (최대 3회 반복)
+    │   │   └── 매 반복 0.5+ 향상 없으면 중단
+    │   └── < 5.0 → 폐기, 새 주제로 교체
     │
     ├── 6. 발행
     │   ├── 한국어 → 네이버/티스토리 API 발행
@@ -1035,14 +1440,167 @@ claude mcp add --transport stdio twitter -- npx -y twitter-mcp-server
 ```json
 {
   "quality_score": {
-    "relevance": 8,       // 주제 적합성 (1-10)
-    "depth": 7,           // 내용 깊이 (1-10)
-    "readability": 9,     // 가독성 (1-10)
-    "seo_score": 8,       // SEO 최적화 (1-10)
-    "viral_potential": 7, // 바이럴 가능성 (1-10)
-    "overall": 7.8        // 종합 점수
+    "relevance": 8,         // 주제 적합성 (1-10)
+    "depth": 7,             // 내용 깊이 (1-10)
+    "readability": 9,       // 가독성 (1-10)
+    "seo_score": 8,         // SEO 최적화 (1-10)
+    "viral_potential": 7,   // 바이럴 가능성 (1-10)
+    "human_likeness": 8,    // 휴먼라이크 점수 (1-10)
+    "image_quality": 8,     // 이미지 품질 & 적절성 (1-10)
+    "overall": 7.9          // 종합 점수
   },
-  "min_threshold": 6.0    // 이 이하면 재작성
+  "min_threshold": 6.0      // 이 이하면 재작성
+}
+```
+
+### 10.3 콘텐츠 검증 파이프라인 (Content Verification Pipeline)
+
+모든 콘텐츠는 발행 전 **Content-Verifier 에이전트**의 독립 검증을 반드시 통과해야 한다. Writer/SEO-Optimizer가 자체 평가한 점수와 별도로, 제3자 시각에서 재평가한다.
+
+```
+[검증 파이프라인]
+
+작성 완료 → Content-Verifier 호출
+              │
+              ├─ [1단계] 휴먼라이크 검증
+              │   ├── AI 작성 패턴 10개 항목 스캔
+              │   ├── 개인 관점/감정 표현 카운트
+              │   ├── 구어체 비율 측정
+              │   ├── 문단 길이 변동계수(CV) 측정
+              │   └── AI 버즈워드 감지 (금지 단어 목록 대조)
+              │
+              ├─ [2단계] 팩트체크
+              │   ├── 핵심 수치/통계 WebSearch 교차 검증
+              │   ├── 인용 출처 실존 여부 확인
+              │   └── 날짜/버전 정보 정확성
+              │
+              ├─ [3단계] 이미지 검증
+              │   ├── AI 생성 이미지 품질 체크
+              │   ├── 이미지-콘텐츠 맥락 일치도
+              │   ├── ALT 텍스트 존재 및 적절성
+              │   └── 라이선스 안전성
+              │
+              └─ [판정]
+                  ├── PASS (human_likeness ≥ 8, 전체 ≥ 7)
+                  │   → Publisher로 진행
+                  ├── REVISE (human_likeness 5-7 또는 전체 5-7)
+                  │   → flagged_sentences와 함께 Writer에게 반환
+                  │   → 수정 후 재검증 (최대 2회)
+                  └── FAIL (human_likeness < 5 또는 팩트 오류)
+                      → 전면 재작성 또는 스킵, 로그 기록
+```
+
+> **핵심**: Verifier는 Writer/SEO-Optimizer와 완전히 독립된 에이전트다. 자기가 쓴 글을 자기가 평가하는 게 아니라, 별도의 에이전트가 "까다로운 편집자" 역할로 객관적 검증을 수행한다.
+
+### 10.4 최종 품질 게이트 & 반복 개선 루프 (Quality Gate & Iterative Refinement)
+
+콘텐츠는 **모든 검증을 통과한 후에도 최종 다면 품질 평가**를 거친다. 기준 미달 시 자동으로 약점 영역을 타겟하여 개선 작업을 반복한다.
+
+```
+[최종 품질 게이트 - 다면 평가]
+
+┌──────────────────────────────────────────────────────────┐
+│                    Quality Gate                          │
+│                                                          │
+│  평가 영역 (각 1-10점):                                    │
+│  ┌─────────────────────────────────────────────────┐     │
+│  │ 1. 콘텐츠 품질     (정보 가치, 깊이, 정확성)       │     │
+│  │ 2. 휴먼라이크      (AI 티 안남, 자연스러움)        │     │
+│  │ 3. SEO 최적화      (키워드, 구조, 메타데이터)      │     │
+│  │ 4. 바이럴 잠재력    (공유 욕구, 제목 매력도)       │     │
+│  │ 5. 가독성          (구조, 흐름, 시각적 편안함)      │     │
+│  │ 6. 이미지 품질      (적절성, 해상도, 배치)         │     │
+│  │ 7. 독자 가치       (실용성, 즉시 적용 가능한 정보)  │     │
+│  │ 8. 브랜드 일관성    (톤, 스타일, 메시지 일관성)     │     │
+│  └─────────────────────────────────────────────────┘     │
+│                                                          │
+│  종합 점수 = 가중 평균                                      │
+│  (휴먼라이크 x1.5, 콘텐츠품질 x1.3, 나머지 x1.0)           │
+│                                                          │
+│  ┌──────────┬────────────────────────────────────┐       │
+│  │ >= 7.0   │ PUBLISH → Publisher로 즉시 발행    │       │
+│  │ 5.0-6.9  │ IMPROVE → 약점 영역 타겟 개선     │       │
+│  │ < 5.0    │ DISCARD → 폐기, 새 주제로 교체    │       │
+│  └──────────┴────────────────────────────────────┘       │
+└──────────────────────────────────────────────────────────┘
+```
+
+```
+[반복 개선 루프]
+
+Quality Gate 결과 = IMPROVE (5.0-6.9)
+    │
+    ├── 1. 약점 영역 식별
+    │   ├── 가장 낮은 점수 2-3개 영역 추출
+    │   ├── 각 영역별 구체적 개선 포인트 생성
+    │   └── 개선 지시서 작성 → drafts/{topic_id}/improvement_plan.md
+    │
+    ├── 2. 타겟 개선 실행
+    │   ├── 휴먼라이크 부족 → Writer에게 톤/구어체 수정 지시
+    │   ├── SEO 부족 → SEO-Optimizer 재실행
+    │   ├── 이미지 부족 → Image-Manager 이미지 교체/추가
+    │   ├── 가독성 부족 → 구조 재편 (소제목, 문단 분리, 시각 요소)
+    │   ├── 바이럴 부족 → 제목 재생성, 도입부 리라이트, CTA 강화
+    │   └── 콘텐츠 품질 부족 → 추가 리서치 후 내용 보강
+    │
+    ├── 3. 재평가
+    │   ├── Content-Verifier 재검증
+    │   ├── Quality Gate 재평가
+    │   └── 점수 변화 기록
+    │
+    └── 4. 반복 제어
+        ├── 최대 3회 반복 (무한 루프 방지)
+        ├── 매 반복마다 점수 0.5+ 향상 필요 (정체 시 중단)
+        ├── 3회 반복 후에도 7.0 미달 → 현재 최고 버전으로 발행 (6.0+)
+        └── 6.0 미만 → 폐기하고 다음 주제로 이동
+```
+
+```json
+// workspace/drafts/{topic_id}/quality_gate.json
+{
+  "iterations": [
+    {
+      "round": 1,
+      "scores": {
+        "content_quality": 7,
+        "human_likeness": 5,
+        "seo_optimization": 8,
+        "viral_potential": 6,
+        "readability": 7,
+        "image_quality": 7,
+        "reader_value": 8,
+        "brand_consistency": 7
+      },
+      "weighted_overall": 6.4,
+      "verdict": "IMPROVE",
+      "weak_areas": ["human_likeness", "viral_potential"],
+      "improvement_actions": [
+        "구어체 비율 15% → 30%로 높이기",
+        "개인 경험 에피소드 2개 추가",
+        "제목을 질문형으로 변경",
+        "도입부를 에피소드형으로 리라이트"
+      ]
+    },
+    {
+      "round": 2,
+      "scores": {
+        "content_quality": 7,
+        "human_likeness": 8,
+        "seo_optimization": 8,
+        "viral_potential": 7,
+        "readability": 8,
+        "image_quality": 7,
+        "reader_value": 8,
+        "brand_consistency": 7
+      },
+      "weighted_overall": 7.5,
+      "verdict": "PUBLISH",
+      "improvement_delta": "+1.1"
+    }
+  ],
+  "final_verdict": "PUBLISH",
+  "total_rounds": 2,
+  "best_version": "final_ko_v2.md"
 }
 ```
 
