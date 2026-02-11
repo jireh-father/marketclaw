@@ -1,0 +1,71 @@
+{
+  "platforms": {
+    "naver": {
+      "enabled": true,
+      "language": "ko",
+      "method": "api",
+      "script": "scripts/publish/naver.sh",
+      "credentials_env": "NAVER_BLOG_ACCESS_TOKEN",
+      "auto_publish": true,
+      "notes": "Naver Blog REST API. HTML content only."
+    },
+    "tistory": {
+      "enabled": false,
+      "language": "ko",
+      "method": "browser",
+      "script": "scripts/publish/tistory.sh",
+      "credentials_env": "TISTORY_USERNAME",
+      "auto_publish": true,
+      "daily_limit": 5,
+      "notes": "API shut down Feb 2024. Uses Playwright MCP browser automation."
+    },
+    "medium": {
+      "enabled": true,
+      "language": "en",
+      "method": "api",
+      "script": "scripts/publish/medium.sh",
+      "credentials_env": "MEDIUM_INTEGRATION_TOKEN",
+      "auto_publish": false,
+      "default_status": "draft",
+      "notes": "API deprecated but functional. Create-only (no update/delete)."
+    },
+    "wordpress": {
+      "enabled": false,
+      "language": "en",
+      "method": "api",
+      "script": "scripts/publish/wordpress.sh",
+      "credentials_env": "WP_APP_PASSWORD",
+      "auto_publish": true,
+      "notes": "Full CRUD via WP REST API. Requires Application Password."
+    },
+    "devto": {
+      "enabled": false,
+      "language": "en",
+      "method": "api",
+      "script": "scripts/publish/devto.sh",
+      "credentials_env": "DEVTO_API_KEY",
+      "auto_publish": false,
+      "default_status": "draft",
+      "rate_limit": "10 req/30s",
+      "notes": "Forem API. Markdown only. Supports create + update."
+    },
+    "hashnode": {
+      "enabled": false,
+      "language": "en",
+      "method": "api",
+      "script": "scripts/publish/hashnode.js",
+      "credentials_env": "HASHNODE_PAT",
+      "auto_publish": true,
+      "notes": "GraphQL API. Full CRUD. 500 mutations/min."
+    },
+    "velog": {
+      "enabled": false,
+      "language": "ko",
+      "method": "browser",
+      "script": "scripts/publish/velog.sh",
+      "credentials_env": "VELOG_USERNAME",
+      "auto_publish": true,
+      "notes": "No official API. Uses Playwright MCP browser automation."
+    }
+  }
+}

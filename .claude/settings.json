@@ -1,0 +1,35 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat workspace/progress/dashboard.md 2>/dev/null || echo '[MarketClaw] No active campaign. Use /run-campaign to start.'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "date -u '+[%Y-%m-%dT%H:%M:%SZ] File written' >> workspace/logs/.write_audit 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"---\nSession ended at $(date -u '+%Y-%m-%dT%H:%M:%SZ')\" >> workspace/logs/execution_log.md 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
