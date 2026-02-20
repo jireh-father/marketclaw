@@ -9,12 +9,14 @@ node_modules/
 
 # Logs
 *.log
-
+env
+.playwright-mcp/**
 # OS
 .DS_Store
 Thumbs.db
 
 # IDE
+workspace/
 .vscode/
 .idea/
 
@@ -22,3 +24,10 @@ Thumbs.db
 workspace/drafts/*/images/*.png
 workspace/drafts/*/images/*.jpg
 workspace/drafts/*/images/*.webp
+.claude/settings.local.json
+nul
+naver-editor-after-paste.png
+naver-editor-c001.png
+after-login.png
+blog-main.png
+captcha.png

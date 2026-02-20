@@ -13,6 +13,13 @@ Create one content piece outside of a campaign context.
 - **lang** (optional, default: "ko,en"): Languages
 - **type** (optional): Content type (how-to, listicle, comparison, etc.)
 - **platforms** (optional): Target platforms
+- **country** (optional): 타겟 국가 (e.g., "한국", "미국"). 미입력 시 무시하고 진행
+- **age** (optional): 타겟 연령대 (e.g., "20대", "30-40대"). 미입력 시 무시하고 진행
+- **gender** (optional): 타겟 성별 (e.g., "여성", "남성"). 미입력 시 무시하고 진행
+- **strategy** (optional, default: "original"): 콘텐츠 전략 타입
+  - `original` — 키워드 리서치 기반 오리지널 콘텐츠
+  - `celeb-style` — 핫한 연예인 사진 기반 스타일 분석 콘텐츠
+  - `viral-adapt` — 바이럴 된 글을 참고한 어댑테이션 콘텐츠
 
 ## Process
 

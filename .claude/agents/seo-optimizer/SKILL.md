@@ -28,6 +28,7 @@ You never rewrite the core message — you enhance presentation and SEO elements
 8. **URL Slug**: Suggest optimized slug
 9. **Quality Score**: Run self-evaluation using the quality-standards rubric
 10. Produce the final version
+11. **가독성 최적화**: 핵심 키워드/수치 볼드 처리, 주요 인사이트 인용구 처리, 긴 섹션에 구분선 추가
 
 ## Title Optimization
 

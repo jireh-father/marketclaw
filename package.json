@@ -4,7 +4,8 @@
   "description": "AI Blog Content Marketing Agent powered by Claude Code",
   "private": true,
   "dependencies": {
-    "marked": "^15.0.0"
+    "marked": "^15.0.0",
+    "playwright": "^1.58.2"
   },
   "scripts": {
     "campaign": "claude -p 'Read workspace/progress/task_queue.json and continue the campaign.' --allowedTools Read,Write,Edit,Bash,WebSearch,WebFetch,Task,Glob,Grep",

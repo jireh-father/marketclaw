@@ -6,8 +6,11 @@
       "method": "browser",
       "script": "scripts/publish/naver.sh",
       "credentials_env": "NAVER_USERNAME",
+      "credentials_password_env": "NAVER_PASSWORD",
+      "credentials_blog_id_env": "NAVER_BLOG_ID",
       "auto_publish": true,
-      "notes": "Blog writePost API shut down May 2020. Uses Playwright MCP browser automation."
+      "login_url": "https://nid.naver.com/nidlogin.login",
+      "notes": "Blog writePost API shut down May 2020. Uses Playwright MCP browser automation. 로그인 시 환경변수의 아이디/비밀번호를 브라우저 로그인 폼에 직접 입력한다."
     },
     "tistory": {
       "enabled": false,
@@ -15,12 +18,15 @@
       "method": "browser",
       "script": "scripts/publish/tistory.sh",
       "credentials_env": "TISTORY_USERNAME",
+      "credentials_password_env": "TISTORY_PASSWORD",
+      "credentials_blog_name_env": "TISTORY_BLOG_NAME",
       "auto_publish": true,
       "daily_limit": 5,
-      "notes": "API shut down Feb 2024. Uses Playwright MCP browser automation."
+      "login_url": "https://www.tistory.com/auth/login",
+      "notes": "API shut down Feb 2024. Uses Playwright MCP browser automation. 카카오 계정으로 로그인. 환경변수의 아이디/비밀번호를 브라우저에 직접 입력한다."
     },
     "medium": {
-      "enabled": true,
+      "enabled": false,
       "language": "en",
       "method": "api",
       "script": "scripts/publish/medium.sh",
@@ -64,8 +70,10 @@
       "method": "browser",
       "script": "scripts/publish/velog.sh",
       "credentials_env": "VELOG_USERNAME",
+      "credentials_password_env": "VELOG_PASSWORD",
       "auto_publish": true,
-      "notes": "No official API. Uses Playwright MCP browser automation."
+      "login_url": "https://velog.io",
+      "notes": "No official API. Uses Playwright MCP browser automation. 환경변수의 아이디/비밀번호를 브라우저 로그인 폼에 직접 입력한다."
     }
   }
 }
