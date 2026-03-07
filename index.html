@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MarketClaw Campaign Report — 2026-03-07-001</title>
+<title>MarketClaw Campaign Report — 2026-03-08-001</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   :root {
     --bg: #0f172a;
     --card: #1e293b;
-    --card2: #263248;
+    --card2: #263348;
     --border: #334155;
     --accent: #3b82f6;
     --accent2: #60a5fa;
@@ -18,79 +19,86 @@
     --red: #ef4444;
     --orange: #f97316;
     --purple: #a855f7;
-    --text: #e2e8f0;
+    --text: #f1f5f9;
     --muted: #94a3b8;
-    --dim: #64748b;
+    --sm: 0.8rem;
+    --base: 0.9rem;
   }
+
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-    font-size: 14px;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: var(--base);
     line-height: 1.6;
     min-height: 100vh;
   }
+
   a { color: var(--accent2); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  /* ---- HEADER ---- */
+  /* ── Layout ── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ── Header ── */
   .header {
     background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
     border-bottom: 1px solid var(--border);
-    padding: 36px 24px 32px;
-    text-align: center;
+    padding: 2.5rem 0 2rem;
   }
-  .header-badge {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
+  .header-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .brand {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--accent2);
     text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-bottom: 14px;
+    margin-bottom: 0.4rem;
   }
   .header h1 {
-    font-size: clamp(22px, 4vw, 36px);
-    font-weight: 800;
-    color: #f1f5f9;
-    margin-bottom: 6px;
-    letter-spacing: -0.5px;
-  }
-  .header .subtitle {
-    color: var(--muted);
-    font-size: 14px;
-    margin-bottom: 18px;
-  }
-  .header-meta {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
-    font-size: 13px;
-    color: var(--dim);
-  }
-  .header-meta span { display: flex; align-items: center; gap: 5px; }
-  .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
-  .dot-green { background: var(--green); }
-  .dot-blue { background: var(--accent); }
-
-  /* ---- CONTAINER ---- */
-  .container { max-width: 1200px; margin: 0 auto; padding: 28px 20px 60px; }
-
-  /* ---- SECTION TITLE ---- */
-  .section-title {
-    font-size: 13px;
+    font-size: clamp(1.4rem, 3vw, 2rem);
     font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+  .header-sub { color: var(--muted); font-size: var(--sm); }
+  .header-meta {
+    text-align: right;
+    font-size: var(--sm);
     color: var(--muted);
-    margin: 40px 0 16px;
+    line-height: 1.8;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 99px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .badge-green { background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+  .badge-blue  { background: rgba(59,130,246,0.15); color: var(--accent2); border: 1px solid rgba(59,130,246,0.3); }
+  .badge-yellow{ background: rgba(234,179,8,0.15); color: var(--yellow); border: 1px solid rgba(234,179,8,0.3); }
+  .badge-red   { background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+  .badge-purple{ background: rgba(168,85,247,0.15); color: var(--purple); border: 1px solid rgba(168,85,247,0.3); }
+
+  /* ── Sections ── */
+  .section { padding: 2rem 0; }
+  .section-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--accent2);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
   }
   .section-title::after {
     content: '';
@@ -99,877 +107,1051 @@
     background: var(--border);
   }
 
-  /* ---- SUMMARY CARDS ---- */
-  .cards-grid {
+  /* ── Summary Cards ── */
+  .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 14px;
-    margin-bottom: 4px;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
   }
   .card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 22px;
-    transition: border-color 0.2s;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
   }
-  .card:hover { border-color: var(--accent); }
   .card-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--dim);
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
   }
   .card-value {
-    font-size: 34px;
-    font-weight: 800;
-    color: #f1f5f9;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
     line-height: 1;
-    margin-bottom: 4px;
   }
-  .card-sub {
-    font-size: 12px;
-    color: var(--muted);
-  }
-  .card-accent { border-top: 3px solid var(--accent); }
-  .card-green  { border-top: 3px solid var(--green); }
-  .card-yellow { border-top: 3px solid var(--yellow); }
-  .card-purple { border-top: 3px solid var(--purple); }
-  .card-orange { border-top: 3px solid var(--orange); }
+  .card-sub { font-size: var(--sm); color: var(--muted); margin-top: 0.3rem; }
+  .card-accent { border-top: 2px solid var(--accent); }
+  .card-green  { border-top: 2px solid var(--green); }
+  .card-yellow { border-top: 2px solid var(--yellow); }
+  .card-purple { border-top: 2px solid var(--purple); }
 
-  /* ---- CONTENT TABLE ---- */
-  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
-  table { width: 100%; border-collapse: collapse; background: var(--card); }
+  /* ── Table ── */
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--sm);
+  }
   thead th {
     background: var(--card2);
-    padding: 12px 16px;
-    text-align: left;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: var(--dim);
-    white-space: nowrap;
-  }
-  tbody tr { border-top: 1px solid var(--border); }
-  tbody tr:hover { background: var(--card2); }
-  td { padding: 13px 16px; font-size: 13px; vertical-align: middle; }
-  .td-title { font-weight: 600; color: #f1f5f9; max-width: 260px; line-height: 1.4; }
-  .td-type {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    padding: 2px 8px;
-    border-radius: 4px;
-    white-space: nowrap;
-    margin-top: 4px;
-  }
-  .type-celeb  { background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); }
-  .type-orig   { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
-  .type-comp   { background: rgba(234,179,8,0.15);  color: #fbbf24; border: 1px solid rgba(234,179,8,0.3); }
-  .score-pill {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 700;
-  }
-  .score-high { background: rgba(34,197,94,0.15);  color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
-  .score-mid  { background: rgba(234,179,8,0.15);  color: #fbbf24; border: 1px solid rgba(234,179,8,0.3); }
-  .platform-links { display: flex; flex-wrap: wrap; gap: 5px; }
-  .plink {
-    display: inline-block;
-    padding: 2px 9px;
-    border-radius: 4px;
-    font-size: 11px;
+    color: var(--muted);
     font-weight: 600;
-    text-decoration: none;
-    transition: opacity 0.15s;
-  }
-  .plink:hover { opacity: 0.8; text-decoration: none; }
-  .plink-naver  { background: rgba(3,199,90,0.15);   color: #4ade80; border: 1px solid rgba(3,199,90,0.3); }
-  .plink-medium { background: rgba(255,255,255,0.08); color: #cbd5e1; border: 1px solid var(--border); }
-  .plink-ig     { background: rgba(225,48,108,0.12); color: #f472b6; border: 1px solid rgba(225,48,108,0.3); }
-  .plink-yt     { background: rgba(255,0,0,0.12);    color: #f87171; border: 1px solid rgba(255,0,0,0.2); }
-
-  /* ---- QUALITY CHART ---- */
-  .quality-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-  @media (max-width: 600px) { .quality-grid { grid-template-columns: 1fr; } }
-  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .bar-label { font-size: 12px; color: var(--muted); width: 150px; flex-shrink: 0; }
-  .bar-track { flex: 1; background: var(--border); border-radius: 4px; height: 8px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 4px; background: var(--accent); transition: width 0.6s ease; }
-  .bar-val { font-size: 12px; font-weight: 700; color: #f1f5f9; width: 32px; text-align: right; flex-shrink: 0; }
-  .highlight-box {
-    background: var(--card2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px 18px;
-  }
-  .hl-label { font-size: 11px; color: var(--dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
-  .hl-value { font-size: 15px; font-weight: 700; color: #f1f5f9; margin-bottom: 2px; }
-  .hl-sub   { font-size: 12px; color: var(--muted); }
-
-  /* ---- REVIEW STATS ---- */
-  .review-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 14px;
-  }
-  .review-stat {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px 18px;
-    text-align: center;
-  }
-  .review-stat .rv-num { font-size: 28px; font-weight: 800; color: #f1f5f9; }
-  .review-stat .rv-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
-  .rv-pass  { color: var(--green) !important; }
-  .rv-warn  { color: var(--yellow) !important; }
-
-  /* ---- GOVERNANCE ---- */
-  .gov-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
-  .gov-audit-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 22px;
-  }
-  .gov-audit-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 14px;
-    padding-bottom: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    padding: 0.7rem 0.9rem;
+    text-align: left;
     border-bottom: 1px solid var(--border);
   }
-  .gov-role-badge {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    padding: 3px 9px;
+  tbody tr { border-bottom: 1px solid rgba(51,65,85,0.5); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(255,255,255,0.025); }
+  td { padding: 0.65rem 0.9rem; vertical-align: middle; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* ── Score Bar ── */
+  .score-bar-wrap { display: flex; align-items: center; gap: 0.5rem; }
+  .score-bar-bg {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .score-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: var(--accent);
+  }
+  .score-label { font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+
+  /* ── Platform icons ── */
+  .platforms { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .plat {
+    font-size: 0.68rem;
+    padding: 0.1rem 0.5rem;
     border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
   }
-  .gov-arch { background: rgba(59,130,246,0.2); color: #60a5fa; border: 1px solid rgba(59,130,246,0.4); }
-  .gov-perf { background: rgba(34,197,94,0.2);  color: #4ade80; border: 1px solid rgba(34,197,94,0.4); }
-  .gov-risk { background: rgba(234,179,8,0.2);  color: #fbbf24; border: 1px solid rgba(234,179,8,0.4); }
-  .gov-audit-name { font-size: 15px; font-weight: 700; color: #f1f5f9; }
-  .gov-audit-sub  { font-size: 12px; color: var(--muted); }
-  .finding-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
-  .finding-sev {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    padding: 2px 7px;
-    border-radius: 3px;
-    white-space: nowrap;
-    margin-top: 1px;
-    flex-shrink: 0;
-  }
-  .sev-critical { background: rgba(239,68,68,0.18); color: #f87171; border: 1px solid rgba(239,68,68,0.35); }
-  .sev-warning  { background: rgba(234,179,8,0.15);  color: #fbbf24; border: 1px solid rgba(234,179,8,0.3); }
-  .sev-info     { background: rgba(100,116,139,0.2); color: #94a3b8; border: 1px solid rgba(100,116,139,0.3); }
-  .finding-text { font-size: 13px; color: var(--text); line-height: 1.5; }
-  .finding-text strong { color: #f1f5f9; }
+  .plat-naver   { background: rgba(3,199,90,0.15); color: #03c75a; }
+  .plat-medium  { background: rgba(255,255,255,0.08); color: #ccc; }
+  .plat-ig      { background: rgba(228,64,95,0.15); color: #e4405f; }
+  .plat-yt      { background: rgba(255,0,0,0.12); color: #f44; }
 
-  /* PROPOSALS TABLE */
-  .prop-table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); margin-top: 8px; }
-  .prop-table { width: 100%; border-collapse: collapse; background: var(--card); }
-  .prop-table thead th {
-    background: var(--card2);
-    padding: 10px 14px;
-    text-align: left;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: var(--dim);
-  }
-  .prop-table tbody tr { border-top: 1px solid var(--border); }
-  .prop-table td { padding: 11px 14px; font-size: 12px; vertical-align: middle; }
-  .badge-approved { color: var(--green); font-weight: 700; }
-  .badge-blocked  { color: var(--red);   font-weight: 700; }
-  .badge-deferred { color: var(--yellow); font-weight: 700; }
-  .prop-target { font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px; color: var(--accent2); background: rgba(59,130,246,0.1); padding: 1px 6px; border-radius: 3px; }
-
-  /* CHANGELOG */
-  .changelog-entry {
+  /* ── Quality Chart ── */
+  .quality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 600px) { .quality-grid { grid-template-columns: 1fr; } }
+  .chart-card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-left: 3px solid var(--green);
-    border-radius: 0 10px 10px 0;
-    padding: 16px 18px;
-    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 1.25rem;
   }
-  .changelog-entry.blocked { border-left-color: var(--yellow); }
-  .cl-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
-  .cl-id { font-family: monospace; font-size: 11px; color: var(--accent2); background: rgba(59,130,246,0.1); padding: 2px 7px; border-radius: 3px; }
-  .cl-title { font-size: 13px; font-weight: 600; color: #f1f5f9; }
-  .cl-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+  .chart-title { font-size: var(--sm); font-weight: 600; color: var(--muted); margin-bottom: 1rem; }
+  .bar-chart { display: flex; flex-direction: column; gap: 0.65rem; }
+  .bar-row { display: flex; align-items: center; gap: 0.6rem; }
+  .bar-name { font-size: 0.75rem; color: var(--muted); width: 90px; flex-shrink: 0; text-align: right; }
+  .bar-track { flex: 1; height: 14px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; background: var(--accent); }
+  .bar-val { font-size: 0.75rem; font-weight: 600; width: 32px; flex-shrink: 0; }
 
-  /* ---- TIMELINE ---- */
-  .timeline { position: relative; padding-left: 28px; }
+  /* ── Review Stats ── */
+  .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+  .review-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    text-align: center;
+  }
+  .review-val { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .review-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ── Governance ── */
+  .gov-grid { display: grid; gap: 1rem; }
+  .gov-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+  }
+  .gov-card-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .gov-card-title .leader {
+    font-size: 0.68rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(59,130,246,0.15);
+    color: var(--accent2);
+    font-weight: 600;
+  }
+  .finding-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .finding-item {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    font-size: var(--sm);
+    line-height: 1.5;
+  }
+  .sev {
+    flex-shrink: 0;
+    font-size: 0.65rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-top: 0.1rem;
+  }
+  .sev-crit  { background: rgba(239,68,68,0.2); color: var(--red); }
+  .sev-high  { background: rgba(249,115,22,0.2); color: var(--orange); }
+  .sev-med   { background: rgba(234,179,8,0.2); color: var(--yellow); }
+  .sev-info  { background: rgba(148,163,184,0.15); color: var(--muted); }
+
+  /* ── Proposals ── */
+  .prop-table-wrap { overflow-x: auto; margin-top: 0.75rem; }
+  .prop-badge-approved { background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.3); padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.68rem; font-weight: 700; }
+  .prop-badge-blocked  { background: rgba(239,68,68,0.12); color: var(--red); border: 1px solid rgba(239,68,68,0.25); padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.68rem; font-weight: 700; }
+  .prop-badge-merged   { background: rgba(168,85,247,0.15); color: var(--purple); border: 1px solid rgba(168,85,247,0.3); padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.68rem; font-weight: 700; }
+
+  /* ── SKILL changes ── */
+  .skill-change {
+    background: var(--card2);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    font-size: var(--sm);
+  }
+  .skill-change:last-child { margin-bottom: 0; }
+  .skill-change-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .skill-agent { font-weight: 700; color: var(--accent2); font-size: 0.85rem; }
+  .skill-change-body { color: var(--muted); line-height: 1.5; }
+
+  /* ── Blocked ── */
+  .blocked-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .blocked-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: rgba(239,68,68,0.06);
+    border: 1px solid rgba(239,68,68,0.15);
+    border-radius: 6px;
+    padding: 0.65rem 0.9rem;
+    font-size: var(--sm);
+  }
+  .blocked-icon { color: var(--red); flex-shrink: 0; margin-top: 0.1rem; }
+  .blocked-body { line-height: 1.5; }
+  .blocked-body strong { color: var(--text); }
+  .blocked-body span { color: var(--muted); display: block; font-size: 0.78rem; }
+
+  /* ── Timeline ── */
+  .timeline { position: relative; padding-left: 1.5rem; }
   .timeline::before {
     content: '';
     position: absolute;
-    left: 9px;
-    top: 8px;
-    bottom: 8px;
+    left: 0.4rem;
+    top: 0.4rem;
+    bottom: 0.4rem;
     width: 2px;
     background: var(--border);
   }
-  .tl-item { position: relative; margin-bottom: 22px; }
+  .tl-item { position: relative; margin-bottom: 1.25rem; padding-left: 1rem; }
+  .tl-item:last-child { margin-bottom: 0; }
   .tl-dot {
     position: absolute;
-    left: -24px;
-    top: 4px;
-    width: 12px;
-    height: 12px;
+    left: -1.15rem;
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: var(--accent);
     border: 2px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--accent);
   }
-  .tl-dot.green  { background: var(--green); }
-  .tl-dot.yellow { background: var(--yellow); }
-  .tl-dot.purple { background: var(--purple); }
-  .tl-dot.orange { background: var(--orange); }
-  .tl-time { font-size: 11px; color: var(--dim); margin-bottom: 3px; }
-  .tl-event { font-size: 13px; font-weight: 600; color: #f1f5f9; }
-  .tl-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .tl-dot-green  { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
+  .tl-dot-yellow { background: var(--yellow); box-shadow: 0 0 0 2px var(--yellow); }
+  .tl-date { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.2rem; }
+  .tl-title { font-size: var(--sm); font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+  .tl-body { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
 
-  /* ---- FOOTER ---- */
+  /* ── Deferred Topics ── */
+  .deferred-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; }
+  .deferred-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+  }
+  .deferred-topic { font-size: var(--sm); font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
+  .deferred-meta { font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── Footer ── */
   .footer {
     border-top: 1px solid var(--border);
-    padding: 22px 24px;
-    text-align: center;
-    color: var(--dim);
-    font-size: 12px;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: var(--sm);
+    color: var(--muted);
   }
-  .footer strong { color: var(--muted); }
+  .footer-brand { font-weight: 600; color: var(--text); }
 
-  /* ---- RESPONSIVE ---- */
-  @media (max-width: 768px) {
-    .quality-grid { grid-template-columns: 1fr; }
-    .cards-grid   { grid-template-columns: repeat(2, 1fr); }
-    td, th { padding: 10px 10px; }
+  /* ── Responsive ── */
+  @media (max-width: 700px) {
+    .header-inner { flex-direction: column; }
+    .header-meta { text-align: left; }
+    .cards { grid-template-columns: repeat(2, 1fr); }
   }
-  @media (max-width: 480px) {
-    .cards-grid { grid-template-columns: 1fr; }
-    .header h1  { font-size: 20px; }
+  @media (max-width: 400px) {
+    .cards { grid-template-columns: 1fr; }
   }
+
+  /* ── Misc ── */
+  .mono { font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: 0.78rem; }
+  .text-green { color: var(--green); }
+  .text-yellow { color: var(--yellow); }
+  .text-red { color: var(--red); }
+  .text-muted { color: var(--muted); }
+  hr.divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <div class="header-badge">MarketClaw</div>
-  <h1>헤어스타일 캠페인 리포트</h1>
-  <p class="subtitle">Campaign ID: 2026-03-07-001 &nbsp;&#183;&nbsp; 2026-03-07</p>
-  <div class="header-meta">
-    <span><span class="dot dot-green"></span> 3개 발행 완료</span>
-    <span><span class="dot dot-blue"></span> 4개 플랫폼</span>
-    <span>평균 품질 8.1점</span>
-    <span>YouTube Shorts 첫 도입</span>
+<!-- ━━━ HEADER ━━━ -->
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <div>
+        <div class="brand">MarketClaw &#x25B6; Campaign Report</div>
+        <h1>헤어스타일 캠페인 — 2026-03-08-001</h1>
+        <div class="header-sub">
+          Niche: 헤어스타일 &nbsp;&#x2022;&nbsp; Strategy: mix (celeb-style / comparison-guide / viral-adapt)
+          &nbsp;&#x2022;&nbsp; <span class="badge badge-green">COMPLETED 3/3</span>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div>Campaign ID: <strong>2026-03-08-001</strong></div>
+        <div>Published: 2026-03-07</div>
+        <div>Report generated: 2026-03-08</div>
+        <div style="margin-top:0.4rem">
+          <span class="badge badge-blue">Naver</span>
+          <span class="badge badge-blue">Medium</span>
+          <span class="badge badge-blue">Instagram</span>
+          <span class="badge badge-blue">YouTube</span>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</header>
 
+<main>
 <div class="container">
 
-  <!-- SUMMARY CARDS -->
-  <div class="section-title">요약</div>
-  <div class="cards-grid">
+<!-- ━━━ SUMMARY CARDS ━━━ -->
+<section class="section">
+  <div class="section-title">&#x25A0; 캠페인 요약</div>
+  <div class="cards">
     <div class="card card-accent">
-      <div class="card-label">총 발행 수</div>
+      <div class="card-label">총 발행 콘텐츠</div>
       <div class="card-value">3</div>
-      <div class="card-sub">이번 캠페인 (Naver 누적 73+)</div>
+      <div class="card-sub">목표 3개 &rarr; 100% 달성</div>
     </div>
     <div class="card card-green">
       <div class="card-label">평균 품질 점수</div>
-      <div class="card-value">8.1</div>
-      <div class="card-sub">KO: 7.9 / 8.2 / 8.1 &nbsp;&#183;&nbsp; EN: 8.2</div>
+      <div class="card-value" style="color:var(--green)">7.86</div>
+      <div class="card-sub">콘텐츠 리뷰 기준</div>
     </div>
     <div class="card card-yellow">
-      <div class="card-label">활성 플랫폼</div>
-      <div class="card-value">4</div>
-      <div class="card-sub">Naver, Medium, Instagram, YouTube</div>
+      <div class="card-label">평균 토픽 점수</div>
+      <div class="card-value" style="color:var(--yellow)">8.30</div>
+      <div class="card-sub">토픽 리뷰 기준</div>
     </div>
     <div class="card card-purple">
-      <div class="card-label">전략 믹스</div>
-      <div class="card-value">3</div>
-      <div class="card-sub">celeb-style / original / comparison</div>
+      <div class="card-label">평균 비디오 점수</div>
+      <div class="card-value" style="color:var(--purple)">8.35</div>
+      <div class="card-sub">비디오 리뷰 기준</div>
     </div>
-    <div class="card card-orange">
+    <div class="card card-accent">
+      <div class="card-label">활성 플랫폼</div>
+      <div class="card-value">4</div>
+      <div class="card-sub">Naver / Medium / IG / YT</div>
+    </div>
+    <div class="card">
+      <div class="card-label">누적 Naver 발행</div>
+      <div class="card-value">76+</div>
+      <div class="card-sub">C001 ~ C076 전체</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Instagram 총 게시물</div>
+      <div class="card-value">51</div>
+      <div class="card-sub">@dynamicstep.ai</div>
+    </div>
+    <div class="card">
       <div class="card-label">YouTube Shorts</div>
-      <div class="card-value">3</div>
-      <div class="card-sub">이번 캠페인 첫 도입 &#9733;</div>
+      <div class="card-value">6</div>
+      <div class="card-sub">이번 캠페인 +3</div>
     </div>
   </div>
+</section>
 
-  <!-- CONTENT LIST -->
-  <div class="section-title">발행 콘텐츠</div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>제목</th>
-          <th>유형</th>
-          <th>품질 점수</th>
-          <th>플랫폼 링크</th>
-          <th>발행일</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--dim); font-weight:700;">C072</td>
-          <td class="td-title">신혜선 사라킴 파마가 사실 가발이었다고?</td>
-          <td><span class="td-type type-celeb">celeb-style</span></td>
-          <td>
-            <span class="score-pill score-high">KO 7.9</span><br>
-            <span class="score-pill score-high" style="margin-top:4px; display:inline-block;">EN 8.2</span>
-          </td>
-          <td>
-            <div class="platform-links">
-              <a class="plink plink-naver"  href="https://blog.naver.com/seoilgun/224207750128" target="_blank">Naver</a>
-              <a class="plink plink-medium" href="https://medium.com/p/5e49fdc6c3f5" target="_blank">Medium</a>
-              <a class="plink plink-ig"     href="https://www.instagram.com/dynamicstep.ai/" target="_blank">Instagram</a>
-              <a class="plink plink-yt"     href="https://youtube.com/shorts/rlVnK37GDLs" target="_blank">YouTube</a>
-            </div>
-          </td>
-          <td style="color:var(--muted); white-space:nowrap;">2026-03-07</td>
-        </tr>
-        <tr>
-          <td style="color:var(--dim); font-weight:700;">C071</td>
-          <td class="td-title">내 얼굴형 모르고 미용실 갔다가 후회한 사람 여기요<br><span style="font-size:11px; color:var(--accent2); font-weight:500;">★ Hub Article — 5개 내부 링크 연결</span></td>
-          <td><span class="td-type type-orig">original</span></td>
-          <td>
-            <span class="score-pill score-high">8.2</span>
-          </td>
-          <td>
-            <div class="platform-links">
-              <a class="plink plink-naver"  href="https://blog.naver.com/seoilgun/224207754297" target="_blank">Naver</a>
-              <a class="plink plink-medium" href="https://medium.com/p/68b576e425af" target="_blank">Medium</a>
-              <a class="plink plink-ig"     href="https://www.instagram.com/dynamicstep.ai/" target="_blank">Instagram</a>
-              <a class="plink plink-yt"     href="https://youtube.com/shorts/0Jl0zd9jKds" target="_blank">YouTube</a>
-            </div>
-          </td>
-          <td style="color:var(--muted); white-space:nowrap;">2026-03-07</td>
-        </tr>
-        <tr>
-          <td style="color:var(--dim); font-weight:700;">C073</td>
-          <td class="td-title">보브컷 하기로 했는데 종류가 이렇게 많다고?</td>
-          <td><span class="td-type type-comp">comparison</span></td>
-          <td>
-            <span class="score-pill score-high">8.1</span>
-          </td>
-          <td>
-            <div class="platform-links">
-              <a class="plink plink-naver"  href="https://blog.naver.com/seoilgun/224207757999" target="_blank">Naver</a>
-              <a class="plink plink-medium" href="https://medium.com/p/05ea8f56d7ca" target="_blank">Medium</a>
-              <a class="plink plink-ig"     href="https://www.instagram.com/dynamicstep.ai/" target="_blank">Instagram</a>
-              <a class="plink plink-yt"     href="https://youtube.com/shorts/QPk3_Oke_Cw" target="_blank">YouTube</a>
-            </div>
-          </td>
-          <td style="color:var(--muted); white-space:nowrap;">2026-03-07</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- QUALITY ANALYSIS -->
-  <div class="section-title">품질 분석</div>
-  <div class="quality-grid">
-    <div class="card">
-      <div style="font-size:13px; font-weight:700; color:#f1f5f9; margin-bottom:16px;">C071 — 얼굴형 가이드 (최고 점수: 8.2)</div>
-      <div class="bar-row">
-        <span class="bar-label">콘텐츠 품질</span>
-        <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
-        <span class="bar-val">8.0</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">인간다움</span>
-        <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
-        <span class="bar-val">8.0</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">SEO 최적화</span>
-        <div class="bar-track"><div class="bar-fill" style="width:90%; background:var(--green);"></div></div>
-        <span class="bar-val">9.0</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">독자 가치</span>
-        <div class="bar-track"><div class="bar-fill" style="width:90%; background:var(--green);"></div></div>
-        <span class="bar-val">9.0</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">가독성</span>
-        <div class="bar-track"><div class="bar-fill" style="width:90%; background:var(--green);"></div></div>
-        <span class="bar-val">9.0</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">이미지 품질</span>
-        <div class="bar-track"><div class="bar-fill" style="width:70%; background:var(--yellow);"></div></div>
-        <span class="bar-val">7.0</span>
-      </div>
-    </div>
-    <div class="card">
-      <div style="font-size:13px; font-weight:700; color:#f1f5f9; margin-bottom:16px;">C073 — 보브컷 비교 (8.1) &nbsp;/&nbsp; C072 — 신혜선 (KO 7.9)</div>
-      <div class="bar-row">
-        <span class="bar-label">콘텐츠 품질</span>
-        <div class="bar-track"><div class="bar-fill" style="width:77%"></div></div>
-        <span class="bar-val">7.7</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">인간다움</span>
-        <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
-        <span class="bar-val">8.0</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">SEO 최적화</span>
-        <div class="bar-track"><div class="bar-fill" style="width:88%; background:var(--green);"></div></div>
-        <span class="bar-val">8.8</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">바이럴 잠재력</span>
-        <div class="bar-track"><div class="bar-fill" style="width:78%;"></div></div>
-        <span class="bar-val">7.8</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">가독성</span>
-        <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
-        <span class="bar-val">8.0</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">이미지 품질</span>
-        <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
-        <span class="bar-val">8.0</span>
-      </div>
-    </div>
-  </div>
-  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-top:14px;">
-    <div class="highlight-box">
-      <div class="hl-label">&#9650; 최고 점수</div>
-      <div class="hl-value">C071 — 8.2점</div>
-      <div class="hl-sub">에버그린 허브 글. SEO 9.0, 독자가치 9.0, 가독성 9.0</div>
-    </div>
-    <div class="highlight-box">
-      <div class="hl-label">&#9650; EN 최고 점수</div>
-      <div class="hl-value">C072 EN — 8.2점</div>
-      <div class="hl-sub">가독성 9.0, SEO 8.5. Korean salon authority 브랜딩 강점</div>
-    </div>
-    <div class="highlight-box">
-      <div class="hl-label">&#9660; 상대적 최저</div>
-      <div class="hl-value">C072 KO — 7.9점</div>
-      <div class="hl-sub">이미지 품질 7.0 — 이번 캠페인 유일한 7점대 이미지</div>
-    </div>
-    <div class="highlight-box">
-      <div class="hl-label">캠페인 평균</div>
-      <div class="hl-value">8.1점</div>
-      <div class="hl-sub">전 3편 발행 기준선 7.0 초과 완료</div>
-    </div>
-  </div>
-
-  <!-- REVIEW STATS -->
-  <div class="section-title">리뷰 통계</div>
-  <div class="review-grid">
-    <div class="review-stat">
-      <div class="rv-num rv-pass">3/3</div>
-      <div class="rv-label">콘텐츠 리뷰 통과율</div>
-    </div>
-    <div class="review-stat">
-      <div class="rv-num rv-warn">1.67</div>
-      <div class="rv-label">평균 리뷰 라운드 수</div>
-    </div>
-    <div class="review-stat">
-      <div class="rv-num rv-pass">1</div>
-      <div class="rv-label">라운드 1 통과 (C073)</div>
-    </div>
-    <div class="review-stat">
-      <div class="rv-num rv-warn">2</div>
-      <div class="rv-label">라운드 2 통과 (C071, C072)</div>
-    </div>
-    <div class="review-stat">
-      <div class="rv-num rv-pass">0</div>
-      <div class="rv-label">폐기 콘텐츠</div>
-    </div>
-    <div class="review-stat">
-      <div class="rv-num rv-pass">5/5</div>
-      <div class="rv-label">C073 리뷰어 만장일치 라운드1</div>
-    </div>
-  </div>
-  <div class="card" style="margin-top:14px;">
-    <div style="font-size:13px; font-weight:700; color:#f1f5f9; margin-bottom:12px;">라운드별 실패 원인</div>
-    <div class="finding-row">
-      <span class="finding-sev sev-warning">C072 R1</span>
-      <span class="finding-text">content-reviewer-fact — KO/EN 가격 불일치 (EN $55-85 vs KO 15-25만원), 국가 수치 불일치 (65 vs 49개국). 수정 후 R2 PASS.</span>
-    </div>
-    <div class="finding-row">
-      <span class="finding-sev sev-warning">C071 R1</span>
-      <span class="finding-text">content-reviewer-visual — img_002 마커와 다운로드 이미지 불일치. img_002 배치 수정 후 R2 PASS.</span>
-    </div>
-    <div class="finding-row" style="margin-bottom:0;">
-      <span class="finding-sev sev-info">C073 R1</span>
-      <span class="finding-text">5개 리뷰어 전원 라운드1 PASS. 평균 8.24점. 이번 캠페인 최고 리뷰 성과.</span>
-    </div>
-  </div>
-
-  <!-- GOVERNANCE -->
-  <div class="section-title">거버넌스 회고 (Cycle 5 — 2026-03-06)</div>
-
-  <div style="background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:14px 18px; margin-bottom:18px; font-size:13px; color:var(--muted);">
-    트리거: T1 (캠페인 완료 — C068, C069, C070) &nbsp;&#183;&nbsp; 감사자: gov-architect, gov-performance, gov-risk &nbsp;&#183;&nbsp; 제안 3건 전원 APPROVED &nbsp;&#183;&nbsp; 변경 실행 3건
-  </div>
-
-  <div class="gov-grid">
-    <!-- Architect -->
-    <div class="gov-audit-card">
-      <div class="gov-audit-header">
-        <span class="gov-role-badge gov-arch">gov-architect</span>
-        <div>
-          <div class="gov-audit-name">구조적 정합성 감사</div>
-          <div class="gov-audit-sub">구조 감사 2026-03-06 — 파이프라인 에이전트 집중 점검</div>
-        </div>
-      </div>
-      <div class="finding-row">
-        <span class="finding-sev sev-critical">CRITICAL</span>
-        <span class="finding-text"><strong>ai-video-gen:</strong> Veo 2 OAuth 차단 미문서화 + Sora 워터마크 후처리 프로토콜 누락. 워터마크가 video-review-board 도달 시에야 발견되어 1-2라운드 낭비. Sora <code>watermark: true</code> 출력 주석 추가 및 drawbox+PNG mask 지시 필요.</span>
-      </div>
-      <div class="finding-row">
-        <span class="finding-sev sev-critical">CRITICAL</span>
-        <span class="finding-text"><strong>publisher-instagram:</strong> 레이트 리밋 대기 전략 오류 ("30분 후 재시도" → 실제는 3am 리셋). C069에서 동일 실패 재현. 즉시 수정 대상.</span>
-      </div>
-      <div class="finding-row">
-        <span class="finding-sev sev-warning">WARNING</span>
-        <span class="finding-text"><strong>publisher-naver:</strong> duplicate-publish guard 여전히 미적용 (쿨다운 2026-03-11). C070 tags_count:0 — pre-publish item 7 실행 여부 조사 필요.</span>
-      </div>
-      <div class="finding-row" style="margin-bottom:0;">
-        <span class="finding-sev sev-info">INFO</span>
-        <span class="finding-text"><strong>ai-video-gen:</strong> sora-video-gen.js 참조 → sora-generate-one.js로 수정 (ARCH-001 범위 포함).</span>
-      </div>
-    </div>
-
-    <!-- Performance -->
-    <div class="gov-audit-card">
-      <div class="gov-audit-header">
-        <span class="gov-role-badge gov-perf">gov-performance</span>
-        <div>
-          <div class="gov-audit-name">ROI / 품질 성과 감사</div>
-          <div class="gov-audit-sub">C068-C070 기준 / 평균 품질 8.3 / 리뷰 평균 2.0라운드</div>
-        </div>
-      </div>
-      <div class="finding-row">
-        <span class="finding-sev sev-critical">CRITICAL</span>
-        <span class="finding-text"><strong>BGM 규칙 미적용 일관성 결여:</strong> Cycle 4에서 shorts-director에 BGM 금지 추가. C068은 CC0 적용했으나 C069/C070은 sine wave 재발. shot_plan.json <code>bgm.path</code> 필드를 required로 강제 필요. (쿨다운 2026-03-12 → Cycle 6 처리)</span>
-      </div>
-      <div class="finding-row">
-        <span class="finding-sev sev-critical">CRITICAL</span>
-        <span class="finding-text"><strong>제품/브랜드 주장 헤징 프로토콜 미적용:</strong> C070 "올리브영 4년 연속 1위" 출처 없이 단언. writer-ko/writer-en 모두 쿨다운 중. Cycle 6에서 celebrity hedging 병렬 프로토콜 추가 예정.</span>
-      </div>
-      <div class="finding-row">
-        <span class="finding-sev sev-warning">WARNING</span>
-        <span class="finding-text"><strong>KO/EN 교차 사실 검증 부재:</strong> C069 히피펌 기간 KO 1.5-2개월 vs EN 4-6 months 불일치. content-reviewer-chief에 수치 일관성 체크 추가 제안 (쿨다운 없음 → 즉시 실행).</span>
-      </div>
-      <div class="finding-row" style="margin-bottom:0;">
-        <span class="finding-sev sev-warning">WARNING</span>
-        <span class="finding-text"><strong>C070 Naver tags_count:0 SEO 영향:</strong> 실제 태그 없이 발행. writer-ko + publisher-naver 쿨다운 중. Cycle 6에서 조사 및 수정.</span>
-      </div>
-    </div>
-
-    <!-- Risk -->
-    <div class="gov-audit-card">
-      <div class="gov-audit-header">
-        <span class="gov-role-badge gov-risk">gov-risk</span>
-        <div>
-          <div class="gov-audit-name">안전 / 안정성 감사</div>
-          <div class="gov-audit-sub">쿨다운 10개 에이전트 / 3건 ELIGIBLE 확인 / 전원 PASS</div>
-        </div>
-      </div>
-      <div class="finding-row">
-        <span class="finding-sev sev-info">LOW</span>
-        <span class="finding-text"><strong>ai-video-gen 변경 blast radius:</strong> SKILL.md 문서 추가만 — video-assembler / shorts-director 동작에 영향 없음. 롤백: 추가된 2개 섹션 제거.</span>
-      </div>
-      <div class="finding-row">
-        <span class="finding-sev sev-info">LOW</span>
-        <span class="finding-text"><strong>publisher-instagram 레이트 리밋 전략 변경:</strong> 에러 분기만 수정. 정상 경로 무영향. 롤백 단순.</span>
-      </div>
-      <div class="finding-row">
-        <span class="finding-sev sev-warning">MEDIUM</span>
-        <span class="finding-text"><strong>content-reviewer-chief 교차 언어 체크 범위:</strong> 과도한 체크는 정상 지역 적응(KRW vs USD)도 FAIL 유발 가능. 수치 비교 한정 + 스타일/톤 차이 제외 명시로 위험 제어. 조건부 APPROVE.</span>
-      </div>
-      <div class="finding-row" style="margin-bottom:0;">
-        <span class="finding-sev sev-info">검증 완료</span>
-        <span class="finding-text">7개 안전 가드 전 제안 통과: 쿨다운 / 거버넌스 자기수정 금지 / 사이클 한도 / 활성 캠페인 보호 / 의존성 / 백업 / 교착 이력 — 전원 PASS.</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- PROPOSALS TABLE -->
-  <div style="margin-top: 22px;">
-    <div style="font-size:13px; font-weight:700; color:#f1f5f9; margin-bottom:12px;">이번 사이클 제안 결과</div>
-    <div class="prop-table-wrap">
-      <table class="prop-table">
+<!-- ━━━ CONTENT LIST ━━━ -->
+<section class="section">
+  <div class="section-title">&#x25A0; 발행 콘텐츠 목록</div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+    <div class="table-wrap">
+      <table>
         <thead>
           <tr>
-            <th>제안 ID</th>
+            <th>ID</th>
+            <th>제목</th>
             <th>유형</th>
-            <th>대상 에이전트</th>
-            <th>내용</th>
-            <th>투표</th>
-            <th>결과</th>
+            <th>플랫폼</th>
+            <th>토픽</th>
+            <th>콘텐츠</th>
+            <th>비디오</th>
+            <th>발행일</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- C074 -->
+          <tr>
+            <td><span class="badge badge-blue">C074</span></td>
+            <td>
+              <div style="font-weight:600;margin-bottom:0.2rem;">세이렌 위하준 헤어, 차우석처럼 보이려면 이 포인트가 핵심이었다</div>
+              <div class="platforms">
+                <a href="https://blog.naver.com/seoilgun/224207995501" target="_blank" class="plat plat-naver">Naver &#x2197;</a>
+                <a href="https://medium.com/p/b2432d0b8a67" target="_blank" class="plat plat-medium">Medium &#x2197;</a>
+                <span class="plat plat-ig">Instagram Reel</span>
+                <a href="https://youtube.com/shorts/JwOkfeOblMA" target="_blank" class="plat plat-yt">YT &#x2197;</a>
+              </div>
+            </td>
+            <td><span class="badge badge-purple">celeb-style</span></td>
+            <td>
+              <div class="platforms">
+                <span class="plat plat-naver">Naver</span>
+                <span class="plat plat-medium">Medium</span>
+                <span class="plat plat-ig">IG</span>
+                <span class="plat plat-yt">YT</span>
+              </div>
+            </td>
+            <td class="num"><span class="text-green">8.26</span></td>
+            <td class="num"><span class="text-yellow">7.72</span> <span class="text-muted" style="font-size:0.7rem">(R2)</span></td>
+            <td class="num"><span class="text-green">8.22</span></td>
+            <td>2026-03-07</td>
+          </tr>
+          <!-- C075 -->
+          <tr>
+            <td><span class="badge badge-blue">C075</span></td>
+            <td>
+              <div style="font-weight:600;margin-bottom:0.2rem;">남자 커튼뱅이 뭔데 요즘 미용실에서 제일 많이 하냐고</div>
+              <div class="platforms">
+                <a href="https://blog.naver.com/seoilgun/224208035317" target="_blank" class="plat plat-naver">Naver &#x2197;</a>
+                <a href="https://medium.com/p/2ebfe9d0c51d" target="_blank" class="plat plat-medium">Medium &#x2197;</a>
+                <span class="plat plat-ig">Instagram Reel</span>
+                <a href="https://youtube.com/shorts/GlGe49MH4FQ" target="_blank" class="plat plat-yt">YT &#x2197;</a>
+              </div>
+            </td>
+            <td><span class="badge badge-yellow">comparison</span></td>
+            <td>
+              <div class="platforms">
+                <span class="plat plat-naver">Naver</span>
+                <span class="plat plat-medium">Medium</span>
+                <span class="plat plat-ig">IG</span>
+                <span class="plat plat-yt">YT</span>
+              </div>
+            </td>
+            <td class="num"><span class="text-green">8.42</span></td>
+            <td class="num"><span class="text-yellow">7.80</span> <span class="text-muted" style="font-size:0.7rem">(R2)</span></td>
+            <td class="num"><span class="text-green">8.20</span></td>
+            <td>2026-03-07</td>
+          </tr>
+          <!-- C076 -->
+          <tr>
+            <td><span class="badge badge-blue">C076</span></td>
+            <td>
+              <div style="font-weight:600;margin-bottom:0.2rem;">숏컷인데 여자라고 커트비 2만원 더 내야 한다고요</div>
+              <div class="platforms">
+                <a href="https://blog.naver.com/seoilgun/224208060686" target="_blank" class="plat plat-naver">Naver &#x2197;</a>
+                <a href="https://medium.com/p/58a6f8850c0c" target="_blank" class="plat plat-medium">Medium &#x2197;</a>
+                <span class="plat plat-ig">Instagram Reel</span>
+                <a href="https://youtube.com/shorts/O9ed6P0xfZU" target="_blank" class="plat plat-yt">YT &#x2197;</a>
+              </div>
+            </td>
+            <td><span class="badge badge-green">viral-adapt</span></td>
+            <td>
+              <div class="platforms">
+                <span class="plat plat-naver">Naver</span>
+                <span class="plat plat-medium">Medium</span>
+                <span class="plat plat-ig">IG</span>
+                <span class="plat plat-yt">YT</span>
+              </div>
+            </td>
+            <td class="num"><span class="text-green">8.22</span></td>
+            <td class="num"><span class="text-green">7.70</span> <span class="text-muted" style="font-size:0.7rem">(R1)</span></td>
+            <td class="num"><span class="text-green">8.64</span></td>
+            <td>2026-03-07</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ QUALITY ANALYSIS ━━━ -->
+<section class="section">
+  <div class="section-title">&#x25A0; 품질 분석</div>
+  <div class="quality-grid">
+
+    <!-- Score Distribution -->
+    <div class="chart-card">
+      <div class="chart-title">콘텐츠 리뷰 점수 분포</div>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <div class="bar-name">C074</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:77.2%;background:var(--yellow)"></div>
+          </div>
+          <div class="bar-val text-yellow">7.72</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">C075</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:78%;background:var(--yellow)"></div>
+          </div>
+          <div class="bar-val text-yellow">7.80</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">C076</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:77%;background:var(--yellow)"></div>
+          </div>
+          <div class="bar-val text-yellow">7.70</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name" style="color:var(--accent2)">평균</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:78.6%;background:var(--accent)"></div>
+          </div>
+          <div class="bar-val" style="color:var(--accent2)">7.86</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic Score Distribution -->
+    <div class="chart-card">
+      <div class="chart-title">토픽 리뷰 점수 분포</div>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <div class="bar-name">C074</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:82.6%;background:var(--green)"></div>
+          </div>
+          <div class="bar-val text-green">8.26</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">C075</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:84.2%;background:var(--green)"></div>
+          </div>
+          <div class="bar-val text-green">8.42</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">C076</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:82.2%;background:var(--green)"></div>
+          </div>
+          <div class="bar-val text-green">8.22</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name" style="color:var(--accent2)">평균</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:83%;background:var(--accent)"></div>
+          </div>
+          <div class="bar-val" style="color:var(--accent2)">8.30</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Highest score -->
+    <div class="chart-card">
+      <div class="chart-title">&#x2605; 최고 토픽 점수</div>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.5rem;">
+        <div style="font-size:2.5rem;font-weight:700;color:var(--green);">8.42</div>
+        <div>
+          <div style="font-weight:600;font-size:0.85rem;">C075 남자 커튼뱅</div>
+          <div style="color:var(--muted);font-size:0.78rem;">comparison-guide / data_score 7.7</div>
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:var(--muted);">남성 앞머리 블루오션 &mdash; C006 여성 버전 패턴의 성공적 확장</div>
+    </div>
+
+    <!-- Highest video score -->
+    <div class="chart-card">
+      <div class="chart-title">&#x2605; 최고 비디오 점수</div>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.5rem;">
+        <div style="font-size:2.5rem;font-weight:700;color:var(--purple);">8.64</div>
+        <div>
+          <div style="font-weight:600;font-size:0.85rem;">C076 미용실 가격 차별</div>
+          <div style="color:var(--muted);font-size:0.78rem;">viral-adapt / R1 통과</div>
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:var(--muted);">핑크택스 인포그래픽 비디오 &mdash; 소비자 정보 프레이밍으로 바이럴 최적화</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ━━━ REVIEW STATS ━━━ -->
+<section class="section">
+  <div class="section-title">&#x25A0; 리뷰 통계</div>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="review-val text-green">100%</div>
+      <div class="review-label">콘텐츠 통과율</div>
+    </div>
+    <div class="review-card">
+      <div class="review-val" style="color:var(--accent2)">1.67</div>
+      <div class="review-label">평균 리뷰 라운드</div>
+    </div>
+    <div class="review-card">
+      <div class="review-val text-yellow">2</div>
+      <div class="review-label">R2 진입 콘텐츠</div>
+    </div>
+    <div class="review-card">
+      <div class="review-val text-green">1</div>
+      <div class="review-label">R1 통과 콘텐츠</div>
+    </div>
+    <div class="review-card">
+      <div class="review-val text-green">0%</div>
+      <div class="review-label">폐기율</div>
+    </div>
+    <div class="review-card">
+      <div class="review-val" style="color:var(--purple)">8.35</div>
+      <div class="review-label">평균 비디오 점수</div>
+    </div>
+  </div>
+  <div style="margin-top:0.85rem;font-size:var(--sm);color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:8px;padding:0.85rem 1rem;">
+    C074, C075 &rarr; R2 (가격 데이터 오류, 날짜 수정) &nbsp;&#x2022;&nbsp;
+    C076 &rarr; R1 통과 (바이럴-어댑트 포맷 성숙) &nbsp;&#x2022;&nbsp;
+    전체 비디오 리뷰 R1 통과 (Cycle 5 BGM 규칙 효과)
+  </div>
+</section>
+
+<!-- ━━━ STRATEGY MIX ━━━ -->
+<section class="section">
+  <div class="section-title">&#x25A0; 전략 믹스 달성 현황</div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>유형</th>
+            <th>목표</th>
+            <th>실적</th>
+            <th>콘텐츠</th>
+            <th>누적 분포 (C001~C076)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="font-family:monospace;font-size:11px;color:var(--accent2);">PROP-C5-ARCH-001</td>
-            <td>MODIFY_SKILL</td>
-            <td><span class="prop-target">ai-video-gen</span></td>
-            <td style="font-size:12px;">Veo2 OAuth 차단 문서화 + Sora 워터마크 표준 프로토콜 추가</td>
-            <td style="font-size:12px; color:var(--muted);">perf + risk APPROVE</td>
-            <td><span class="badge-approved">&#10003; EXECUTED</span></td>
+            <td><span class="badge badge-purple">celeb-style</span></td>
+            <td>33%</td>
+            <td class="text-green">33%</td>
+            <td>C074 위하준 세이렌</td>
+            <td>31/76 = <strong>40.8%</strong> (목표 40%)</td>
           </tr>
           <tr>
-            <td style="font-family:monospace;font-size:11px;color:var(--accent2);">PROP-C5-ARCH-002</td>
-            <td>MODIFY_SKILL</td>
-            <td><span class="prop-target">publisher-instagram</span></td>
-            <td style="font-size:12px;">레이트 리밋 재시도 전략 수정 (30분 → 3am 리셋 사이클)</td>
-            <td style="font-size:12px; color:var(--muted);">perf + risk APPROVE</td>
-            <td><span class="badge-approved">&#10003; EXECUTED</span></td>
+            <td><span class="badge badge-yellow">comparison-guide</span></td>
+            <td>33%</td>
+            <td class="text-green">33%</td>
+            <td>C075 남자 커튼뱅</td>
+            <td>23/76 = <strong>30.3%</strong> (목표 30%)</td>
           </tr>
           <tr>
-            <td style="font-family:monospace;font-size:11px;color:var(--accent2);">PROP-C5-PERF-001</td>
-            <td>MODIFY_SKILL</td>
-            <td><span class="prop-target">content-reviewer-chief</span></td>
-            <td style="font-size:12px;">KO/EN 수치 교차 일관성 체크 추가 (기간/가격/카운트 한정)</td>
-            <td style="font-size:12px; color:var(--muted);">arch + risk APPROVE</td>
-            <td><span class="badge-approved">&#10003; EXECUTED</span></td>
+            <td><span class="badge badge-green">viral-adapt</span></td>
+            <td>33%</td>
+            <td class="text-green">33%</td>
+            <td>C076 미용실 가격 차별</td>
+            <td>8/76 = <strong>10.5%</strong> (목표 10%)</td>
           </tr>
-          <tr style="opacity:0.65;">
-            <td style="font-family:monospace;font-size:11px;color:var(--yellow);">Deferred: 6건</td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ GOVERNANCE ━━━ -->
+<section class="section">
+  <div class="section-title">&#x25A0; 거버넌스 회고 결과 (Cycle 6 — 2026-03-07)</div>
+
+  <!-- Audit Summary -->
+  <div class="gov-grid" style="margin-bottom:1.5rem;">
+
+    <div class="gov-card">
+      <div class="gov-card-title">
+        <span class="leader">gov-architect</span>
+        구조적 무결성 감사 &mdash; C071/C072/C073 회고
+      </div>
+      <ul class="finding-list">
+        <li class="finding-item">
+          <span class="sev sev-crit">CRIT</span>
+          <span><strong>publisher-youtube</strong> Done 버튼 대기 프로토콜 미문서화 &mdash; 업로드 처리 완료 전 Done 클릭 시 silent success 발생 가능. PROP-C6-ARCH-001 실행.</span>
+        </li>
+        <li class="finding-item">
+          <span class="sev sev-crit">CRIT</span>
+          <span><strong>shorts-director</strong> 비디오 리뷰 최대 라운드 3&rarr;4 업데이트 미반영. Cycle 5에서 변경했으나 SKILL.md 불일치. PROP-C6-ARCH-002 제출 (쿨다운 차단).</span>
+        </li>
+        <li class="finding-item">
+          <span class="sev sev-high">HIGH</span>
+          <span><strong>publisher-youtube</strong> Made for Kids 체크박스 처리 로직 미문서화 &mdash; 한국어 UI 폴백 셀렉터 구현체에 있으나 SKILL.md 가이던스 없음. PROP-C6-ARCH-001에 병합 실행.</span>
+        </li>
+        <li class="finding-item">
+          <span class="sev sev-med">MED</span>
+          <span><strong>video-reviewer-audio</strong> BGM 라이선스 검증 기준 없음 &mdash; 소싱 단계에서만 CC0 체크, 리뷰 단계 재검증 없음. PROP-C6-ARCH-003 (RISK-002와 통합) 실행.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="gov-card">
+      <div class="gov-card-title">
+        <span class="leader">gov-performance</span>
+        ROI/품질 감사 &mdash; C071/C072/C073 회고
+      </div>
+      <ul class="finding-list">
+        <li class="finding-item">
+          <span class="sev sev-crit">CRIT</span>
+          <span><strong>content-reviewer-fact</strong> 가격 정보 검증 프로토콜 없음 &mdash; C044, C055, C072에서 3회 연속 R2 가격 수정. PROP-C6-PERF-001 제출 (쿨다운 차단).</span>
+        </li>
+        <li class="finding-item">
+          <span class="sev sev-high">HIGH</span>
+          <span><strong>video-review-board</strong> 다중 FAIL 수정 순서 미정의 &mdash; C071 R3에서 BGM+CSS+라이선스 동시 FAIL 시 처리 순서 불명확. PROP-C6-PERF-002 제출 (쿨다운 차단).</span>
+        </li>
+        <li class="finding-item">
+          <span class="sev sev-high">HIGH</span>
+          <span><strong>strategist</strong> 에버그린 허브 기사 규칙 없음 &mdash; C071(얼굴형 파악)이 73개 글 중 최초 허브 기사, 시스템 규칙 없이 우연 생성. PROP-C6-PERF-003 실행.</span>
+        </li>
+        <li class="finding-item">
+          <span class="sev sev-med">MED</span>
+          <span><strong>publisher-youtube</strong> 발행 후 검증 단계 없음 &mdash; URL 반환 후 실제 Short 분류 확인 불가. 부분 대응: PROP-C6-ARCH-001 URL 검증 포함.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="gov-card">
+      <div class="gov-card-title">
+        <span class="leader">gov-risk</span>
+        안전/안정성 감사 &mdash; YouTube 첫 통합 리스크
+      </div>
+      <ul class="finding-list">
+        <li class="finding-item">
+          <span class="sev sev-crit">CRIT</span>
+          <span><strong>publisher-youtube</strong> Silent success 레이스 컨디션 &mdash; Done 버튼 활성화가 비디오 처리 완료 전 발생. 처리 중 상태로 "published" 반환 가능. PROP-C6-RISK-001 실행.</span>
+        </li>
+        <li class="finding-item">
+          <span class="sev sev-crit">CRIT</span>
+          <span><strong>publisher-youtube</strong> 업로드 중복 방지 로직 불완전 &mdash; pending 큐만 체크, published 상태 이미 완료된 항목은 재업로드 차단 안 됨. PROP-C6-RISK-001에 통합 실행.</span>
+        </li>
+        <li class="finding-item">
+          <span class="sev sev-high">HIGH</span>
+          <span><strong>video-reviewer-audio</strong> BGM 라이선스 = 유일한 비가역적 리스크 (DMCA 스트라이크). 리뷰 단계 검증 없음. PROP-C6-RISK-002 실행.</span>
+        </li>
+        <li class="finding-item">
+          <span class="sev sev-med">MED</span>
+          <span><strong>shorts-director</strong> 최대 라운드 3 기재 &rarr; R4 기회 손실 위험. gov-architect ARCH-002와 동일 문제. 쿨다운으로 Cycle 7 재제출 예정.</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Proposals Table -->
+  <div class="gov-card" style="margin-bottom:1.5rem;">
+    <div class="gov-card-title">제안(Proposals) 투표 결과 &mdash; Cycle 6</div>
+    <div class="prop-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>유형</th>
+            <th>대상 에이전트</th>
+            <th>내용</th>
+            <th>제안자</th>
+            <th>투표</th>
+            <th>상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono">PROP-C6-ARCH-001</td>
             <td>MODIFY_SKILL</td>
-            <td><span class="prop-target">writer-ko/en, publisher-naver, shorts-director</span></td>
-            <td style="font-size:12px;">celebrity/brand claim hedging, duplicate-publish guard, BGM path required</td>
-            <td style="font-size:12px; color:var(--dim);">쿨다운 차단</td>
-            <td><span class="badge-deferred">&#9656; Cycle 6</span></td>
+            <td><strong>publisher-youtube</strong></td>
+            <td>Done 버튼 대기 프로토콜 + Upload Wizard 문서화</td>
+            <td>gov-architect</td>
+            <td>APPROVE(perf) + ABSTAIN(risk/proposer)</td>
+            <td><span class="prop-badge-approved">EXECUTED</span></td>
+          </tr>
+          <tr>
+            <td class="mono">PROP-C6-ARCH-002</td>
+            <td>MODIFY_SKILL</td>
+            <td><strong>shorts-director</strong></td>
+            <td>비디오 리뷰 최대 라운드 3&rarr;4 수정</td>
+            <td>gov-architect</td>
+            <td>쿨다운 차단 (2026-03-12)</td>
+            <td><span class="prop-badge-blocked">BLOCKED</span></td>
+          </tr>
+          <tr>
+            <td class="mono">PROP-C6-PERF-001</td>
+            <td>MODIFY_SKILL</td>
+            <td><strong>content-reviewer-fact</strong></td>
+            <td>Price Claim Protocol 추가</td>
+            <td>gov-performance</td>
+            <td>쿨다운 차단 (2026-03-12)</td>
+            <td><span class="prop-badge-blocked">BLOCKED</span></td>
+          </tr>
+          <tr>
+            <td class="mono">PROP-C6-PERF-002</td>
+            <td>MODIFY_SKILL</td>
+            <td><strong>video-review-board</strong></td>
+            <td>Multi-FAIL Resolution Order 섹션 추가</td>
+            <td>gov-performance</td>
+            <td>쿨다운 차단 (2026-03-12)</td>
+            <td><span class="prop-badge-blocked">BLOCKED</span></td>
+          </tr>
+          <tr>
+            <td class="mono">PROP-C6-PERF-003</td>
+            <td>MODIFY_SKILL</td>
+            <td><strong>strategist</strong></td>
+            <td>Hub Article Rule 추가 (캠페인당 에버그린 허브 기사 1개 필수)</td>
+            <td>gov-performance</td>
+            <td>2/2 APPROVE</td>
+            <td><span class="prop-badge-approved">EXECUTED</span></td>
+          </tr>
+          <tr>
+            <td class="mono">PROP-C6-RISK-001</td>
+            <td>MODIFY_SKILL</td>
+            <td><strong>publisher-youtube</strong></td>
+            <td>업로드 완료 검증 + 중복 방지 (ARCH-001에 병합)</td>
+            <td>gov-risk</td>
+            <td>병합 실행</td>
+            <td><span class="prop-badge-merged">MERGED</span></td>
+          </tr>
+          <tr>
+            <td class="mono">PROP-C6-RISK-002</td>
+            <td>MODIFY_SKILL</td>
+            <td><strong>video-reviewer-audio</strong></td>
+            <td>bgm_license 5번째 평가 기준 추가 (0점 시 자동 FAIL)</td>
+            <td>gov-risk</td>
+            <td>2/2 APPROVE</td>
+            <td><span class="prop-badge-approved">EXECUTED</span></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- CHANGELOG -->
-  <div style="margin-top: 22px;">
-    <div style="font-size:13px; font-weight:700; color:#f1f5f9; margin-bottom:12px;">실행된 SKILL.md 변경 내역</div>
+  <!-- Executed SKILL Changes -->
+  <div class="gov-card">
+    <div class="gov-card-title">실행된 SKILL.md 변경 내역 (3개 에이전트)</div>
 
-    <div class="changelog-entry">
-      <div class="cl-header">
-        <span class="cl-id">ai-video-gen</span>
-        <span class="cl-title">Veo2 OAuth 차단 프로토콜 + Sora 워터마크 표준 주석 추가</span>
-        <span class="badge-approved" style="margin-left:auto;">EXECUTED</span>
+    <div class="skill-change">
+      <div class="skill-change-header">
+        <span class="skill-agent">publisher-youtube</span>
+        <span class="badge badge-red" style="font-size:0.65rem;">PROP-C6-ARCH-001 + PROP-C6-RISK-001 병합</span>
+        <span class="text-muted" style="font-size:0.75rem;">&#x2192; 쿨다운 2026-03-14까지</span>
       </div>
-      <div class="cl-desc">
-        (A) Veo 2 OAuth 차단: Google AI Studio OAuth 실패 시 즉시 Sora 폴백, 재시도 금지 문서화.<br>
-        (B) Sora 워터마크: 모든 Sora 출력에 <code>watermark: true</code> + <code>watermark_fix_required: drawbox+opaque PNG mask</code> 명기. video-assembler가 리뷰 전 마스크 적용 지시.<br>
-        (C) 로그인 스크립트 레퍼런스 수정: <code>sora-video-gen.js</code> → <code>sora-generate-one.js</code>.<br>
-        쿨다운: ai-video-gen 잠금 ~ 2026-03-13
+      <div class="skill-change-body">
+        "Upload Wizard Steps" 섹션 추가: (1) Made for Kids 셀렉터 2종 문서화 (attribute-based + 한국어 UI 텍스트 폴백), (2) Done 버튼 대기 프로토콜 (진행률 표시기 체크 + aria-disabled 검증, 최대 120s 루프), (3) 발행 후 URL 검증 (status:processing 시 미완료 처리), (4) 중복 업로드 방지 (매 업로드 전 topic_id status:published 확인). Process 섹션에 step 1으로 중복 체크 추가.
       </div>
     </div>
 
-    <div class="changelog-entry">
-      <div class="cl-header">
-        <span class="cl-id">publisher-instagram</span>
-        <span class="cl-title">레이트 리밋 재시도 전략 수정</span>
-        <span class="badge-approved" style="margin-left:auto;">EXECUTED</span>
+    <div class="skill-change">
+      <div class="skill-change-header">
+        <span class="skill-agent">strategist</span>
+        <span class="badge badge-green" style="font-size:0.65rem;">PROP-C6-PERF-003</span>
+        <span class="text-muted" style="font-size:0.75rem;">&#x2192; 쿨다운 2026-03-14까지</span>
       </div>
-      <div class="cl-desc">
-        "Rate limit → 30분 대기 후 재시도" 삭제. 새 프로토콜: (1) <code>workspace/logs/instagram_rate_limits.json</code>에 타임스탬프 기록, (2) metadata.json platforms.instagram.note 명기, (3) <code>workspace/instagram/retry_queue.json</code>에 다음 세션 재시도 추가, (4) 캠페인 논블로킹 계속 진행.<br>
-        쿨다운: publisher-instagram 잠금 ~ 2026-03-13
+      <div class="skill-change-body">
+        "Hub Article Rule" 섹션 추가: 동일 개념이 기존 게시글에 5회 이상 언급되었으나 전용 설명 글이 없는 경우 각 캠페인에 에버그린 허브 기사 1개 포함 필수. grep 기반 갭 탐지 가이던스 및 갭 미발견 시 이스케이프 핸들러 포함. winning_patterns.md Section 8 기반.
       </div>
     </div>
 
-    <div class="changelog-entry">
-      <div class="cl-header">
-        <span class="cl-id">content-reviewer-chief</span>
-        <span class="cl-title">KO/EN 수치 교차 일관성 체크 추가</span>
-        <span class="badge-approved" style="margin-left:auto;">EXECUTED</span>
+    <div class="skill-change">
+      <div class="skill-change-header">
+        <span class="skill-agent">video-reviewer-audio</span>
+        <span class="badge badge-yellow" style="font-size:0.65rem;">PROP-C6-RISK-002</span>
+        <span class="text-muted" style="font-size:0.75rem;">&#x2192; 쿨다운 2026-03-14까지</span>
       </div>
-      <div class="cl-desc">
-        final_ko.md + final_en.md 모두 존재하는 경우: 기간, 가격, 카운트, 순위 등 수치 클레임을 추출하여 동일 개념의 KO/EN 값 비교. 직접 모순 발견 시 <code>cross_language_numerical_contradiction</code> FAIL. 제외 조건: KRW vs USD 가격 (지역 적응), 한국/해외 제품 예시 차이, 톤/구조 차이.<br>
-        쿨다운: content-reviewer-chief 잠금 ~ 2026-03-13
+      <div class="skill-change-body">
+        bgm_license를 5번째 평가 기준으로 추가. 점수 체계: CC0 출처 확인 = 10점, 검증 불가 로컬 파일 = 5점(경고), source:auto 또는 합성음 = 0점(자동 FAIL). bgm_license 0점 시 다른 기준 점수에 관계없이 자동 FAIL. 출력 JSON 스키마 및 Constraints 업데이트.
+      </div>
+    </div>
+
+    <!-- Blocked / Deferred -->
+    <hr class="divider">
+    <div class="gov-card-title" style="margin-bottom:0.75rem;">쿨다운으로 차단 &mdash; Cycle 7 재제출 예정</div>
+    <div class="blocked-list">
+      <div class="blocked-item">
+        <span class="blocked-icon">&#x25CF;</span>
+        <div class="blocked-body">
+          <strong>PROP-C6-ARCH-002</strong> &rarr; shorts-director (라운드 수 3&rarr;4)
+          <span>쿨다운 해제: 2026-03-12 / 원칙적 승인 완료, 재제출 시 즉시 통과 예상</span>
+        </div>
+      </div>
+      <div class="blocked-item">
+        <span class="blocked-icon">&#x25CF;</span>
+        <div class="blocked-body">
+          <strong>PROP-C6-PERF-001</strong> &rarr; content-reviewer-fact (Price Claim Protocol)
+          <span>쿨다운 해제: 2026-03-12 / C044, C055, C072 3회 연속 R2 가격 수정 패턴 — 우선순위 높음</span>
+        </div>
+      </div>
+      <div class="blocked-item">
+        <span class="blocked-icon">&#x25CF;</span>
+        <div class="blocked-body">
+          <strong>PROP-C6-PERF-002</strong> &rarr; video-review-board (Multi-FAIL Resolution Order)
+          <span>쿨다운 해제: 2026-03-12 / C071 R3 다중 FAIL 사례로 필요성 입증</span>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- TIMELINE -->
-  <div class="section-title">캠페인 타임라인</div>
-  <div class="card" style="padding:24px 28px;">
+<!-- ━━━ TIMELINE ━━━ -->
+<section class="section">
+  <div class="section-title">&#x25A0; 캠페인 타임라인</div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.5rem 1.75rem;">
     <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot blue"></div>
-        <div class="tl-time">2026-03-07 09:00</div>
-        <div class="tl-event">캠페인 2026-03-07-001 시작</div>
-        <div class="tl-sub">Phase 1: Data-Analyst + Researcher + Entertainment-Researcher + Idea agents 5개 병렬 스폰</div>
-      </div>
+
       <div class="tl-item">
         <div class="tl-dot"></div>
-        <div class="tl-time">2026-03-07 09:30</div>
-        <div class="tl-event">Phase 2 완료 — 전략 수립</div>
-        <div class="tl-sub">celeb-style 33% (C072) + original 33% (C071) + comparison 33% (C073). YouTube Shorts 첫 도입 결정.</div>
+        <div class="tl-date">2026-03-08 오전</div>
+        <div class="tl-title">Phase 0 &mdash; 캠페인 기획</div>
+        <div class="tl-body">task_queue.json 생성. 전 캠페인(2026-03-07-001) C071-C073 완료 확인. 헤어스타일 니치 선택. 3개 슬롯 자동 결정 (deferred 2개 + 신규 1개). 페이스 조절: 9개 연속 발행 후 격일 스케줄 적용.</div>
       </div>
+
       <div class="tl-item">
-        <div class="tl-dot yellow"></div>
-        <div class="tl-time">2026-03-07 ~01:00</div>
-        <div class="tl-event">C072 콘텐츠 제작 + 리뷰 (R2 PASS)</div>
-        <div class="tl-sub">content-reviewer-fact R1 FAIL: KO/EN 가격·국가 수치 불일치. 수정 후 R2 전원 PASS.</div>
+        <div class="tl-dot"></div>
+        <div class="tl-date">2026-03-08</div>
+        <div class="tl-title">Phase 1 &mdash; 병렬 리서치</div>
+        <div class="tl-body">Data-Analyst + Researcher + Ent-Researcher + Idea-Bgrade + Idea-Trend + Viral-Scout 6개 에이전트 병렬 실행. C074 (위하준 세이렌, 드라마 현재 방영 긴급), C075 (남자 커튼뱅, data_score 7.7), C076 (미용실 가격 차별, viral 9/10) 확정.</div>
       </div>
+
       <div class="tl-item">
-        <div class="tl-dot yellow"></div>
-        <div class="tl-time">2026-03-07 ~01:30</div>
-        <div class="tl-event">C071 콘텐츠 제작 + 리뷰 (R2 PASS)</div>
-        <div class="tl-sub">content-reviewer-visual R1 FAIL: img_002 배치 불일치. 수정 후 R2 PASS. Hub article 확정.</div>
+        <div class="tl-dot"></div>
+        <div class="tl-date">2026-03-08</div>
+        <div class="tl-title">Phase 2 &mdash; 전략 수립</div>
+        <div class="tl-body">Strategist 캠페인 캘린더 생성. 격일 발행 (03-09/03-11/03-13). celeb 33% / comparison 33% / viral-adapt 33% 믹스. Hub Article Rule (Cycle 6 신규) 적용 확인.</div>
       </div>
+
       <div class="tl-item">
-        <div class="tl-dot green"></div>
-        <div class="tl-time">2026-03-07 ~02:00</div>
-        <div class="tl-event">C073 콘텐츠 제작 + 리뷰 (R1 PASS)</div>
-        <div class="tl-sub">리뷰어 5명 전원 R1 통과. 평균 8.24점. 이번 캠페인 최고 리뷰 성과.</div>
+        <div class="tl-dot"></div>
+        <div class="tl-date">2026-03-07 08:36</div>
+        <div class="tl-title">C074 발행 완료</div>
+        <div class="tl-body">세이렌 위하준 헤어 &mdash; 토픽 리뷰 8.26 / 콘텐츠 R2 (7.72) / 비디오 8.22. Naver + Medium + Instagram Reel + YouTube Shorts 4개 플랫폼 동시 발행.</div>
       </div>
+
       <div class="tl-item">
-        <div class="tl-dot green"></div>
-        <div class="tl-time">2026-03-07 03:46 ~ 03:57</div>
-        <div class="tl-event">Naver + Medium 발행 완료 (C072 → C071 → C073)</div>
-        <div class="tl-sub">Naver: 224207750128, 224207754297, 224207757999. Medium: 5e49fdc6c3f5, 68b576e425af, 05ea8f56d7ca.</div>
+        <div class="tl-dot"></div>
+        <div class="tl-date">2026-03-07 09:27</div>
+        <div class="tl-title">C075 발행 완료</div>
+        <div class="tl-body">남자 커튼뱅 &mdash; 토픽 리뷰 8.42(최고) / 콘텐츠 R2 (7.80) / 비디오 8.20. Naver 텍스트 전용 (이미지 업로드 버그 지속), Medium 5개 이미지 포함.</div>
       </div>
+
       <div class="tl-item">
-        <div class="tl-dot purple"></div>
-        <div class="tl-time">2026-03-07 04:43 ~ 04:46</div>
-        <div class="tl-event">YouTube Shorts 발행 완료 (3편) — 첫 YouTube 발행</div>
-        <div class="tl-sub">rlVnK37GDLs (C072), 0Jl0zd9jKds (C071), QPk3_Oke_Cw (C073)</div>
+        <div class="tl-dot"></div>
+        <div class="tl-date">2026-03-07 10:07</div>
+        <div class="tl-title">C076 발행 완료</div>
+        <div class="tl-body">미용실 성별 가격 차별 &mdash; 토픽 리뷰 8.22 / 콘텐츠 R1 통과 (7.70) / 비디오 8.64(최고). Instagram 게시물 #51 달성.</div>
       </div>
+
       <div class="tl-item">
-        <div class="tl-dot orange"></div>
-        <div class="tl-time">2026-03-07 (병렬)</div>
-        <div class="tl-event">Instagram Reels 발행 완료 (3편)</div>
-        <div class="tl-sub">@dynamicstep.ai — C072, C071, C073 각각 Reel 업로드.</div>
+        <div class="tl-dot tl-dot-yellow"></div>
+        <div class="tl-date">2026-03-07</div>
+        <div class="tl-title">Phase 4 &mdash; 거버넌스 Cycle 6</div>
+        <div class="tl-body">gov-architect + gov-performance + gov-risk 감사 완료. 7개 제안 생성: 3개 실행(publisher-youtube, strategist, video-reviewer-audio), 3개 쿨다운 차단(Cycle 7 재제출), 1개 병합.</div>
       </div>
-      <div class="tl-item" style="margin-bottom:0;">
-        <div class="tl-dot green"></div>
-        <div class="tl-time">2026-03-07</div>
-        <div class="tl-event">Phase 4: 캠페인 리포트 생성 + gh-pages 배포</div>
-        <div class="tl-sub">Governance Cycle 5 (2026-03-06) 이미 완료 상태. 3건 변경 실행됨.</div>
+
+      <div class="tl-item">
+        <div class="tl-dot tl-dot-green"></div>
+        <div class="tl-date">2026-03-08</div>
+        <div class="tl-title">리포트 생성 &amp; gh-pages 배포</div>
+        <div class="tl-body">campaign-report-2026-03-08-001.html 생성. https://jireh-father.github.io/marketclaw/ 배포.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ DEFERRED TOPICS ━━━ -->
+<section class="section">
+  <div class="section-title">&#x25A0; 다음 사이클 예정 토픽</div>
+  <div class="deferred-grid">
+    <div class="deferred-card" style="border-left:3px solid var(--red);">
+      <div class="deferred-topic">26학번 신학기 입학식 헤어</div>
+      <div class="deferred-meta">
+        <span class="badge badge-red" style="font-size:0.65rem;">URGENT</span> score 8.6<br>
+        window: 3월 중순 마감 &mdash; 최우선 발행 필요
+      </div>
+    </div>
+    <div class="deferred-card" style="border-left:3px solid var(--orange);">
+      <div class="deferred-topic">슬릭 헤어 스타일링 가이드 (여성)</div>
+      <div class="deferred-meta">
+        <span class="badge badge-yellow" style="font-size:0.65rem;">HIGH</span> score 7.5<br>
+        C067 쿨다운 종료: 2026-03-19 이후 발행 가능
+      </div>
+    </div>
+    <div class="deferred-card" style="border-left:3px solid var(--yellow);">
+      <div class="deferred-topic">거지존 롭 헤어 2026 트렌드</div>
+      <div class="deferred-meta">
+        <span class="badge badge-yellow" style="font-size:0.65rem;">HIGH</span> score 8.0<br>
+        W Korea 2026 선언 &mdash; 봄 시즌 3주 윈도우
+      </div>
+    </div>
+    <div class="deferred-card" style="border-left:3px solid var(--accent);">
+      <div class="deferred-topic">BTS 아리랑 컴백 멤버별 헤어</div>
+      <div class="deferred-meta">
+        <span class="badge badge-purple" style="font-size:0.65rem;">CELEB</span> score 9.1<br>
+        윈도우: 03-20 ~ 03-25 (컴백 후 실제 프로모 이미지 확보 후)
+      </div>
+    </div>
+    <div class="deferred-card" style="border-left:3px solid var(--green);">
+      <div class="deferred-topic">투인원컷 (2-in-1 Korean Haircut)</div>
+      <div class="deferred-meta">
+        <span class="badge badge-green" style="font-size:0.65rem;">VIRAL</span> 글로벌 메가바이럴<br>
+        C001-C076 커버리지 없음 &mdash; evergreen
+      </div>
+    </div>
+    <div class="deferred-card" style="border-left:3px solid var(--muted);">
+      <div class="deferred-topic">60대 여성 헤어스타일</div>
+      <div class="deferred-meta">
+        <span class="badge" style="background:rgba(148,163,184,0.1);color:var(--muted);font-size:0.65rem;">AFTER 03-26</span> score 7.1<br>
+        C056 쿨다운 종료: 2026-03-26 이후
       </div>
     </div>
   </div>
+</section>
 
-  <!-- PLATFORM BREAKDOWN -->
-  <div class="section-title">플랫폼별 발행 현황</div>
-  <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
-    <div class="card" style="border-top: 3px solid #03c75a;">
-      <div class="card-label">Naver Blog</div>
-      <div class="card-value" style="color:#4ade80;">3</div>
-      <div class="card-sub">blog.naver.com/seoilgun (누적 73+편)</div>
-      <div style="margin-top:10px; font-size:12px; color:var(--muted);">
-        C072: 224207750128<br>C071: 224207754297<br>C073: 224207757999
-      </div>
+<!-- ━━━ CUMULATIVE STATS ━━━ -->
+<section class="section">
+  <div class="section-title">&#x25A0; 누적 통계 (C001 ~ C076)</div>
+  <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+    <div class="card">
+      <div class="card-label">총 Naver 발행</div>
+      <div class="card-value">76+</div>
+      <div class="card-sub">C001 ~ C076</div>
     </div>
-    <div class="card" style="border-top: 3px solid #fff;">
-      <div class="card-label">Medium</div>
-      <div class="card-value">3</div>
-      <div class="card-sub">영어 콘텐츠 (EN 600-1000단어)</div>
-      <div style="margin-top:10px; font-size:12px; color:var(--muted);">
-        C072: 5e49fdc6c3f5<br>C071: 68b576e425af<br>C073: 05ea8f56d7ca
-      </div>
-    </div>
-    <div class="card" style="border-top: 3px solid #e1306c;">
-      <div class="card-label">Instagram Reels</div>
-      <div class="card-value" style="color:#f472b6;">3</div>
+    <div class="card">
+      <div class="card-label">Instagram 게시물</div>
+      <div class="card-value">51</div>
       <div class="card-sub">@dynamicstep.ai</div>
-      <div style="margin-top:10px; font-size:12px; color:var(--muted);">
-        C072 / C071 / C073 Reels 각각 업로드
-      </div>
     </div>
-    <div class="card" style="border-top: 3px solid #ff0000;">
-      <div class="card-label">YouTube Shorts &#9733; First</div>
-      <div class="card-value" style="color:#f87171;">3</div>
-      <div class="card-sub">youtube.com/shorts — 이번 캠페인 첫 도입</div>
-      <div style="margin-top:10px; font-size:12px; color:var(--muted);">
-        rlVnK37GDLs / 0Jl0zd9jKds / QPk3_Oke_Cw
-      </div>
+    <div class="card">
+      <div class="card-label">YouTube Shorts</div>
+      <div class="card-value">6</div>
+      <div class="card-sub">C071 ~ C076 (3개씩 2캠페인)</div>
     </div>
-  </div>
-
-  <!-- STRATEGY INSIGHTS -->
-  <div class="section-title">전략 인사이트</div>
-  <div class="card" style="padding:22px 24px;">
-    <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap:14px;">
-      <div>
-        <div style="font-size:12px; font-weight:700; color:var(--accent2); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.8px;">패턴J 첫 검증</div>
-        <div style="font-size:13px; color:var(--text); line-height:1.6;">OTT 드라마 방영 중 주인공 헤어 글(C072 신혜선 레이디 두아)은 드라마 팬 + 헤어 탐색층을 동시에 유입. 넷플릭스 글로벌 TOP10 3위 타이틀 연계로 검색 볼륨 최상위 기대.</div>
-      </div>
-      <div>
-        <div style="font-size:12px; font-weight:700; color:var(--green); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.8px;">에버그린 허브 전략</div>
-        <div style="font-size:13px; color:var(--text); line-height:1.6;">C071(얼굴형 파악)은 73편 전체의 구조적 공백을 채우는 허브 글. 5개 내부 링크로 D.I.A. 신호 강화. 이런 에버그린 허브 글을 사이클마다 1편 포함 권장.</div>
-      </div>
-      <div>
-        <div style="font-size:12px; font-weight:700; color:var(--yellow); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.8px;">비교 포맷 확장</div>
-        <div style="font-size:13px; color:var(--text); line-height:1.6;">C073(보브컷 3종 비교)은 기존 에어리보브 심화글(C061)과 카니발리제이션 없이 새 키워드 포착. '카테고리 내 비교 앵글'은 기존 특정 스타일 글 이후 추가 트래픽 확보에 효과적.</div>
-      </div>
-      <div>
-        <div style="font-size:12px; font-weight:700; color:var(--purple); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.8px;">YouTube Shorts 확장</div>
-        <div style="font-size:13px; color:var(--text); line-height:1.6;">이번 캠페인부터 YouTube Shorts 추가로 4플랫폼 풀 커버. Naver(한국 SEO) + Medium(영어 권위) + Instagram(비주얼 바이럴) + YouTube(검색 기반 장기 유입)의 4축 완성.</div>
-      </div>
+    <div class="card">
+      <div class="card-label">Medium 발행</div>
+      <div class="card-value">76+</div>
+      <div class="card-sub">모든 콘텐츠 영문 발행</div>
+    </div>
+    <div class="card">
+      <div class="card-label">거버넌스 사이클</div>
+      <div class="card-value">6</div>
+      <div class="card-sub">2026-03-04 ~ 2026-03-07</div>
+    </div>
+    <div class="card">
+      <div class="card-label">에이전트 SKILL 개선</div>
+      <div class="card-value">14</div>
+      <div class="card-sub">Cycle 1~6 총 실행 건수</div>
     </div>
   </div>
+</section>
 
-  <!-- NEXT CYCLE -->
-  <div class="section-title">다음 사이클 예고</div>
-  <div class="card" style="padding:20px 22px;">
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px;">
-      <div class="highlight-box">
-        <div class="hl-label">NEXT #1 — celeb-style</div>
-        <div class="hl-value">위하준 세이렌 남자 헤어</div>
-        <div class="hl-sub">Window ~04-01. Entertainment-researcher RANK 2 우선.</div>
-      </div>
-      <div class="highlight-box">
-        <div class="hl-label">NEXT #2 — original</div>
-        <div class="hl-value">슬릭 헤어 스타일링 가이드</div>
-        <div class="hl-sub">W코리아 2026 트렌드 선언. 블로그 블루오션.</div>
-      </div>
-      <div class="highlight-box">
-        <div class="hl-label">NEXT #3 — viral-adapt</div>
-        <div class="hl-value">미용실 성별 가격 차별 (B004)</div>
-        <div class="hl-sub">바이럴 점수 9/10. 다음 사이클 viral-adapt 슬롯 1순위.</div>
-      </div>
-      <div class="highlight-box">
-        <div class="hl-label">Governance Cycle 6</div>
-        <div class="hl-value">2026-03-11 이후</div>
-        <div class="hl-sub">writer-ko/publisher-naver 쿨다운 해제. celebrity/brand hedging + duplicate guard 실행 예정.</div>
-      </div>
+</div><!-- .container -->
+</main>
+
+<!-- ━━━ FOOTER ━━━ -->
+<footer class="footer">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;width:100%;">
+    <div>
+      <span class="footer-brand">MarketClaw</span>
+      &nbsp;&mdash;&nbsp; Autonomous Content Marketing Agent
+      &nbsp;&#x2022;&nbsp; Campaign 2026-03-08-001 &nbsp;&#x2022;&nbsp; Niche: 헤어스타일
     </div>
+    <div>Generated: 2026-03-08 &nbsp;&#x2022;&nbsp; <a href="https://jireh-father.github.io/marketclaw/" target="_blank">https://jireh-father.github.io/marketclaw/</a></div>
   </div>
-
-</div>
-
-<!-- FOOTER -->
-<div class="footer">
-  <strong>Generated by MarketClaw</strong> &nbsp;&#183;&nbsp;
-  Campaign 2026-03-07-001 &nbsp;&#183;&nbsp;
-  <a href="https://jireh-father.github.io/marketclaw/" target="_blank">Report URL</a> &nbsp;&#183;&nbsp;
-  Generated: 2026-03-07 &nbsp;&#183;&nbsp;
-  Powered by Claude Sonnet 4.6
-</div>
+</footer>
 
 </body>
 </html>
