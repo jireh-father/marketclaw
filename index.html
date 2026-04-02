@@ -3,238 +3,218 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>캠페인 리포트 — 헤어디자이너 팁 시리즈 2026-03-21</title>
+<title>MarketClaw Campaign Report &#8212; viral-repost-20260402</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background: #0f172a;
     color: #e2e8f0;
-    font-family: 'Segoe UI', -apple-system, sans-serif;
+    min-height: 100vh;
     font-size: 14px;
     line-height: 1.6;
   }
-  .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
 
   /* Header */
   .header {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border-bottom: 2px solid #3b82f6;
-    padding: 32px 24px;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 24px;
     margin-bottom: 32px;
   }
-  .header h1 {
-    font-size: 22px;
-    font-weight: 700;
-    color: #f1f5f9;
-    margin-bottom: 8px;
-  }
-  .header .meta {
-    color: #94a3b8;
-    font-size: 13px;
-  }
-  .header .badge {
+  .header-badge {
     display: inline-block;
-    background: #3b82f6;
-    color: #fff;
+    background: #1e3a5f;
+    color: #60a5fa;
     font-size: 11px;
     font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 12px;
-    margin-left: 8px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
   }
-  .header .badge.success { background: #10b981; }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 6px;
+  }
+  .header-meta {
+    color: #64748b;
+    font-size: 13px;
+  }
+  .header-meta span { margin-right: 20px; }
+  .header-meta strong { color: #94a3b8; }
 
-  /* Summary cards */
+  /* Summary Cards */
   .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
-    margin-bottom: 32px;
+    margin-bottom: 36px;
   }
   .card {
     background: #1e293b;
     border: 1px solid #334155;
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 20px;
-    text-align: center;
   }
-  .card .value {
-    font-size: 32px;
-    font-weight: 800;
-    color: #3b82f6;
-    line-height: 1.1;
-  }
-  .card .label {
-    font-size: 12px;
-    color: #94a3b8;
-    margin-top: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .card .sub {
+  .card-label {
     font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     color: #64748b;
-    margin-top: 4px;
+    margin-bottom: 8px;
+  }
+  .card-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #3b82f6;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .card-sub {
+    font-size: 12px;
+    color: #64748b;
   }
 
-  /* Sections */
+  /* Section */
   .section {
     background: #1e293b;
     border: 1px solid #334155;
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 24px;
     margin-bottom: 24px;
   }
-  .section h2 {
+  .section-title {
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 600;
     color: #f1f5f9;
     margin-bottom: 18px;
-    padding-bottom: 10px;
+    padding-bottom: 12px;
     border-bottom: 1px solid #334155;
     display: flex;
     align-items: center;
     gap: 8px;
   }
-  .section h2 .icon {
-    color: #3b82f6;
-    font-size: 16px;
+  .section-title .icon {
+    width: 20px;
+    height: 20px;
+    background: #1e3a5f;
+    color: #60a5fa;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
   }
 
   /* Table */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th {
     text-align: left;
-    padding: 10px 12px;
+    padding: 8px 12px;
     font-size: 11px;
     font-weight: 600;
-    color: #64748b;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    color: #64748b;
     border-bottom: 1px solid #334155;
   }
   td {
-    padding: 12px;
+    padding: 12px 12px;
     border-bottom: 1px solid #1e293b;
-    font-size: 13px;
     vertical-align: middle;
   }
   tr:last-child td { border-bottom: none; }
-  tr:hover td { background: rgba(59,130,246,0.05); }
+  tr:hover td { background: #243447; }
 
-  a { color: #60a5fa; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-
-  /* Score badges */
-  .score {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 8px;
-    font-weight: 700;
+  .video-id {
+    font-family: monospace;
     font-size: 12px;
+    color: #60a5fa;
+    font-weight: 600;
   }
-  .score-high { background: rgba(16,185,129,0.15); color: #10b981; }
-  .score-mid { background: rgba(245,158,11,0.15); color: #f59e0b; }
-  .score-low { background: rgba(239,68,68,0.15); color: #ef4444; }
-
-  /* Platform tags */
-  .platform {
+  .video-title { color: #e2e8f0; font-weight: 500; }
+  .creator-name { color: #94a3b8; font-size: 12px; }
+  .views-num { color: #34d399; font-weight: 600; }
+  .duration-badge {
     display: inline-block;
-    padding: 2px 8px;
-    border-radius: 6px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #94a3b8;
     font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+  .platform-badge {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
     font-weight: 600;
     margin-right: 4px;
   }
-  .p-naver { background: rgba(3,199,90,0.15); color: #03c75a; }
-  .p-instagram { background: rgba(225,48,108,0.15); color: #e1306c; }
-  .p-youtube { background: rgba(255,0,0,0.15); color: #ff0000; }
-
-  /* Bar chart */
-  .bar-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 10px;
-  }
-  .bar-label {
+  .badge-ig { background: #3b1f4a; color: #c084fc; }
+  .badge-yt { background: #3b1a1a; color: #f87171; }
+  .url-link {
+    color: #60a5fa;
+    text-decoration: none;
     font-size: 12px;
-    color: #94a3b8;
-    width: 130px;
-    flex-shrink: 0;
+    font-family: monospace;
   }
-  .bar-track {
+  .url-link:hover { text-decoration: underline; }
+
+  /* Views bar */
+  .views-bar-wrap { display: flex; align-items: center; gap: 10px; }
+  .views-bar-bg {
     flex: 1;
-    background: #0f172a;
-    border-radius: 4px;
-    height: 18px;
+    height: 6px;
+    background: #334155;
+    border-radius: 3px;
     overflow: hidden;
+    min-width: 60px;
   }
-  .bar-fill {
+  .views-bar-fill {
     height: 100%;
-    border-radius: 4px;
-    background: linear-gradient(90deg, #3b82f6, #60a5fa);
-    transition: width 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    color: #fff;
-  }
-  .bar-fill.high { background: linear-gradient(90deg, #10b981, #34d399); }
-  .bar-fill.mid { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-
-  /* Verdict chips */
-  .verdict-pass {
-    display: inline-block;
-    background: rgba(16,185,129,0.15);
-    color: #10b981;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 6px;
-  }
-  .verdict-fail {
-    display: inline-block;
-    background: rgba(239,68,68,0.15);
-    color: #ef4444;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 6px;
+    background: linear-gradient(90deg, #3b82f6, #34d399);
+    border-radius: 3px;
   }
 
-  /* Round indicator */
-  .rounds {
+  /* Governance */
+  .gov-table td:first-child { font-family: monospace; font-size: 11px; color: #60a5fa; }
+  .gov-table .badge-exec { background: #14532d; color: #4ade80; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .gov-table .badge-blocked { background: #3b1a1a; color: #f87171; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .gov-table .badge-deferred { background: #3b2a1a; color: #f59e0b; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .gov-table td { font-size: 12px; }
+
+  /* Issues */
+  .issue-list { list-style: none; }
+  .issue-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #334155;
+    font-size: 13px;
+    color: #cbd5e1;
     display: flex;
-    gap: 4px;
+    gap: 10px;
   }
-  .round-dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    font-size: 10px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .round-pass { background: rgba(16,185,129,0.2); color: #10b981; }
-  .round-fail { background: rgba(239,68,68,0.2); color: #ef4444; }
+  .issue-list li:last-child { border-bottom: none; }
+  .issue-icon { color: #34d399; flex-shrink: 0; font-weight: 700; }
+  .issue-icon.warn { color: #f59e0b; }
 
   /* Timeline */
-  .timeline { position: relative; padding-left: 24px; }
+  .timeline { position: relative; padding-left: 28px; }
   .timeline::before {
     content: '';
     position: absolute;
-    left: 7px;
+    left: 8px;
     top: 0;
     bottom: 0;
     width: 2px;
@@ -244,457 +224,399 @@
     position: relative;
     margin-bottom: 20px;
   }
-  .timeline-item::before {
-    content: '';
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot {
     position: absolute;
-    left: -21px;
-    top: 6px;
+    left: -24px;
+    top: 4px;
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background: #3b82f6;
     border: 2px solid #0f172a;
   }
-  .timeline-item.done::before { background: #10b981; }
-  .timeline-time {
-    font-size: 11px;
-    color: #64748b;
-    margin-bottom: 2px;
-  }
-  .timeline-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: #f1f5f9;
-  }
-  .timeline-desc {
-    font-size: 12px;
-    color: #94a3b8;
-    margin-top: 2px;
-  }
+  .timeline-dot.green { background: #34d399; }
+  .timeline-dot.yellow { background: #f59e0b; }
+  .timeline-dot.purple { background: #a78bfa; }
+  .timeline-dot.red { background: #f87171; }
+  .timeline-time { font-size: 11px; color: #64748b; margin-bottom: 2px; }
+  .timeline-text { font-size: 13px; color: #cbd5e1; }
+  .timeline-sub { font-size: 12px; color: #64748b; margin-top: 2px; }
 
-  /* Governance table */
-  .gov-cycle {
-    background: #0f172a;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 12px;
-  }
-  .gov-cycle h3 {
-    font-size: 13px;
-    font-weight: 700;
-    color: #60a5fa;
-    margin-bottom: 8px;
-  }
-  .gov-prop {
-    display: flex;
-    gap: 8px;
-    align-items: flex-start;
-    padding: 8px 0;
-    border-bottom: 1px solid #1e293b;
-    font-size: 12px;
-  }
-  .gov-prop:last-child { border-bottom: none; }
-  .gov-type {
-    display: inline-block;
-    padding: 2px 7px;
-    border-radius: 4px;
-    font-size: 10px;
-    font-weight: 700;
-    flex-shrink: 0;
-    background: rgba(59,130,246,0.15);
-    color: #60a5fa;
-  }
-  .gov-target { color: #fbbf24; font-weight: 600; flex-shrink: 0; }
-  .gov-desc { color: #94a3b8; flex: 1; }
+  /* Two-col */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* Stat row */
+  .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #334155; }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { color: #94a3b8; font-size: 13px; }
+  .stat-value { color: #e2e8f0; font-weight: 600; font-size: 13px; }
 
   /* Footer */
   .footer {
     text-align: center;
-    padding: 24px;
+    padding-top: 32px;
+    border-top: 1px solid #1e293b;
     color: #475569;
     font-size: 12px;
-    border-top: 1px solid #1e293b;
-    margin-top: 32px;
+    margin-top: 8px;
   }
   .footer strong { color: #64748b; }
 
-  @media (max-width: 600px) {
-    .cards { grid-template-columns: 1fr 1fr; }
-    .bar-label { width: 90px; font-size: 11px; }
+  /* Accent */
+  .accent { color: #3b82f6; }
+  .text-green { color: #34d399; }
+  .text-yellow { color: #f59e0b; }
+  .text-red { color: #f87171; }
+  .text-purple { color: #a78bfa; }
+
+  /* Gov detail block */
+  .gov-detail {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 16px;
+    margin-top: 18px;
   }
+  .gov-detail-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .gov-detail p {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+  .gov-detail p:last-child { margin-bottom: 0; }
+  .gov-detail strong { color: #cbd5e1; }
+
+  /* Deferred block */
+  .deferred-block {
+    background: #1a1a0f;
+    border: 1px solid #4a3f10;
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-top: 12px;
+  }
+  .deferred-block p {
+    font-size: 12px;
+    color: #a16207;
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+  .deferred-block p:last-child { margin-bottom: 0; }
+  .deferred-block strong { color: #ca8a04; }
 </style>
 </head>
 <body>
+<div class="container">
 
-<div class="header">
-  <div class="container">
-    <h1>
-      헤어디자이너 팁 시리즈
-      <span class="badge success">COMPLETED</span>
-    </h1>
-    <div class="meta">
-      캠페인 ID: campaign-hair-tips-20260320 &nbsp;|&nbsp;
-      세션: campaign-hair-tips-p3 &nbsp;|&nbsp;
-      날짜: 2026-03-21 &nbsp;|&nbsp;
-      총 발행: 5편 (Naver + Instagram + YouTube)
+  <!-- Header -->
+  <div class="header">
+    <div class="header-badge">MarketClaw Campaign Report</div>
+    <h1>Viral Repost &#8212; Hair Niche</h1>
+    <div class="header-meta">
+      <span><strong>Campaign ID:</strong> viral-repost-20260402</span>
+      <span><strong>Date:</strong> 2026-04-02</span>
+      <span><strong>Mode:</strong> viral-repost</span>
+      <span><strong>Niche:</strong> Hair</span>
+      <span><strong>Status:</strong> <span class="text-green">ALL PUBLISHED</span></span>
     </div>
   </div>
-</div>
-
-<div class="container">
 
   <!-- Summary Cards -->
   <div class="cards">
     <div class="card">
-      <div class="value">5</div>
-      <div class="label">발행 완료</div>
-      <div class="sub">C108 – C112</div>
+      <div class="card-label">Published</div>
+      <div class="card-value">2</div>
+      <div class="card-sub">Goal: 2 shorts / 100% complete</div>
     </div>
     <div class="card">
-      <div class="value">7.65</div>
-      <div class="label">평균 품질 점수</div>
-      <div class="sub">가중 평균 기준</div>
+      <div class="card-label">Total Source Views</div>
+      <div class="card-value">130M</div>
+      <div class="card-sub">V015: 116.8M &nbsp;|&nbsp; V016: 13.2M</div>
     </div>
     <div class="card">
-      <div class="value">3</div>
-      <div class="label">발행 플랫폼</div>
-      <div class="sub">Naver / Instagram / YouTube</div>
+      <div class="card-label">Platforms</div>
+      <div class="card-value">2</div>
+      <div class="card-sub">Instagram Reels + YouTube Shorts</div>
     </div>
     <div class="card">
-      <div class="value">18</div>
-      <div class="label">총 이미지 수</div>
-      <div class="sub">3–5장 / 콘텐츠</div>
-    </div>
-    <div class="card">
-      <div class="value">100%</div>
-      <div class="label">리뷰 통과율</div>
-      <div class="sub">5 / 5 만장일치 PASS</div>
+      <div class="card-label">Governance</div>
+      <div class="card-value">4</div>
+      <div class="card-sub">Proposals executed (Cycle 14)</div>
     </div>
   </div>
 
-  <!-- Content Table -->
+  <!-- Published Videos Table -->
   <div class="section">
-    <h2><span class="icon">&#9654;</span> 발행 콘텐츠 목록</h2>
+    <div class="section-title">
+      <span class="icon">V</span>
+      Published Videos
+    </div>
     <table>
       <thead>
         <tr>
           <th>ID</th>
-          <th>제목</th>
-          <th>플랫폼</th>
-          <th>품질 점수</th>
-          <th>리뷰 라운드</th>
-          <th>날짜</th>
+          <th>Title</th>
+          <th>Creator</th>
+          <th>Dur.</th>
+          <th>Source Views</th>
+          <th>Platforms</th>
+          <th>YouTube Link</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong style="color:#60a5fa">C108</strong></td>
+          <td><span class="video-id">V015</span></td>
+          <td><span class="video-title">남자 헤어 변신 실화?</span></td>
+          <td><span class="creator-name">Fair Cuts</span></td>
+          <td><span class="duration-badge">55s</span></td>
           <td>
-            <a href="https://blog.naver.com/seoilgun/224224110132" target="_blank">수건으로 머리 비비면 안 됨</a>
-            <div style="margin-top:4px">
-              <span class="platform p-naver">Naver</span>
-              <span class="platform p-instagram">Reels</span>
-              <span class="platform p-youtube">Shorts</span>
+            <div class="views-bar-wrap">
+              <span class="views-num">116.8M</span>
+              <div class="views-bar-bg"><div class="views-bar-fill" style="width:100%"></div></div>
             </div>
           </td>
           <td>
-            <a href="https://youtu.be/BVQHKgFBM_Q" target="_blank" style="font-size:11px">&#9654; YT</a>
+            <span class="platform-badge badge-ig">IG Reel</span>
+            <span class="platform-badge badge-yt">YT Short</span>
           </td>
-          <td><span class="score score-high">7.5</span></td>
-          <td>
-            <div class="rounds">
-              <div class="round-dot round-fail" title="R1 FAIL">1</div>
-              <div class="round-dot round-pass" title="R2 PASS">2</div>
-            </div>
-          </td>
-          <td style="color:#64748b">2026-03-21</td>
+          <td><a class="url-link" href="https://youtube.com/shorts/v34P2kgCnTU" target="_blank">shorts/v34P2kgCnTU</a></td>
         </tr>
         <tr>
-          <td><strong style="color:#60a5fa">C109</strong></td>
+          <td><span class="video-id">V016</span></td>
+          <td><span class="video-title">버즈컷 도전 결과는?</span></td>
+          <td><span class="creator-name">VictoryGunn</span></td>
+          <td><span class="duration-badge">20s</span></td>
           <td>
-            <a href="https://blog.naver.com/seoilgun/224224116976" target="_blank">린스 두피에 바르면 탈모옴</a>
-            <div style="margin-top:4px">
-              <span class="platform p-naver">Naver</span>
-              <span class="platform p-instagram">Reels</span>
-              <span class="platform p-youtube">Shorts</span>
+            <div class="views-bar-wrap">
+              <span class="views-num">13.2M</span>
+              <div class="views-bar-bg"><div class="views-bar-fill" style="width:11%"></div></div>
             </div>
           </td>
           <td>
-            <a href="https://youtu.be/23O3bRO3V34" target="_blank" style="font-size:11px">&#9654; YT</a>
+            <span class="platform-badge badge-ig">IG Reel</span>
+            <span class="platform-badge badge-yt">YT Scheduled</span>
           </td>
-          <td><span class="score score-high">7.86</span></td>
-          <td>
-            <div class="rounds">
-              <div class="round-dot round-pass" title="R1 PASS">1</div>
-            </div>
-          </td>
-          <td style="color:#64748b">2026-03-21</td>
-        </tr>
-        <tr>
-          <td><strong style="color:#60a5fa">C110</strong></td>
-          <td>
-            <a href="https://blog.naver.com/seoilgun/224224112208" target="_blank">찬물 10초면 머릿결 바뀜</a>
-            <div style="margin-top:4px">
-              <span class="platform p-naver">Naver</span>
-              <span class="platform p-instagram">Reels</span>
-              <span class="platform p-youtube">Shorts</span>
-            </div>
-          </td>
-          <td><span style="color:#64748b;font-size:11px">처리 중</span></td>
-          <td><span class="score score-high">7.7</span></td>
-          <td>
-            <div class="rounds">
-              <div class="round-dot round-fail" title="R1 FAIL">1</div>
-              <div class="round-dot round-pass" title="R2 PASS">2</div>
-            </div>
-          </td>
-          <td style="color:#64748b">2026-03-21</td>
-        </tr>
-        <tr>
-          <td><strong style="color:#60a5fa">C111</strong></td>
-          <td>
-            <a href="https://blog.naver.com/seoilgun/224224114870" target="_blank">두피 마사지 5분이면 충분</a>
-            <div style="margin-top:4px">
-              <span class="platform p-naver">Naver</span>
-              <span class="platform p-instagram">Reels</span>
-              <span class="platform p-youtube">Shorts</span>
-            </div>
-          </td>
-          <td><span style="color:#64748b;font-size:11px">처리 중</span></td>
-          <td><span class="score score-high">7.76</span></td>
-          <td>
-            <div class="rounds">
-              <div class="round-dot round-pass" title="R1 PASS">1</div>
-            </div>
-          </td>
-          <td style="color:#64748b">2026-03-21</td>
-        </tr>
-        <tr>
-          <td><strong style="color:#60a5fa">C112</strong></td>
-          <td>
-            <a href="https://blog.naver.com/seoilgun/224224118924" target="_blank">에센스 바르는 타이밍 틀렸다</a>
-            <div style="margin-top:4px">
-              <span class="platform p-naver">Naver</span>
-              <span class="platform p-instagram">Reels</span>
-              <span class="platform p-youtube">Shorts</span>
-            </div>
-          </td>
-          <td><span style="color:#64748b;font-size:11px">처리 중</span></td>
-          <td><span class="score score-high">7.7</span></td>
-          <td>
-            <div class="rounds">
-              <div class="round-dot round-fail" title="R1 FAIL">1</div>
-              <div class="round-dot round-pass" title="R2 PASS">2</div>
-            </div>
-          </td>
-          <td style="color:#64748b">2026-03-21</td>
+          <td><a class="url-link" href="https://youtube.com/shorts/41UJ1N0HZsw" target="_blank">shorts/41UJ1N0HZsw</a> <span style="font-size:11px;color:#f59e0b;">(11:45)</span></td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Quality Analysis -->
-  <div class="section">
-    <h2><span class="icon">&#9670;</span> 품질 분석</h2>
-    <div style="margin-bottom: 24px;">
-      <div class="bar-row">
-        <div class="bar-label">C108 수건 비비기</div>
-        <div class="bar-track">
-          <div class="bar-fill high" style="width:75%">7.5</div>
-        </div>
+  <!-- Campaign Stats -->
+  <div class="two-col">
+    <div class="section">
+      <div class="section-title">
+        <span class="icon">S</span>
+        Campaign Stats
       </div>
-      <div class="bar-row">
-        <div class="bar-label">C109 린스 두피</div>
-        <div class="bar-track">
-          <div class="bar-fill high" style="width:78.6%">7.86</div>
-        </div>
+      <div class="stat-row">
+        <span class="stat-label">Campaign ID</span>
+        <span class="stat-value">viral-repost-20260402</span>
       </div>
-      <div class="bar-row">
-        <div class="bar-label">C110 찬물 헹굼</div>
-        <div class="bar-track">
-          <div class="bar-fill high" style="width:77%">7.7</div>
-        </div>
+      <div class="stat-row">
+        <span class="stat-label">Videos Published</span>
+        <span class="stat-value text-green">2 / 2 (100%)</span>
       </div>
-      <div class="bar-row">
-        <div class="bar-label">C111 두피 마사지</div>
-        <div class="bar-track">
-          <div class="bar-fill high" style="width:77.6%">7.76</div>
-        </div>
+      <div class="stat-row">
+        <span class="stat-label">Instagram Reels</span>
+        <span class="stat-value">2 published</span>
       </div>
-      <div class="bar-row">
-        <div class="bar-label">C112 에센스 타이밍</div>
-        <div class="bar-track">
-          <div class="bar-fill high" style="width:77%">7.7</div>
-        </div>
+      <div class="stat-row">
+        <span class="stat-label">YouTube Shorts</span>
+        <span class="stat-value">1 live + 1 scheduled (11:45)</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Peak Source Video</span>
+        <span class="stat-value">V015 &#8212; 116.8M views</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Avg Source Views</span>
+        <span class="stat-value">65M</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Creator Diversity</span>
+        <span class="stat-value">2 creators (1 each)</span>
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:13px;">
-      <div>
-        <div style="color:#94a3b8;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">최고 점수</div>
-        <div style="color:#10b981;font-weight:700">C109 — 7.86</div>
-        <div style="color:#64748b;font-size:12px">린스 두피에 바르면 탈모옴</div>
-        <div style="color:#64748b;font-size:11px;margin-top:4px">R1 1-라운드 통과. 팩트 점수 8.5 최고.</div>
+    <div class="section">
+      <div class="section-title">
+        <span class="icon">!</span>
+        Issues Resolved
       </div>
-      <div>
-        <div style="color:#94a3b8;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">최저 점수</div>
-        <div style="color:#f59e0b;font-weight:700">C108 — 7.5</div>
-        <div style="color:#64748b;font-size:12px">수건으로 머리 비비면 안 됨</div>
-        <div style="color:#64748b;font-size:11px;margin-top:4px">비주얼 리뷰어 이미지 마커 오류로 R2 필요.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Review Stats -->
-  <div class="section">
-    <h2><span class="icon">&#10003;</span> 리뷰 통계</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:20px;">
-      <div style="text-align:center;padding:16px;background:#0f172a;border-radius:8px;">
-        <div style="font-size:26px;font-weight:800;color:#10b981">5 / 5</div>
-        <div style="font-size:11px;color:#64748b;margin-top:4px">PASS 비율</div>
-      </div>
-      <div style="text-align:center;padding:16px;background:#0f172a;border-radius:8px;">
-        <div style="font-size:26px;font-weight:800;color:#3b82f6">1.6</div>
-        <div style="font-size:11px;color:#64748b;margin-top:4px">평균 라운드 수</div>
-      </div>
-      <div style="text-align:center;padding:16px;background:#0f172a;border-radius:8px;">
-        <div style="font-size:26px;font-weight:800;color:#f59e0b">3</div>
-        <div style="font-size:11px;color:#64748b;margin-top:4px">R2 진행 건</div>
-      </div>
-      <div style="text-align:center;padding:16px;background:#0f172a;border-radius:8px;">
-        <div style="font-size:26px;font-weight:800;color:#94a3b8">0</div>
-        <div style="font-size:11px;color:#64748b;margin-top:4px">폐기 건</div>
-      </div>
-    </div>
-    <div style="font-size:12px;color:#64748b;line-height:1.8;">
-      <strong style="color:#94a3b8">R2 발생 원인 분석:</strong><br>
-      C108: 이미지 마커 고아(orphan) 제거 필요 (visual reviewer FAIL)<br>
-      C110: 콘텐츠-메타데이터 불일치 + 셀럽 레퍼런스 이미지 없음 (chief + visual FAIL) — targeted re-review 적용<br>
-      C112: img_003 완전 콘텐츠 불일치 (ONNE 스킨케어 제품) — targeted re-review 적용<br>
-      <br>
-      <strong style="color:#94a3b8">주요 패턴:</strong> 3건 모두 image_mismatch 계열. Governance Cycle 9 수정으로 image-manager Step 6.5 섹션 검증 로직 추가됨. 차기 캠페인에서 개선 예상.
+      <ul class="issue-list">
+        <li>
+          <span class="issue-icon">&#10003;</span>
+          <div>
+            <strong>YouTube path escaping (backslash mangling)</strong>
+            <div style="font-size:12px;color:#64748b;margin-top:3px;">Windows <code style="font-size:11px;color:#94a3b8;">path.resolve()</code> produced backslash paths in manifest.json. Fixed by normalizing to forward slashes before <code style="font-size:11px;color:#94a3b8;">setInputFiles()</code>. Governance PROP-C14-ARCH-001 codified the fix.</div>
+          </div>
+        </li>
+        <li>
+          <span class="issue-icon">&#10003;</span>
+          <div>
+            <strong>Instagram share button overlay (force:true)</strong>
+            <div style="font-size:12px;color:#64748b;margin-top:3px;">Share button blocked by overlay element during Reel upload. Resolved with <code style="font-size:11px;color:#94a3b8;">force:true</code> click option to bypass pointer-events blocking. Stable across both V015 and V016 uploads.</div>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 
   <!-- Governance Recap -->
   <div class="section">
-    <h2><span class="icon">&#9881;</span> 거버넌스 리캡 (Cycle 10 — 2026-03-20)</h2>
-    <p style="font-size:12px;color:#64748b;margin-bottom:16px;">트리거: T1 (campaign-20260320-age-hair 완료) | 감사자: gov-architect, gov-performance, gov-risk</p>
-
-    <div class="gov-cycle">
-      <h3>Cycle 10 — PROP-C10-ARCH-001 + PROP-C10-PERF-002 (EXECUTED — merged)</h3>
-      <div class="gov-prop">
-        <div class="gov-type">MODIFY_SKILL</div>
-        <div class="gov-target">content-review-board</div>
-        <div class="gov-desc">Targeted Re-Review Protocol 추가: R2+ 라운드에서 FAIL 리뷰어만 재실행, PASS 리뷰어는 점수 이월. 40-50대 콘텐츠 viral_potential &lt; 6.5 시 공감형 훅 수정 가이드 추가. 쿨다운: 2026-03-27.</div>
-      </div>
+    <div class="section-title">
+      <span class="icon">G</span>
+      Governance Recap &#8212; Cycle 14
     </div>
-
-    <div class="gov-cycle">
-      <h3>Cycle 10 — PROP-C10-PERF-001 (EXECUTED)</h3>
-      <div class="gov-prop">
-        <div class="gov-type">MODIFY_SKILL</div>
-        <div class="gov-target">seo-optimizer</div>
-        <div class="gov-desc">Step 12 Age-Guide Content Pre-Check 추가: age-guide 타입 콘텐츠에 한해 검증되지 않은 셀럽 주장, 섹션 맥락 없는 이미지 마커, 셀럽 중복 사용 3가지 어드바이저리 체크. metadata.json seo_warnings[] 필드로 출력. 쿨다운: 2026-03-27.</div>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;font-size:12px;">
-      <div style="background:#0f172a;border-radius:8px;padding:12px;text-align:center;">
-        <div style="font-size:20px;font-weight:800;color:#10b981">3 / 3</div>
-        <div style="color:#64748b;margin-top:2px">승인 / 제안</div>
-      </div>
-      <div style="background:#0f172a;border-radius:8px;padding:12px;text-align:center;">
-        <div style="font-size:20px;font-weight:800;color:#3b82f6">2</div>
-        <div style="color:#64748b;margin-top:2px">SKILL.md 변경</div>
-      </div>
-      <div style="background:#0f172a;border-radius:8px;padding:12px;text-align:center;">
-        <div style="font-size:20px;font-weight:800;color:#f59e0b">60%</div>
-        <div style="color:#64748b;margin-top:2px">전 캠페인 R2율</div>
-      </div>
-    </div>
-
-    <div style="margin-top:16px;font-size:12px;color:#64748b;">
-      <strong style="color:#94a3b8">누적 거버넌스 통계 (Cycle 1–10):</strong>
-      총 34건 제안 | 31건 승인 (91%) | 3건 차단 (쿨다운/거부) | 27건 실행 완료 | 총 사이클: 10
-    </div>
-  </div>
-
-  <!-- Timeline -->
-  <div class="section">
-    <h2><span class="icon">&#9679;</span> 캠페인 타임라인</h2>
-    <div class="timeline">
-      <div class="timeline-item done">
-        <div class="timeline-time">2026-03-21 00:00</div>
-        <div class="timeline-title">Phase 0 — 캠페인 자동 기획</div>
-        <div class="timeline-desc">task_queue.json 생성 | 헤어케어 실용 팁 5개 주제 확정 | 전략: practical-tips (0-cost habit corrections)</div>
-      </div>
-      <div class="timeline-item done">
-        <div class="timeline-time">Phase 1 — 리서치</div>
-        <div class="timeline-title">Data-Analyst + Researcher + Ent-Researcher 병렬 실행</div>
-        <div class="timeline-desc">C108~C112 주제별 키워드, 셀럽 레퍼런스, 바이럴 훅 분석 완료</div>
-      </div>
-      <div class="timeline-item done">
-        <div class="timeline-time">Phase 2 — 전략</div>
-        <div class="timeline-title">Strategist — 콘텐츠 캘린더 + task_queue.json</div>
-        <div class="timeline-desc">5개 토픽 순서 확정 | shame-correction / fear-correction / curiosity-gap / how-to / myth-busting 앵글 배분</div>
-      </div>
-      <div class="timeline-item done">
-        <div class="timeline-time">Phase 3 — 제작 (5개 병렬)</div>
-        <div class="timeline-title">토픽 리뷰 → 작성 + 이미지 병렬 → SEO → 콘텐츠 리뷰 → 발행</div>
-        <div class="timeline-desc">C108/C109 1-라운드 통과 | C110/C112 이미지 교체 후 R2 통과 | C111 1-라운드 통과</div>
-      </div>
-      <div class="timeline-item done">
-        <div class="timeline-time">Phase 4 — 거버넌스</div>
-        <div class="timeline-title">Cycle 10 감사 완료</div>
-        <div class="timeline-desc">content-review-board + seo-optimizer SKILL.md 2건 개선 실행</div>
-      </div>
-      <div class="timeline-item done">
-        <div class="timeline-time">2026-03-21 01:11</div>
-        <div class="timeline-title">Phase 5 — 리포트 완료</div>
-        <div class="timeline-desc">HTML 리포트 생성 | 회고록 작성 | status: completed</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Backlog -->
-  <div class="section">
-    <h2><span class="icon">&#9711;</span> 다음 캠페인 백로그</h2>
-    <table>
+    <table class="gov-table">
       <thead>
-        <tr><th>주제</th><th>출처</th><th>점수</th><th>상태</th></tr>
+        <tr>
+          <th>Proposal ID</th>
+          <th>Type</th>
+          <th>Target Agent</th>
+          <th>Title</th>
+          <th>Proposer</th>
+          <th>Vote</th>
+          <th>Status</th>
+        </tr>
       </thead>
       <tbody>
         <tr>
-          <td>60대 여성 헤어스타일</td>
-          <td style="color:#64748b">data-analyst</td>
-          <td><span class="score score-mid">7.3</span></td>
-          <td style="color:#f59e0b;font-size:12px">4x 유예 — 차기 필수</td>
+          <td>PROP-C14-ARCH-001</td>
+          <td>MODIFY_SKILL</td>
+          <td>publisher-youtube</td>
+          <td>Add manifest video_path normalization (Windows backslash fix)</td>
+          <td>gov-architect</td>
+          <td>2/2 APPROVE</td>
+          <td><span class="badge-exec">EXECUTED</span></td>
         </tr>
         <tr>
-          <td>GQ 코리아 2026 남자 헤어</td>
-          <td style="color:#64748b">researcher</td>
-          <td><span class="score score-high">8.0</span></td>
-          <td style="color:#64748b;font-size:12px">차기 사이클 대기</td>
+          <td>PROP-C14-ARCH-002</td>
+          <td>MODIFY_SKILL</td>
+          <td>publisher-instagram</td>
+          <td>Add output url field presence validation (Cycle 13 compliance)</td>
+          <td>gov-architect</td>
+          <td>2/2 APPROVE</td>
+          <td><span class="badge-exec">EXECUTED</span></td>
         </tr>
         <tr>
-          <td>엘리자벳 펌</td>
-          <td style="color:#64748b">trend-hacker</td>
-          <td><span class="score score-high">7.5</span></td>
-          <td style="color:#64748b;font-size:12px">차기 사이클 대기</td>
+          <td>PROP-C14-PERF-001</td>
+          <td>MODIFY_SKILL</td>
+          <td>publisher-instagram</td>
+          <td>Add post-share caption spot-check</td>
+          <td>gov-performance</td>
+          <td>2/2 APPROVE</td>
+          <td><span class="badge-exec">EXECUTED</span></td>
+        </tr>
+        <tr>
+          <td>PROP-C14-RISK-002</td>
+          <td>MODIFY_SKILL</td>
+          <td>publisher-instagram</td>
+          <td>Add pending_url_capture queue for null URL recovery</td>
+          <td>gov-risk</td>
+          <td>2/2 APPROVE</td>
+          <td><span class="badge-exec">EXECUTED</span></td>
         </tr>
       </tbody>
     </table>
+
+    <div class="gov-detail">
+      <div class="gov-detail-title">Executed Changes Summary</div>
+      <p><strong>publisher-youtube (ARCH-001):</strong> Critical Gotchas section updated with Windows path normalization requirement. Agents must convert backslash paths from <code style="color:#60a5fa;">path.resolve()</code> to forward slashes before passing to <code style="color:#60a5fa;">setInputFiles()</code>. Root cause: this campaign's manifest.json had <code style="color:#60a5fa;">D:\\source\\...</code> paths causing silent ENOENT failures.</p>
+      <p><strong>publisher-instagram (ARCH-002 + PERF-001 + RISK-002 combined):</strong> Three additions to Post-Upload Verification: (1) url field validation &#8212; <code style="color:#60a5fa;">url</code> must be present in output JSON (null OK, absent NOT OK); (2) caption spot-check &#8212; read first 100 chars after URL capture, log CAPTION_OK or CAPTION_WARN; (3) pending_url_capture queue &#8212; null URL appended to <code style="color:#60a5fa;">workspace/instagram/pending_url_capture.json</code> for recovery on next session.</p>
+    </div>
+
+    <div class="deferred-block">
+      <p><strong>Deferred to Cycle 15:</strong> viral-video-scout search queries still reference entertainment niche (K-pop/drama) despite hair-only niche change &#8212; cooldown until 2026-04-08. run-viral-shorts manifest schema (absolute vs relative path docs) also deferred &#8212; cooldown until 2026-04-08.</p>
+    </div>
+  </div>
+
+  <!-- Campaign Timeline -->
+  <div class="section">
+    <div class="section-title">
+      <span class="icon">T</span>
+      Campaign Timeline
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">2026-04-02 &#8212; Phase 0</div>
+        <div class="timeline-text">Campaign initialized: viral-repost-20260402</div>
+        <div class="timeline-sub">Mode: viral-repost | Niche: hair | Goal: 2 videos</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">2026-04-02 &#8212; Phase 1</div>
+        <div class="timeline-text">viral-video-scout: 2 videos selected</div>
+        <div class="timeline-sub">V015 (116.8M views, Fair Cuts) + V016 (13.2M views, VictoryGunn)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">2026-04-02 &#8212; Phase 2</div>
+        <div class="timeline-text">Download + vertical conversion (1080x1920)</div>
+        <div class="timeline-sub">yt-dlp download &#8594; ffmpeg scale+crop &#8594; title cover + CTA outro</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot yellow"></div>
+        <div class="timeline-time">2026-04-02 &#8212; Phase 2 (issue)</div>
+        <div class="timeline-text">YouTube path escaping error detected</div>
+        <div class="timeline-sub">Backslash paths from path.resolve() caused silent ENOENT. Fixed inline with forward slash normalization.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">2026-04-02 &#8212; Phase 3</div>
+        <div class="timeline-text">Video assembly: title(3s) + content + CTA(3s) via ffmpeg concat</div>
+        <div class="timeline-sub">Both V015 (55s) and V016 (20s) assembled successfully</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot purple"></div>
+        <div class="timeline-time">2026-04-02 &#8212; Phase 5a</div>
+        <div class="timeline-text">Instagram Reels published (serial)</div>
+        <div class="timeline-sub">V015 &#8594; Reel published | V016 &#8594; Reel published (share button overlay fixed with force:true)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot red"></div>
+        <div class="timeline-time">2026-04-02 &#8212; Phase 5b</div>
+        <div class="timeline-text">YouTube Shorts published (serial)</div>
+        <div class="timeline-sub">V015 &#8594; youtube.com/shorts/v34P2kgCnTU (live) | V016 &#8594; shorts/41UJ1N0HZsw (scheduled 11:45)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot green"></div>
+        <div class="timeline-time">2026-04-02 &#8212; Phase 4</div>
+        <div class="timeline-text">Governance Cycle 14 executed</div>
+        <div class="timeline-sub">4 proposals approved + executed: publisher-youtube (x1) + publisher-instagram (x3)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot green"></div>
+        <div class="timeline-time">2026-04-02 &#8212; Phase 5</div>
+        <div class="timeline-text">Campaign complete &#8212; ALL PUBLISHED</div>
+        <div class="timeline-sub">2/2 goal achieved. Report generated.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <strong>Generated by MarketClaw</strong> &nbsp;&#8212;&nbsp; Report: viral-repost-20260402 &nbsp;&#8212;&nbsp; <span id="ts"></span>
   </div>
 
 </div>
-
-<div class="footer">
-  Generated by <strong>MarketClaw</strong> report-generator &mdash;
-  campaign-hair-tips-p3 &mdash;
-  <span id="ts"></span>
-  <script>document.getElementById('ts').textContent = new Date().toLocaleString('ko-KR');</script>
-</div>
-
+<script>
+  document.getElementById('ts').textContent = new Date().toLocaleString('ko-KR', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit'
+  });
+</script>
 </body>
 </html>
