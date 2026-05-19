@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MarketClaw Campaign 32&#xCC28; Report &#x2014; 2026-05-19</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --card2: #162032;
+      --border: #334155;
+      --accent: #3b82f6;
+      --accent2: #06b6d4;
+      --green: #22c55e;
+      --yellow: #eab308;
+      --red: #ef4444;
+      --purple: #a855f7;
+      --orange: #f97316;
+      --text: #f1f5f9;
+      --text2: #94a3b8;
+      --text3: #64748b;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 0 0 60px;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 32px 32px;
+    }
+    .header-inner { max-width: 1100px; margin: 0 auto; }
+    .header-tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    .header-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      color: var(--text2);
+      font-size: 13px;
+      margin-top: 12px;
+    }
+    .header-meta span { display: flex; align-items: center; gap: 6px; }
+    .header-meta .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      display: inline-block;
+    }
+
+    .main { max-width: 1100px; margin: 0 auto; padding: 32px 32px 0; }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .card-label {
+      font-size: 11px;
+      color: var(--text2);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .card-value {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .card-sub { font-size: 12px; color: var(--text3); }
+    .card-accent { color: var(--accent); }
+    .card-green { color: var(--green); }
+    .card-orange { color: var(--orange); }
+    .card-purple { color: var(--purple); }
+    .card-yellow { color: var(--yellow); }
+
+    .table-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { background: #162032; }
+    thead th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text2);
+    }
+    tbody tr { border-top: 1px solid var(--border); }
+    tbody tr:hover { background: #1a2a3a; }
+    tbody td { padding: 14px 16px; vertical-align: top; }
+    .td-title { font-weight: 600; font-size: 14px; }
+    .td-sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-hero { background: rgba(245,158,11,0.2); color: #f59e0b; }
+    .badge-support { background: rgba(59,130,246,0.15); color: var(--accent); }
+    .badge-pass { background: rgba(34,197,94,0.15); color: var(--green); }
+    .badge-myth { background: rgba(239,68,68,0.15); color: var(--red); }
+    .badge-cluster { background: rgba(6,182,212,0.15); color: var(--accent2); }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .score-bar-wrap { margin-bottom: 32px; }
+    .score-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .score-label { width: 180px; font-size: 13px; color: var(--text2); flex-shrink: 0; }
+    .score-bar-bg {
+      flex: 1;
+      background: var(--card2);
+      border-radius: 4px;
+      height: 10px;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transition: width 0.3s;
+    }
+    .score-num { width: 90px; font-size: 13px; font-weight: 700; text-align: right; color: var(--text); }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .stat-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .stat-box-label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; }
+    .stat-box-val { font-size: 24px; font-weight: 800; }
+    .stat-box-desc { font-size: 12px; color: var(--text3); }
+
+    .gov-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .gov-box h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .gov-icon {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .gov-icon-arch { background: rgba(59,130,246,0.2); color: var(--accent); }
+    .gov-icon-perf { background: rgba(34,197,94,0.2); color: var(--green); }
+    .gov-icon-risk { background: rgba(239,68,68,0.2); color: var(--red); }
+    .gov-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .gov-list li {
+      padding: 8px 12px;
+      background: var(--card2);
+      border-radius: 6px;
+      font-size: 13px;
+      color: var(--text2);
+      border-left: 3px solid var(--border);
+    }
+    .gov-list li.approved { border-color: var(--green); }
+    .gov-proposal-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      background: var(--card2);
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .gov-proposal-meta { flex: 1; }
+    .gov-proposal-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    .gov-proposal-sub { font-size: 12px; color: var(--text3); }
+    .vote-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+    .vote-approve { background: rgba(34,197,94,0.2); color: var(--green); }
+
+    .timeline { position: relative; padding-left: 28px; margin-bottom: 32px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2), transparent);
+    }
+    .tl-item { position: relative; margin-bottom: 20px; }
+    .tl-dot {
+      position: absolute;
+      left: -24px; top: 4px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+    .tl-dot.green { background: var(--green); }
+    .tl-dot.orange { background: var(--orange); }
+    .tl-dot.purple { background: var(--purple); }
+    .tl-dot.yellow { background: var(--yellow); }
+    .tl-dot.red { background: var(--red); }
+    .tl-time { font-size: 11px; color: var(--text3); margin-bottom: 2px; }
+    .tl-title { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .tl-desc { font-size: 12px; color: var(--text2); }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(6,182,212,0.05));
+      border: 1px solid rgba(59,130,246,0.3);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+    }
+    .highlight-box h4 { font-size: 13px; font-weight: 700; color: var(--accent2); margin-bottom: 8px; }
+    .highlight-box p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+    .streak-box {
+      background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(239,68,68,0.06));
+      border: 1px solid rgba(245,158,11,0.35);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+    }
+    .streak-box h4 { font-size: 13px; font-weight: 700; color: #f59e0b; margin-bottom: 8px; }
+    .streak-box p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+    .deferred-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+    .deferred-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--yellow);
+      border-radius: 8px;
+      padding: 14px 18px;
+    }
+    .deferred-item.green-left { border-left-color: var(--green); }
+    .deferred-item.red-left { border-left-color: var(--red); }
+    .deferred-item h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .deferred-item p { font-size: 12px; color: var(--text2); }
+
+    .learning-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .learning-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      gap: 14px;
+    }
+    .learning-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .learning-body h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .learning-body p { font-size: 12px; color: var(--text2); line-height: 1.7; }
+
+    .platform-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .pill-naver { background: rgba(3,199,90,0.2); color: #03c75a; }
+    .pill-ig { background: rgba(168,85,247,0.2); color: var(--purple); }
+    .pill-yt { background: rgba(239,68,68,0.2); color: var(--red); }
+
+    .footer {
+      text-align: center;
+      padding: 40px 32px;
+      border-top: 1px solid var(--border);
+      margin-top: 48px;
+      color: var(--text3);
+      font-size: 12px;
+    }
+    .footer strong { color: var(--text2); }
+
+    .section { margin-bottom: 40px; }
+
+    @media (max-width: 640px) {
+      .header { padding: 24px 16px 20px; }
+      .main { padding: 20px 16px 0; }
+      .header h1 { font-size: 20px; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .card-value { font-size: 24px; }
+      table { font-size: 12px; }
+      thead th, tbody td { padding: 10px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <span class="header-tag">MarketClaw &#x2014; Hair Niche</span>
+    <h1>Campaign 32&#xCC28; Report</h1>
+    <div class="header-meta">
+      <span><span class="dot"></span> 2026-05-19 &#xBC1C;&#xD589;</span>
+      <span>&#x25A0; ID: hair-32-20260519</span>
+      <span>&#x25A0; &#xBAA8;&#xB4DC;: content-production</span>
+      <span>&#x25A0; &#xC804;&#xCCB4; &#xBC1C;&#xD589; 2&#xD3B8;</span>
+      <span>&#x25A0; &#xAD6C;&#xC11C;&#xAC04;: 18:52 &#x2192; 22:56 (244&#xBD84;)</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SUMMARY CARDS -->
+  <div class="section">
+    <div class="section-title">&#x25A0; Summary</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">&#xBC1C;&#xD589; &#xD3B8;&#xC218;</div>
+        <div class="card-value card-green">2</div>
+        <div class="card-sub">&#xBAA9;&#xD45C; 2&#xD3B8; &#xC644;&#xC804; &#xB2EC;&#xC131;</div>
+      </div>
+      <div class="card">
+        <div class="card-label">&#xD3C9;&#xADE0; &#xD488;&#xC9C8; &#xC810;&#xC218;</div>
+        <div class="card-value card-accent">10.0</div>
+        <div class="card-sub">2&#xD3B8; &#xC804;&#xD3B8; Naver PASS 10/10</div>
+      </div>
+      <div class="card">
+        <div class="card-label">&#xD50C;&#xB7AB;&#xD3FC;</div>
+        <div class="card-value card-purple">3</div>
+        <div class="card-sub">Naver + Instagram + YouTube</div>
+      </div>
+      <div class="card">
+        <div class="card-label">&#xCD1D; &#xC774;&#xBBF8;&#xC9C0;</div>
+        <div class="card-value card-orange">10</div>
+        <div class="card-sub">2&#xD3B8; &#xD569;&#xC0B0; (5&#xC7A5;/&#xD3B8;)</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Hero &#xBE44;&#xB514;&#xC624;</div>
+        <div class="card-value card-yellow">1</div>
+        <div class="card-sub">C289 IG Reel + YT Shorts &#xBC1C;&#xD589;</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Myth-Bust Streak</div>
+        <div class="card-value" style="color:#f59e0b;">14</div>
+        <div class="card-sub">C212 &#x2192; C289 &#xC5F0;&#xC18D;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT TABLE -->
+  <div class="section">
+    <div class="section-title">&#x25A0; &#xBC1C;&#xD589; &#xCEE8;&#xD150;&#xCE20; &#xBAA9;&#xB85D;</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>&#xC81C;&#xBAA9;</th>
+            <th>&#xC720;&#xD615;</th>
+            <th>&#xD50C;&#xB7AB;&#xD3FC;</th>
+            <th>URL</th>
+            <th>&#xBCF8;&#xBB38; &#xAE38;&#xC774;</th>
+            <th>&#xC774;&#xBBF8;&#xC9C0;</th>
+            <th>&#xD0DC;&#xADF8;</th>
+            <th>&#xAC80;&#xC99D;</th>
+            <th>&#xB9AC;&#xBDF0; &#xC810;&#xC218;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- C289 -->
+          <tr>
+            <td>
+              <span class="badge badge-hero">HERO</span>
+            </td>
+            <td>
+              <div class="td-title">&#xD2B8;&#xB9AC;&#xD2B8;&#xBA3C;&#xD2B8; &#xD5E4;&#xC5B4;&#xD329; &#xBB50;&#xAC00; &#xB2EC;&#xB77C;</div>
+              <div class="td-sub">C289 &#x2014; comparison-myth-bust &#x2022; Streak #14 &#x2022; Daily-Tool &#xC2DC;&#xB9AC;&#xC988; 4&#xD3B8;</div>
+            </td>
+            <td><span class="badge badge-myth">myth-bust</span></td>
+            <td>
+              <div class="platform-pills">
+                <span class="pill pill-naver">Naver</span>
+                <span class="pill pill-ig">IG</span>
+                <span class="pill pill-yt">YT</span>
+              </div>
+            </td>
+            <td>
+              <a href="https://blog.naver.com/seoilgun/224290538164" target="_blank">Naver Blog</a><br>
+              <a href="https://www.instagram.com/dynamicstep.ai/reel/DYdqTaEpLNh/" target="_blank">Instagram Reel</a><br>
+              <a href="https://youtube.com/shorts/gNM6DtnDazI" target="_blank">YouTube Shorts</a>
+            </td>
+            <td>14,723</td>
+            <td>5&#xC7A5;</td>
+            <td>16</td>
+            <td><span class="badge badge-pass">PASS 10/10</span></td>
+            <td style="color:#f59e0b; font-weight:700;">8.14 / 46</td>
+          </tr>
+          <!-- C290 -->
+          <tr>
+            <td>
+              <span class="badge badge-support">SUP</span>
+            </td>
+            <td>
+              <div class="td-title">U&#xBC29; &#xB0B4; &#xC5BC;&#xAD74;&#xD615; &#xC5B4;&#xC6B8;&#xB824;?</div>
+              <div class="td-sub">C290 &#x2014; cluster-extend &#x2022; Vogue Korea &#xBC31;&#xC5C5; &#x2022; D+54 salon lag peak</div>
+            </td>
+            <td><span class="badge badge-cluster">cluster-extend</span></td>
+            <td>
+              <div class="platform-pills">
+                <span class="pill pill-naver">Naver</span>
+              </div>
+            </td>
+            <td>
+              <a href="https://blog.naver.com/seoilgun/224290539989" target="_blank">Naver Blog</a>
+            </td>
+            <td>14,497</td>
+            <td>5&#xC7A5;</td>
+            <td>16</td>
+            <td><span class="badge badge-pass">PASS 10/10</span></td>
+            <td style="color:var(--accent2); font-weight:700;">8.38 / 44</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- QUALITY ANALYSIS -->
+  <div class="section">
+    <div class="section-title">&#x25A0; &#xD488;&#xC9C8; &#xBD84;&#xC11D;</div>
+
+    <div class="highlight-box" style="margin-bottom:20px;">
+      <h4>&#x2605; 2&#xD3B8; &#xC804;&#xD3B8; Naver PASS 10/10 &#x2014; &#xBCF8;&#xBB38; &#xD3C9;&#xADE0; 14,610&#xC790;</h4>
+      <p>C289 (14,723&#xC790;) + C290 (14,497&#xC790;) &#x2014; &#xBCF8;&#xBB38; &#xAE38;&#xC774; &#xBA74;&#xC5D0;&#xC11C; &#xC5ED;&#xB300; &#xCD5C;&#xACE0; &#xC218;&#xC900;. &#xC81C;&#xBAA9; &#xD655;&#xC778;, &#xBCF8;&#xBB38; &#xAE38;&#xC774;, &#xC774;&#xBBF8;&#xC9C0; &#xC218;, &#xC774;&#xBBF8;&#xC9C0; &#xB85C;&#xB529;, &#xC18C;&#xC81C;&#xBAA9; &#xAD6C;&#xC870;, YAML &#xB204;&#xC218;, &#xD45C; &#xB80C;&#xB354;&#xB9C1;, &#xD0DC;&#xADF8; &#xC218;, &#xB0B4;&#xC6A9; &#xBE44;&#xC808;&#xB2E8;, &#xD574;&#xC2DC;&#xD0DC;&#xADF8; &#xCC38;&#xC870; &#x2014; 10&#xAC00;&#xC9C0; &#xD56D;&#xBAA9; &#xBAA8;&#xB450; &#xD1B5;&#xACFC;. C290 &#xB9AC;&#xBDF0; &#xC810;&#xC218; 8.38&#xC740; 31&#xCC28; + 32&#xCC28; &#xD569;&#xC0B0; &#xAE30;&#xC900; &#xCD5C;&#xACE0;&#xC810;.</p>
+    </div>
+
+    <div class="score-bar-wrap">
+      <div class="score-row">
+        <div class="score-label">C289 &#xD2B8;&#xB9AC;&#xD2B8;&#xBA3C;&#xD2B8; myth-bust</div>
+        <div class="score-bar-bg">
+          <div class="score-bar-fill" style="width:92%; background: linear-gradient(90deg, #f59e0b, #fbbf24);"></div>
+        </div>
+        <div class="score-num" style="color:#f59e0b;">8.14 avg</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">C290 U&#xBC29; &#xC5BC;&#xAD74;&#xD615;</div>
+        <div class="score-bar-bg">
+          <div class="score-bar-fill" style="width:95.2%; background: linear-gradient(90deg, var(--accent2), #67e8f9);"></div>
+        </div>
+        <div class="score-num" style="color:var(--accent2);">8.38 avg</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:20px; padding:16px 20px; background:var(--card); border:1px solid var(--border); border-radius:10px;">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px;">
+        <div>
+          <div style="font-size:11px; color:var(--text2); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">&#xCD5C;&#xACE0;&#xC810; &#xD3B8;</div>
+          <div style="font-weight:700; font-size:14px;">C290 U&#xBC29; &#xC5BC;&#xAD74;&#xD615;</div>
+          <div style="font-size:12px; color:var(--text3);">8.38 avg &#x2014; 31+32&#xCC28; &#xD569;&#xC0B0; &#xC804;&#xCCB4; &#xCD5C;&#xACE0;</div>
+        </div>
+        <div>
+          <div style="font-size:11px; color:var(--text2); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">5&#xCD95; &#xB9E4;&#xD2B8;&#xB9AD;&#xC2A4;</div>
+          <div style="font-weight:700; font-size:14px;">C289: 46/50 | C290: 44/50</div>
+          <div style="font-size:12px; color:var(--text3);">5-agent confluence on HERO</div>
+        </div>
+        <div>
+          <div style="font-size:11px; color:var(--text2); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">&#xD3C9;&#xADE0; &#xBCF8;&#xBB38; &#xAE38;&#xC774;</div>
+          <div style="font-weight:700; font-size:14px;">14,610&#xC790;</div>
+          <div style="font-size:12px; color:var(--text3);">C289: 14,723 | C290: 14,497</div>
+        </div>
+        <div>
+          <div style="font-size:11px; color:var(--text2); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">&#xD0DC;&#xADF8; (&#xD3B8;&#xB2F9;)</div>
+          <div style="font-weight:700; font-size:14px;">16</div>
+          <div style="font-size:12px; color:var(--text3);">&#xC591;&#xD3B8; 16 (&#xCD5C;&#xB300;&#xCE58;)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEW STATS -->
+  <div class="section">
+    <div class="section-title">&#x25A0; &#xD37C;&#xBE14;&#xB9AC;&#xC2DC; &#xAC80;&#xC99D; &#xD1B5;&#xACC4;</div>
+    <div class="stat-grid">
+      <div class="stat-box">
+        <div class="stat-box-label">Naver &#xAC80;&#xC99D; &#xD569;&#xACA9;&#xB960;</div>
+        <div class="stat-box-val" style="color:var(--green);">100%</div>
+        <div class="stat-box-desc">2/2 &#xD3B8; PASS &#x2014; &#xBC1C;&#xD589; &#xC990;&#xC2DC; &#xD1B5;&#xACFC;</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-label">&#xB9AC;&#xBDF0; &#xB77C;&#xC6B4;&#xB4DC;</div>
+        <div class="stat-box-val" style="color:var(--green);">1&#xD68C;</div>
+        <div class="stat-box-desc">&#xB91C; &#xD3B8; 1&#xBC88;&#xC5D0; &#xD1B5;&#xACFC; (&#xC7AC;&#xC2DC;&#xB3C4; 0)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-label">&#xD3B8;&#xB2F9; &#xC774;&#xBBF8;&#xC9C0; &#xD3C9;&#xADE0;</div>
+        <div class="stat-box-val" style="color:var(--orange);">5&#xC7A5;</div>
+        <div class="stat-box-desc">&#xC591;&#xD3B8; 5&#xC7A5; &#x2014; &#xCD5C;&#xC18C; &#xAE30;&#xC900; 3&#xC7A5; &#xCD08;&#xACFC;</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-label">&#xD3C4;&#xAE30; &#xC6D4;&#xC218;</div>
+        <div class="stat-box-val" style="color:var(--green);">0</div>
+        <div class="stat-box-desc">&#xC804;&#xCCB4; 2&#xD3B8; &#xC131;&#xACF5;&#xC801;&#xC73C;&#xB85C; &#xBC1C;&#xD589;&#xB428;</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-label">&#xC601;&#xC0C1; &#xBC1C;&#xD589; (Hero)</div>
+        <div class="stat-box-val" style="color:var(--purple);">2&#xD50C;&#xB7AB;&#xD3FC;</div>
+        <div class="stat-box-desc">C289 Instagram Reel + YouTube Shorts</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-label">&#xBC0F;&#xD37C;&#xB974; &#xCC98;&#xB9AC;</div>
+        <div class="stat-box-val" style="color:var(--accent);">2&#xAC74; &#xD65C;&#xC6A9;</div>
+        <div class="stat-box-desc">31&#xCC28; defer &#xC804;&#xCCB4; &#xC18C;&#xD654; (C289+C290)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STREAK HIGHLIGHT -->
+  <div class="section">
+    <div class="section-title">&#x25A0; Myth-Bust Streak #14 &#x2014; &#xD2B9;&#xC774;&#xC0AC;&#xD56D;</div>
+
+    <div class="streak-box">
+      <h4>&#x25B2; 14&#xC5F0;&#xC18D; Myth-Bust Hero &#xB2EC;&#xC131; (C212 &#x2192; C289)</h4>
+      <p>C289&#xB294; comparison-myth-bust &#xBCC0;&#xD615;&#xC73C;&#xB85C; Daily-Tool &#xC2DC;&#xB9AC;&#xC988; 4&#xD3B8;&#xC9F8;&#xB97C; &#xD655;&#xC7A5;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4; (&#xBE57;&#xC9C8; &#x2192; &#xB450;&#xD53C;&#xC2A4;&#xCF00;&#xC77C;&#xB9C1; &#x2192; &#xD2B8;&#xB9AC;&#xD2B8;&#xBA3C;&#xD2B8;). Streak-vs-celeb &#xACB0;&#xC815; &#xD2B8;&#xB9AC; &#xD1B5;&#xACFC;: &#xBCC0;&#xC6B0;&#xC11D; RED / &#xD55C;&#xC18C;&#xD76C; D+0 / &#xCE74;&#xB9AC;&#xB098; D-10 / &#xCF5C;&#xB77C;&#xACAC; / &#xC708;&#xD130; &#xBAA8;&#xB450; 5&#xCD95; &#xBBF8;&#xB2EC; &#xB610;&#xB294; &#xB8F0; &#xC704;&#xBC18;&#xC73C;&#xB85C; REJECT &#x2014; streak &#xC720;&#xC9C0; &#xC790;&#xB3D9; &#xCC44;&#xD0DD;. 5-agent confluence (data 9.1 / research 8.4 / bgrade B010 / trend T012 / viral VC32-001/002/003/010)&#xC774; &#xBAA8;&#xB450; C289&#xB97C; &#xC9C0;&#xC9C0;. &#xAD8C;&#xC704; &#xB808;&#xC774;&#xC5B4;: &#xD55C;&#xAD6D;&#xC18C;&#xBE44;&#xC790;&#xC6D0;+&#xB9C8;&#xBA54;&#xB4DC;&#xB124;+&#xB2E4;&#xB098;&#xC131;&#xD615;&#xC678;&#xACFC;+&#xC5B8;&#xB2C8;&#xC758;&#xD30C;&#xC6B0;&#xCE58;+C233 5&#xC911; &#xAD8C;&#xC704;.</p>
+    </div>
+
+    <div style="padding:16px 20px; background:var(--card); border:1px solid var(--border); border-radius:10px; margin-bottom:24px;">
+      <div style="font-size:11px; color:var(--text2); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px;">&#xC2A4;&#xD2B8;&#xB9AC;&#xD06C; &#xD788;&#xC2A4;&#xD1A0;&#xB9AC; (C212 &#x2192; C289)</div>
+      <div style="font-size:12px; color:var(--text3); line-height:2; word-break:break-all;">
+        C212 / C220 / C225 / C228 / C235 / C252 / C257 / C262 / C267 / C272 / C277 / C282 / C284 / <span style="color:#f59e0b; font-weight:700;">C289</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOVERNANCE RECAP -->
+  <div class="section">
+    <div class="section-title">&#x25A0; Governance Recap &#x2014; Cycle 20</div>
+
+    <div class="highlight-box">
+      <h4>Cycle 20 &#xC694;&#xC57D; &#x2014; 2026-05-19 (32&#xCC28; &#xD2B8;&#xB9AC;&#xAC70;)</h4>
+      <p>&#xD2B8;&#xB9AC;&#xAC70; T1 (32&#xCC28; &#xCCB4;&#xCF58; &#xC644;&#xB8CC;). &#xC8FC;&#xBC94; &#xBC1C;&#xACAC;: per-campaign instagram &#xC5C5;&#xB85C;&#xB4DC; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xC99D;&#xC2DD; (scripts/publish/&#xC5D0; 53&#xAC1C; &#xCE90;&#xC2F9;&#xB428;), writer-ko HERO &#xBAA8;&#xB4DC; &#xBBF8;&#xC815;&#xC758;&#xB85C; &#xC778;&#xD55C; 1&#xCC28; &#xCD08;&#xC548; &#xBD80;&#xC871; (2,150 &#x2192; 6,720&#xC790; &#xD655;&#xC7A5; &#xD544;&#xC694;). 2&#xAC74; &#xC2B9;&#xC778; &#xC2E4;&#xD589;, 1&#xAC74; Cycle 21 &#xC774;&#xC5F0; (seo-optimizer cooldown 2026-05-26).</p>
+    </div>
+
+    <div class="gov-box">
+      <h3>
+        <span class="gov-icon gov-icon-arch">A</span>
+        PROP-2026-05-19-C20-ARCH-001 &#x2014; SCRIPTIFY
+      </h3>
+      <div class="gov-proposal-row">
+        <div class="gov-proposal-meta">
+          <div class="gov-proposal-title">per-campaign IG &#xC5C5;&#xB85C;&#xB4DC; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xD1B5;&#xD569; (instagram-upload-hero.js)</div>
+          <div class="gov-proposal-sub">&#xC81C;&#xC548;&#xC790;: gov-architect | &#xB300;&#xC0C1;: publisher-instagram | &#xC704;&#xD5D8;&#xB3C4;: LOW</div>
+          <div style="font-size:12px; color:var(--text2); margin-top:6px;">&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;: <code style="background:#0f172a; padding:2px 6px; border-radius:3px; font-size:11px;">scripts/publish/instagram-upload-hero.js</code> &#xC0DD;&#xC131;. --topic + --video + --caption-file &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xD654;. per-campaign &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xBC30;&#xD3F0; &#xAE08;&#xC9C0;. publisher-instagram SKILL.md &#xAC31;&#xC2E0;</div>
+        </div>
+        <span class="vote-badge vote-approve">2/2 APPROVE</span>
+      </div>
+    </div>
+
+    <div class="gov-box">
+      <h3>
+        <span class="gov-icon gov-icon-perf">P</span>
+        PROP-2026-05-19-C20-PERF-001 &#x2014; MODIFY_SKILL
+      </h3>
+      <div class="gov-proposal-row">
+        <div class="gov-proposal-meta">
+          <div class="gov-proposal-title">writer-ko HERO &#xBAA8;&#xB4DC; &#xCD94;&#xAC00; (7K+ &#xC790; + schema guard)</div>
+          <div class="gov-proposal-sub">&#xC81C;&#xC548;&#xC790;: gov-performance | &#xB300;&#xC0C1;: writer-ko | &#xC704;&#xD5D8;&#xB3C4;: LOW</div>
+          <div style="font-size:12px; color:var(--text2); margin-top:6px;">is_hero:true &#xC2DC; 7,000+ &#xC790; &#xBAA9;&#xD45C;&#x3B; tri-state-ladder &#xD14C;&#xC774;&#xBE14; + 5+ H2 + &#xAD8C;&#xC704; &#xC778;&#xC6A9; &#xAD6C;&#xC870; &#xD544;&#xC218; &#xADDC;&#xC815;&#xD654;. SCHEMA GUARD: <code style="background:#0f172a; padding:2px 6px; border-radius:3px; font-size:11px;">type:paragraph/h2/blockquote</code> &#xC0AC;&#xC6A9; &#xAE08;&#xC9C0;</div>
+        </div>
+        <span class="vote-badge vote-approve">2/2 APPROVE</span>
+      </div>
+    </div>
+
+    <div class="gov-box" style="border-left: 3px solid var(--yellow);">
+      <h3>
+        <span class="gov-icon" style="background:rgba(234,179,8,0.2); color:var(--yellow);">!</span>
+        Cycle 21 &#xC774;&#xC5F0; &#xD56D;&#xBAA9;
+      </h3>
+      <ul class="gov-list">
+        <li>seo-optimizer schema &#xC815;&#xADDC;&#xD654; &#xD558;&#xB4DC;&#xB2DD; &#x2014; paragraph&#x2192;text / h2&#x2192;heading / blockquote&#x2192;quote &#xB9E4;&#xD551; &#xAC15;&#xC81C; &#xC801;&#xC6A9;. Cooldown &#xD574;&#xC81C;: 2026-05-26</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DEFERRED TO 33차 -->
+  <div class="section">
+    <div class="section-title">&#x25A0; 33&#xCC28; &#xC774;&#xC5F0; &#xD56D;&#xBAA9;</div>
+    <div class="deferred-list">
+      <div class="deferred-item" style="border-left-color: var(--red);">
+        <h4>&#xC5D0;&#xC2A4;&#xD30C; &#xCE74;&#xB9AC;&#xB098; LEMONADE &#xBE0C;&#xB808;&#xC774;&#xB4DC; &#x2014; D-1 (5/28) &#xCD5C;&#xC801;</h4>
+        <p>LEMONADE &#xBC1C;&#xB9E4; D+0 = 5/29. &#xBC1C;&#xB9E4; &#xC804;&#xB0A0; D-1 = 5/28 &#xBC1C;&#xD589;&#xC774; &#xCD5C;&#xC801; &#xD0C0;&#xC774;&#xBC0D;. 33&#xCC28; hero/supporting &#xD6C4;&#xBCF4; #1</p>
+      </div>
+      <div class="deferred-item" style="border-left-color: var(--red);">
+        <h4>&#xC5D0;&#xC2A4;&#xD30C; &#xC708;&#xD130; LEMONADE &#xAE08;&#xBC1C; &#x2014; D-2 (5/27) &#xCD5C;&#xC801;</h4>
+        <p>&#xC218;&#xB85D;&#xACE1; &#xC2A4;&#xD0C0;&#xC77C;&#xB9C1; &#xBD84;&#xC11D;. 33&#xCC28; hero/supporting &#xD6C4;&#xBCF4; #2</p>
+      </div>
+      <div class="deferred-item">
+        <h4>&#xCFE8;&#xC0F4;&#xD478; &#xB9E4;&#xC77C; &#xC368;&#xB3C4; &#xB3FC;? &#x2014; &#xC5EC;&#xB984; D+10 &#xCD5C;&#xC801;</h4>
+        <p>&#xD604;&#xC7AC; 5/19, &#xC5EC;&#xB984; D+10 = 5/25~29 &#xBC1C;&#xD589; &#xCD5C;&#xC801;. 33&#xCC28; &#xB610;&#xB294; 34&#xCC28;</p>
+      </div>
+      <div class="deferred-item">
+        <h4>&#xD55C;&#xC18C;&#xD76C; &#xCE78; &#xB2E8;&#xBC1C; &#xD6C4;&#xC18D; &#xC885;&#xD569; &#x2014; K-women in Cannes &#xD1B5;&#xD569;&#xAE00;</h4>
+        <p>32&#xCC28; REJECT (D+0 &#xC870;&#xAE30;). &#xCE78; &#xC885;&#xB8CC; &#xD6C4; &#xC885;&#xD569; &#xAE00;&#xB85C; &#xD761;&#xC218; &#xC635;&#xC158;</p>
+      </div>
+      <div class="deferred-item">
+        <h4>&#xBCC0;&#xC6B0;&#xC11D; &#xD544;&#xB7EC;&#xC2A4;&#xCEF7; &#x2014; 33&#xCC28; supporting &#xD6C4;&#xBCF4;</h4>
+        <p>32&#xCC28; streak protect REJECT. &#xB4DC;&#xB77C;&#xB9C8; ongoing &#xC2DC;&#xC2A4;&#xC810; &#xC720;&#xD6A8;. 33&#xCC28; supporting &#xD6C4;&#xBCF4;</p>
+      </div>
+      <div class="deferred-item" style="border-left-color: var(--red);">
+        <h4>&#xCF5C;&#xB77C;&#xACAC; &#xBA39;&#xC73C;&#xBA74; &#xD0C8;&#xBAA8; &#xB099;&#xB098;? &#x2014; Supplement Cap, 34&#xCC28;+</h4>
+        <p>Supplement cap 5/5 &#xC0AC;&#xC6A9; &#xC644;&#xB8CC;. &#xCF5C;&#xB77C;&#xACAC;/MSM &#xD734;&#xC9C0; &#xD6C4; 34&#xCC28;+ &#xC7AC;&#xC9C4;&#xC785;</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY INSIGHTS -->
+  <div class="section">
+    <div class="section-title">&#x25A0; &#xD575;&#xC2EC; &#xC778;&#xC0AC;&#xC774;&#xD2B8;</div>
+    <div class="learning-list">
+      <div class="learning-item">
+        <div class="learning-num">1</div>
+        <div class="learning-body">
+          <h4>5-Agent Confluence &#x2014; &#xB370;&#xC774;&#xD130; &#xD301;&#xC218;</h4>
+          <p>data-analyst(9.1) + researcher(8.4) + idea-bgrade(B010) + idea-trend(T012) + viral-scout(VC32-001/002/003/010) &#xBAA8;&#xB450; C289&#xB97C; &#xC9C0;&#xC9C0;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. 5&#xAC1C; &#xBCF4;&#xB450; &#xC77C;&#xCE58;&#xB294; &#xCCB4;&#xACC4; &#xB0B4;&#xC5D0;&#xC11C; &#xCC98;&#xC74C;&#xC73C;&#xB85C; &#xBCF4;&#xCDA9; &#xAC80;&#xC99D;&#xB41C; &#xD30C;&#xC774;&#xD504;&#xB77C;&#xC778;&#xC785;&#xB2C8;&#xB2E4;.</p>
+        </div>
+      </div>
+      <div class="learning-item">
+        <div class="learning-num">2</div>
+        <div class="learning-body">
+          <h4>HERO Mode Schema Fix &#x2014; Governance &#xD6A8;&#xACFC; &#xC990;&#xAC01; &#xD655;&#xC778;</h4>
+          <p>Cycle 20&#xC5D0;&#xC11C; writer-ko HERO &#xBAA8;&#xB4DC; + schema guard&#xB97C; &#xC2DC;&#xD589;&#xD588;&#xACE0;, &#xBC14;&#xB85C; &#xB2E4;&#xC74C; &#xCE90;&#xBE44;&#xC778; (32&#xCC28;)&#xC5D0; &#xC801;&#xC6A9;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. C289 1&#xCC28; &#xCD08;&#xC548; 2,150&#xC790; &#xBB38;&#xC81C;&#xAC00; &#xC77C;&#xBC18&#xD654;&#xB429;&#xB2C8;&#xB2E4; (&#xAD81;&#xADF9;&#xC801; &#xACE0;&#xCE58;&#xB294; &#xD2B8;&#xB9AC;&#xAC70; &#xB108;&#xBB38; &#xB2A6;&#xC74C; &#x2014; Cycle 21 &#xBC94;&#xC704; &#xB0B4; &#xC644;&#xC804; &#xD574;&#xACB0; &#xC608;&#xC815;).</p>
+        </div>
+      </div>
+      <div class="learning-item">
+        <div class="learning-num">3</div>
+        <div class="learning-body">
+          <h4>2-defer Mandatory &#xC644;&#xC804; &#xC18C;&#xD654;</h4>
+          <p>31&#xCC28;&#xC5D0;&#xC11C; defer&#xB41C; &#xD2B8;&#xB9AC;&#xD2B8;&#xBA3C;&#xD2B8; vs &#xD5E4;&#xC5B4;&#xD329; (C289) + U&#xBC29; &#xC5BC;&#xAD74;&#xD615; (C290) &#xBE0C;&#xB450; 32&#xCC28;&#xC5D0; &#xC2E4;&#xD589;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. Mandatory defer &#xD30C;&#xC774;&#xD504;&#xB77C;&#xC778;&#xC774; &#xC608;&#xC0C1; &#xAC80;&#xC0C9; &#xD53C;&#xD06C; &#xC708;&#xB3C4;&#xC6B0;&#xC640; &#xC77C;&#xCE58;&#xD558;&#xB294; &#xD0C0;&#xC774;&#xBC0D;&#xC73C;&#xB85C; &#xBC1C;&#xD589;&#xB420; &#xB54C; &#xD6A8;&#xACFC;&#xC801;&#xC785;&#xB2C8;&#xB2E4;.</p>
+        </div>
+      </div>
+      <div class="learning-item">
+        <div class="learning-num">4</div>
+        <div class="learning-body">
+          <h4>C290 &#xB9AC;&#xBDF0; 8.38 &#x2014; 31+32&#xCC28; &#xC804;&#xCCB4; &#xCD5C;&#xACE0;</h4>
+          <p>C290 U&#xBC29; &#xC5BC;&#xAD74;&#xD615; &#xC9C0;&#xB0A8; &#xB9AC;&#xBDF0; &#xD3C9;&#xADE0; 8.38&#xC740; 31&#xCC28;+32&#xCC28; 7&#xD3B8; &#xC804;&#xCCB4; &#xC911; &#xCD5C;&#xACE0;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. Vogue Korea &#xACF5;&#xC2DD; &#xC120;&#xC5B8; + D+54 &#xC0B4;&#xB1B1 execution lag &#xD53C;&#xD06C; &#xD0C0;&#xC774;&#xBC0D;&#xC774; &#xB9AC;&#xBDF0;&#xC5B4;&#xB4E4;&#xC5D0;&#xAC8C;&#xB3C4; &#xBC18;&#xC601;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+        </div>
+      </div>
+      <div class="learning-item">
+        <div class="learning-num">5</div>
+        <div class="learning-body">
+          <h4>Section Schema Remap &#xBC29;&#xB2E8; &#xD544;&#xC694;</h4>
+          <p>paragraph&#x2192;text, h2&#x2192;heading, blockquote&#x2192;quote, text&#x2192;content &#xBC84;&#xADF8;&#xAC00; &#xBC1C;&#xBCF4; pre-publish&#xC5D0;&#xC11C; &#xC218;&#xC815; &#xD544;&#xC694;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. Cycle 20 PERF&#xB85C; writer-ko schema guard &#xCD94;&#xAC00;&#xB429;&#xB2C8;&#xB2E4;. Cycle 21&#xC5D0;&#xC11C; seo-optimizer &#xB808;&#xBCA8;&#xC5D0;&#xC11C; &#xC644;&#xC804; &#xD574;&#xACB0;&#xB429;&#xB2C8;&#xB2E4;.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="section">
+    <div class="section-title">&#x25A0; &#xCE90;&#xBE44;&#xC778; &#xC9C4;&#xD589; &#xD0C0;&#xC784;&#xB77C;&#xC778;</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">18:52 KST</div>
+        <div class="tl-title">P0 &#x2014; &#xC790;&#xB3D9; &#xACC4;&#xD68D; &#xC2DC;&#xC791;</div>
+        <div class="tl-desc">hair-32-20260519 &#xAC1C;&#xC2DC;. 31&#xCC28; &#xC644;&#xB8CC; 10&#xC2DC;&#xAC04; &#xD6C4; &#xC5F0;&#xC18D; &#xBC1C;&#xD589;. rank_pv &#xC2A4;&#xB0C5;&#xC0F7; &#xC2E0;&#xC120;&#xD568; &#xD655;&#xC778; (&lt;24h) &#x2014; &#xC218;&#xC9D1; &#xC0DD;&#xB7B5;</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot orange"></div>
+        <div class="tl-time">18:55 &#x2192; 19:30 KST</div>
+        <div class="tl-title">P1 &#x2014; 6-&#xC5D0;&#xC774;&#xC804;&#xD2B8; &#xBCD1;&#xB82C; &#xC870;&#xC0AC;</div>
+        <div class="tl-desc">data-analyst + researcher + ent-researcher + idea-bgrade + idea-trend + viral-scout. 13 candidates &#xC2A4;&#xCF94;&#xC5B4;&#xB9C1;. 5-agent confluence C289 &#xD655;&#xC815;</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot yellow"></div>
+        <div class="tl-time">20:05 KST</div>
+        <div class="tl-title">P2 &#x2014; &#xC804;&#xB7B5; &#xD544;&#xB9AC;&#xC5B4;&#xB9C1; &#xC644;&#xB8CC;</div>
+        <div class="tl-desc">2-defer mandatory &#xC804;&#xCCB4; &#xC18C;&#xD654;. HERO=C289(5&#xCD95; 46/50), SUPPORTING=C290(5&#xCD95; 44/50). 6&#xAC1C; &#xB300;&#xC548; REJECT (streak-protect)</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot purple"></div>
+        <div class="tl-time">20:10 KST</div>
+        <div class="tl-title">P3 &#xC2DC;&#xC791; &#x2014; C289 + C290 &#xBCD1;&#xB82C; &#xC81C;&#xC791;</div>
+        <div class="tl-desc">writer-ko + image-manager + SEO-optimizer &#xBCD1;&#xB82C;. C289 1&#xCC28; &#xCD08;&#xC548; 2,150&#xC790; &#x2192; expansion 6,720&#xC790; (&#xB77C;&#xC6B4;&#xB4DC; 1)</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="tl-time">22:10 KST</div>
+        <div class="tl-title">C289 &#xCF58;&#xD150;&#xCE20; &#xB9AC;&#xBDF0; PASS</div>
+        <div class="tl-desc">5&#xAC00; &#xC5B8;&#xD130;&#xB2C8;&#xBA54;&#xC2A4; &#xD1B5;&#xACFC;. &#xB9AC;&#xBDF0; &#xD3C9;&#xADE0; 8.14, &#xB77C;&#xC6B4;&#xB4DC; 1&#xD68C;</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="tl-time">21:10 KST</div>
+        <div class="tl-title">C290 &#xCF58;&#xD150;&#xCE20; &#xB9AC;&#xBDF0; PASS</div>
+        <div class="tl-desc">5&#xAC00; &#xC5B8;&#xD130;&#xB2C8;&#xBA54;&#xC2A4; &#xD1B5;&#xACFC;. &#xB9AC;&#xBDF0; &#xD3C9;&#xADE0; 8.38 (&#xC804;&#xCCB4; &#xCD5C;&#xACE0;), &#xB77C;&#xC6B4;&#xB4DC; 1&#xD68C;</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="tl-time">22:45 KST (&#xCD94;&#xC815;)</div>
+        <div class="tl-title">Naver &#xBC1C;&#xD589; &#xC644;&#xB8CC; &#x2014; 2/2 PASS 10/10</div>
+        <div class="tl-desc">C289: 14,723&#xC790; / 5&#xC774;&#xBBF8;&#xC9C0; / 16&#xD0DC;&#xADF8;. C290: 14,497&#xC790; / 5&#xC774;&#xBBF8;&#xC9C0; / 16&#xD0DC;&#xADF8;. &#xB450; &#xD3B8; &#xBAA8;&#xB450; 1&#xCC28; &#xC2DC;&#xB3C4; &#xC131;&#xACF5;</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot purple"></div>
+        <div class="tl-time">22:30 KST</div>
+        <div class="tl-title">C289 Shorts &#xBC1C;&#xB85C; (18&#xCD08;, 1.38MB)</div>
+        <div class="tl-desc">build-slideshow.js &#xC0DD;&#xC131; &#xC644;&#xB8CC;. workspace/drafts/C289/shorts/final.mp4</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot purple"></div>
+        <div class="tl-time">22:56 KST</div>
+        <div class="tl-title">C289 Instagram Reel + YouTube Shorts &#xBC1C;&#xD589;</div>
+        <div class="tl-desc">IG: instagram-upload-hero.js v2 &#xC0AC;&#xC6A9;. YT: youtube-playwright.js --upload-now. P3 &#xC644;&#xB8CC;</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot yellow"></div>
+        <div class="tl-time">21:45 KST</div>
+        <div class="tl-title">P4 &#x2014; Governance Cycle 20 &#xC644;&#xB8CC;</div>
+        <div class="tl-desc">2&#xAC74; &#xC2B9;&#xC778; &#xC2E4;&#xD589; (ARCH-001 SCRIPTIFY + PERF-001 MODIFY_SKILL). Cooldown: writer-ko + publisher-instagram until 2026-05-26</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>Generated by MarketClaw</strong> &#x2014; Autonomous Hair Content Marketing Agent<br>
+  Campaign ID: hair-32-20260519 | Report generated: 2026-05-19 | Next campaign: hair-33 (33&#xCC28;)
+</div>
+
+</body>
+</html>
