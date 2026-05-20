@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hair 34&#xCC28; &#xCEA8;&#xD398;&#xC778; &#xB9AC;&#xD3EC;&#xD2B8; &#x2014; VERIFICATION &#xB7F0; 2026-05-20</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card2: #263348;
+    --accent: #3b82f6;
+    --accent2: #06b6d4;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --red: #ef4444;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #334155;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Layout */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 40px 0 32px;
+  }
+  .header-inner { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
+  .header h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+  .header h1 span { color: var(--accent); }
+  .header-meta { font-size: 12px; color: var(--muted); text-align: right; }
+  .verify-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #7c3aed, #3b82f6);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.5px;
+    margin-top: 6px;
+  }
+
+  /* Summary cards */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    padding: 32px 0 8px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .card-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+  .card-value { font-size: 28px; font-weight: 800; color: var(--accent); }
+  .card-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .card.green .card-value { color: var(--green); }
+  .card.yellow .card-value { color: var(--yellow); }
+  .card.cyan .card-value { color: var(--accent2); }
+
+  /* Section */
+  .section { padding: 32px 0 8px; }
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent);
+    border-left: 4px solid var(--accent);
+    padding-left: 12px;
+    margin-bottom: 20px;
+  }
+
+  /* Table */
+  .tbl-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--card2);
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    background: var(--card);
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .badge-hero { background: #7c3aed33; color: #a78bfa; border: 1px solid #7c3aed55; }
+  .badge-supp { background: #0369a133; color: #38bdf8; border: 1px solid #0369a155; }
+  .badge-pass { background: #16a34a22; color: var(--green); border: 1px solid #16a34a44; }
+  .badge-low { background: #b4520922; color: #fb923c; border: 1px solid #b4520944; }
+  .tag-naver { background: #03c75a22; color: #03c75a; border: 1px solid #03c75a44; margin-right: 4px; }
+  .tag-ig    { background: #e1306c22; color: #e1306c; border: 1px solid #e1306c44; margin-right: 4px; }
+  .tag-yt    { background: #ff000022; color: #ff4040; border: 1px solid #ff000044; margin-right: 4px; }
+
+  /* Score bar */
+  .score-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .score-label { width: 160px; font-size: 12px; color: var(--muted); flex-shrink: 0; }
+  .bar-track { flex: 1; background: var(--border); border-radius: 4px; height: 8px; }
+  .bar-fill { height: 8px; border-radius: 4px; background: var(--accent); }
+  .score-val { width: 32px; font-size: 12px; font-weight: 700; text-align: right; }
+
+  /* Verification table */
+  .verify-table td:first-child { font-size: 12px; color: var(--muted); width: 220px; }
+  .verify-table td:nth-child(2) { font-weight: 600; }
+  .ok { color: var(--green); font-weight: 700; }
+  .warn { color: var(--yellow); font-weight: 700; }
+  .na { color: var(--muted); }
+
+  /* Governance recap */
+  .gov-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .gov-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+  .gov-card .prop-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 8px; font-size: 12px; }
+  .prop-id { color: var(--accent2); font-family: monospace; flex-shrink: 0; }
+  .prop-body { color: var(--text); }
+  .prop-vote { color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px; top: 6px; bottom: 6px;
+    width: 2px;
+    background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 20px; }
+  .tl-dot {
+    position: absolute;
+    left: -20px; top: 5px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .tl-dot.done { background: var(--green); }
+  .tl-dot.warn { background: var(--yellow); }
+  .tl-dot.skip { background: var(--muted); }
+  .tl-phase { font-size: 12px; color: var(--muted); margin-bottom: 2px; }
+  .tl-desc { font-size: 13px; }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-brand { font-size: 13px; color: var(--muted); }
+  .footer-brand strong { color: var(--accent); }
+  .footer-ts { font-size: 11px; color: var(--muted); }
+
+  @media (max-width: 640px) {
+    .header-inner { flex-direction: column; align-items: flex-start; }
+    .header-meta { text-align: left; }
+    .score-label { width: 120px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="container">
+    <div class="header-inner">
+      <div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:6px;">MarketClaw / Hair Niche</div>
+        <h1>Hair <span>34&#xCC28;</span> &#xCEA8;&#xD398;&#xC778; &#xB9AC;&#xD3EC;&#xD2B8;</h1>
+        <div style="font-size:13px;color:var(--muted);margin-top:6px;">2026-05-20 &nbsp;&#xB9E8; &nbsp;campaign ID: hair-34-20260520-verify</div>
+        <div class="verify-badge">VERIFICATION RUN &#x2014; POST-33&#xCC28; &#xADDC;&#xCE59; &#xAC15;&#xD654; &#xAC80;&#xC99D;</div>
+      </div>
+      <div class="header-meta">
+        <div>&#xBC1C;&#xD589; 3&#xAC1C; &nbsp;&#xB7E8;&#xD06C;_pv &#xD5E4;&#xB85C; &#xC815;&#xB82C; &#x2714;</div>
+        <div style="margin-top:4px;">Naver &#xC804;&#xCCB4; PASS 10/10</div>
+        <div style="margin-top:4px;">&#xCD5C;&#xACE0; &#xB9AC;&#xBDF0; &#xD3C9;&#xADE0; 8.57 (&#xC5ED;&#xB300; 1&#xC704;)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- SUMMARY CARDS -->
+  <div class="cards">
+    <div class="card green">
+      <div class="card-label">&#xBC1C;&#xD589; &#xCF58;&#xD150;&#xCE20;</div>
+      <div class="card-value">3</div>
+      <div class="card-sub">Naver 3 / IG 1 / YT 1</div>
+    </div>
+    <div class="card">
+      <div class="card-label">&#xD3C9;&#xADE0; &#xD488;&#xC9C8; &#xC810;&#xC218;</div>
+      <div class="card-value">8.22</div>
+      <div class="card-sub">&#xAC00;&#xC911; weighted_overall &#xD3C9;&#xADE0;</div>
+    </div>
+    <div class="card cyan">
+      <div class="card-label">&#xB9AC;&#xBDF0; &#xD3C9;&#xADE0; (&#xD328;&#xB110;)</div>
+      <div class="card-value">8.14</div>
+      <div class="card-sub">5&#xC778; &#xC2EC;&#xC0AC; &#xD328;&#xB110; &#xD3C9;&#xADE0;</div>
+    </div>
+    <div class="card">
+      <div class="card-label">&#xC774;&#xBBF8;&#xC9C0;</div>
+      <div class="card-value">15</div>
+      <div class="card-sub">&#xC804;&#xCCB4; 3 &#xD1A0;&#xD53D; &#xD569;&#xC0B0;</div>
+    </div>
+    <div class="card">
+      <div class="card-label">&#xD50C;&#xB7AB;&#xD3FC;</div>
+      <div class="card-value">3</div>
+      <div class="card-sub">Naver / Instagram / YouTube</div>
+    </div>
+    <div class="card yellow">
+      <div class="card-label">rank_pv &#xD544;&#xC5F0;</div>
+      <div class="card-value">LOW</div>
+      <div class="card-sub">18h &#xC2A4;&#xB0C5;&#xC0F7; &#xC0AC;&#xC6A9; (&#xC138;&#xC158; &#xB9CC;&#xB8CC;)</div>
+    </div>
+  </div>
+
+  <!-- CONTENT TABLE -->
+  <div class="section">
+    <div class="section-title">&#xBC1C;&#xD589; &#xCF58;&#xD150;&#xCE20;</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>&#xC5ED;&#xD560;</th>
+            <th>&#xC81C;&#xBAA9;</th>
+            <th>&#xD50C;&#xB7AB;&#xD3FC;</th>
+            <th>URL</th>
+            <th>&#xBC1C;&#xD589; &#xAC80;&#xC99D;</th>
+            <th>rank_pv &#xC815;&#xB82C;</th>
+            <th>6&#xCD95; &#xD569;&#xC0B0;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-family:monospace;color:var(--accent2);">C296</td>
+            <td><span class="badge badge-hero">HERO</span></td>
+            <td style="font-weight:600;">30&#xB300; &#xB2E8;&#xBC1C;&#xC778;&#xB370; &#xC655; &#xC544;&#xC904;&#xB9C8; &#xAC19;&#xB0AC;</td>
+            <td>
+              <span class="badge tag-naver">Naver</span>
+              <span class="badge tag-ig">IG</span>
+              <span class="badge tag-yt">YT</span>
+            </td>
+            <td>
+              <a href="https://blog.naver.com/seoilgun/224291130652" target="_blank">Naver</a> &nbsp;
+              <a href="https://www.instagram.com/dynamicstep.ai/reel/DYbIlK5RctZ/" target="_blank">IG</a> &nbsp;
+              <a href="https://youtube.com/shorts/TN2Qdb85e7Y" target="_blank">YT</a>
+            </td>
+            <td><span class="badge badge-pass">PASS 10/10</span></td>
+            <td><span class="ok">9/10</span></td>
+            <td>57.0</td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:var(--accent2);">C297</td>
+            <td><span class="badge badge-supp">SUPP</span></td>
+            <td style="font-weight:600;">&#xB9B0;&#xB514;&#xD399;&#xC774;&#xB0D0; &#xD788;&#xD53C;&#xD399;&#xC774;&#xB0D0; &#xC5EC;&#xB984;&#xC5D4;</td>
+            <td>
+              <span class="badge tag-naver">Naver</span>
+            </td>
+            <td>
+              <a href="https://blog.naver.com/seoilgun/224291133851" target="_blank">Naver</a>
+            </td>
+            <td><span class="badge badge-pass">PASS 10/10</span></td>
+            <td><span class="ok">9/10</span></td>
+            <td>52.0</td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:var(--accent2);">C298</td>
+            <td><span class="badge badge-supp">SUPP</span></td>
+            <td style="font-weight:600;">&#xC2A4;&#xD2B8;&#xB808;&#xC2A4; &#xBC1B;&#xC73C;&#xBA74; &#xC9C4;&#xC9DC; &#xD0C8;&#xBAA8;&#xC57C;?</td>
+            <td>
+              <span class="badge tag-naver">Naver</span>
+            </td>
+            <td>
+              <a href="https://blog.naver.com/seoilgun/224291136405" target="_blank">Naver</a>
+            </td>
+            <td><span class="badge badge-pass">PASS 10/10</span></td>
+            <td><span class="warn">4/10</span> <span class="badge badge-low">flexible</span></td>
+            <td>43.5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- QUALITY ANALYSIS -->
+  <div class="section">
+    <div class="section-title">&#xD488;&#xC9C8; &#xBD84;&#xC11D;</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;">
+
+      <!-- C296 -->
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;margin-bottom:14px;">C296 &#xD5E4;&#xB85C; &#x2014; 30&#xB300; &#xB2E8;&#xBC1C; <span style="color:var(--accent);float:right;">8.22</span></div>
+        <div class="score-row"><div class="score-label">content_quality</div><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><div class="score-val">8.2</div></div>
+        <div class="score-row"><div class="score-label">human_likeness</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--green)"></div></div><div class="score-val">8.5</div></div>
+        <div class="score-row"><div class="score-label">seo_optimization</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="score-val">8.0</div></div>
+        <div class="score-row"><div class="score-label">viral_potential</div><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div><div class="score-val">7.8</div></div>
+        <div class="score-row"><div class="score-label">readability</div><div class="bar-track"><div class="bar-fill" style="width:83%"></div></div><div class="score-val">8.3</div></div>
+        <div class="score-row"><div class="score-label">image_quality</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--green)"></div></div><div class="score-val">8.5</div></div>
+        <div class="score-row"><div class="score-label">reader_value</div><div class="bar-track"><div class="bar-fill" style="width:84%"></div></div><div class="score-val">8.4</div></div>
+        <div class="score-row"><div class="score-label">brand_consistency</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="score-val">8.0</div></div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted);">&#xB9AC;&#xBDF0; &#xD328;&#xB110; &#xD3C9;&#xADE0;: <strong style="color:var(--green);font-size:14px;">8.575</strong> &#x2014; &#xC5ED;&#xB300; 1&#xC704;</div>
+      </div>
+
+      <!-- C297 -->
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;margin-bottom:14px;">C297 &#xC11C;&#xD3EC;&#xD305; &#x2014; &#xB9B0;&#xB514;&#xD399; vs &#xD788;&#xD53C;&#xD399; <span style="color:var(--accent);float:right;">8.13</span></div>
+        <div class="score-row"><div class="score-label">content_quality</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="score-val">8.0</div></div>
+        <div class="score-row"><div class="score-label">human_likeness</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--green)"></div></div><div class="score-val">8.5</div></div>
+        <div class="score-row"><div class="score-label">seo_optimization</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="score-val">8.0</div></div>
+        <div class="score-row"><div class="score-label">viral_potential</div><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><div class="score-val">7.5</div></div>
+        <div class="score-row"><div class="score-label">readability</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--green)"></div></div><div class="score-val">8.5</div></div>
+        <div class="score-row"><div class="score-label">image_quality</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="score-val">8.0</div></div>
+        <div class="score-row"><div class="score-label">reader_value</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--green)"></div></div><div class="score-val">8.5</div></div>
+        <div class="score-row"><div class="score-label">brand_consistency</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="score-val">8.0</div></div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted);">&#xB9AC;&#xBDF0; &#xD328;&#xB110; &#xD3C9;&#xADE0;: <strong style="color:var(--accent);font-size:14px;">7.88</strong></div>
+      </div>
+
+      <!-- C298 -->
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;margin-bottom:14px;">C298 &#xC11C;&#xD3EC;&#xD305; &#x2014; &#xC2A4;&#xD2B8;&#xB808;&#xC2A4; &#xD0C8;&#xBAA8; <span style="color:var(--accent);float:right;">7.97</span></div>
+        <div class="score-row"><div class="score-label">content_quality</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="score-val">8.0</div></div>
+        <div class="score-row"><div class="score-label">human_likeness</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--green)"></div></div><div class="score-val">8.5</div></div>
+        <div class="score-row"><div class="score-label">seo_optimization</div><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><div class="score-val">7.5</div></div>
+        <div class="score-row"><div class="score-label">viral_potential</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:var(--yellow)"></div></div><div class="score-val">7.0</div></div>
+        <div class="score-row"><div class="score-label">readability</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="score-val">8.0</div></div>
+        <div class="score-row"><div class="score-label">image_quality</div><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><div class="score-val">7.5</div></div>
+        <div class="score-row"><div class="score-label">reader_value</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--green)"></div></div><div class="score-val">8.5</div></div>
+        <div class="score-row"><div class="score-label">brand_consistency</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="score-val">8.0</div></div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted);">&#xB9AC;&#xBDF0; &#xD328;&#xB110; &#xD3C9;&#xADE0;: <strong style="color:var(--accent);font-size:14px;">8.02</strong> &nbsp;&#x2022;&nbsp; flexible slot</div>
+      </div>
+    </div>
+
+    <!-- Distribution summary -->
+    <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;">
+      <div class="card" style="flex:1;min-width:180px;padding:16px;">
+        <div class="card-label">&#xCD5C;&#xACE0; &#xC810;&#xC218;</div>
+        <div style="font-size:20px;font-weight:800;color:var(--green);">8.575</div>
+        <div style="font-size:11px;color:var(--muted);">C296 &#xB9AC;&#xBDF0; &#xD328;&#xB110; &#xD3C9;&#xADE0; &#x2014; &#xC5ED;&#xB300; 1&#xC704;</div>
+      </div>
+      <div class="card" style="flex:1;min-width:180px;padding:16px;">
+        <div class="card-label">&#xCD5C;&#xC800; &#xC810;&#xC218;</div>
+        <div style="font-size:20px;font-weight:800;color:var(--yellow);">7.88</div>
+        <div style="font-size:11px;color:var(--muted);">C297 &#xB9AC;&#xBDF0; &#xD328;&#xB110; &#xD3C9;&#xADE0;</div>
+      </div>
+      <div class="card" style="flex:1;min-width:180px;padding:16px;">
+        <div class="card-label">Round 1 &#xD1B5;&#xACFC;&#xC728;</div>
+        <div style="font-size:20px;font-weight:800;color:var(--green);">100%</div>
+        <div style="font-size:11px;color:var(--muted);">3/3 &#xD1A0;&#xD53D; &#xBAA8;&#xB450; Round 1 &#xD1B5;&#xACFC;</div>
+      </div>
+      <div class="card" style="flex:1;min-width:180px;padding:16px;">
+        <div class="card-label">&#xD3D0;&#xAE30;&#xC728;</div>
+        <div style="font-size:20px;font-weight:800;color:var(--green);">0%</div>
+        <div style="font-size:11px;color:var(--muted);">&#xD3D0;&#xAE30; &#xD1A0;&#xD53D; &#xC5C6;&#xC74C;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERIFICATION POINTS -->
+  <div class="section">
+    <div class="section-title">VERIFICATION &#xD3EC;&#xC778;&#xD2B8; &#x2014; &#xADDC;&#xCE59; &#xAC15;&#xD654; &#xAC80;&#xC99D; &#xACB0;&#xACFC;</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">33&#xCC28; &#xD6C4; &#xB3C4;&#xC785;&#xB41C; 5&#xAC00;&#xC9C0; &#xB968; &#xAC15;&#xD654; &#xADDC;&#xCE59;&#xC758; &#xC2E4;&#xC81C; &#xCEA8;&#xD398;&#xC778; &#xC801;&#xC6A9; &#xAC80;&#xC99D;</div>
+    <div class="tbl-wrap">
+      <table class="verify-table">
+        <thead>
+          <tr>
+            <th>&#xADDC;&#xCE59; / &#xB9E8;&#xB370;&#xC774;&#xD2B8;</th>
+            <th>&#xAE30;&#xC900;</th>
+            <th>&#xC2E4;&#xC81C; &#xACB0;&#xACFC;</th>
+            <th>&#xD310;&#xC815;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>rank_pv &#xD5E4;&#xB85C; &#xC815;&#xB82C; &#xC810;&#xC218;</td>
+            <td>&#x2265;6/10</td>
+            <td>C296 = <strong>9/10</strong> (monthly #4, 658 PV &#xB85C; &#xC815;&#xB2F9;&#xD654;)</td>
+            <td><span class="ok">PASS &#x2714;</span></td>
+          </tr>
+          <tr>
+            <td>&#x2265;2/3 &#xD1A0;&#xD53D; rank_pv &#xC548;&#xCEE4;</td>
+            <td>&#x2265;2/3 &#xD1A0;&#xD53D;</td>
+            <td>C296(9) + C297(9) = 2/3 &#xD1A0;&#xD53D; &#xC815;&#xB82C; &#xD655;&#xC778;</td>
+            <td><span class="ok">PASS &#x2714;</span></td>
+          </tr>
+          <tr>
+            <td>&#xC804;&#xB7B5;&#xAC00; 6&#xCD95; &#xD589;&#xB82C; rank_pv &#xAE30;&#xC5EC;&#xB3C4;</td>
+            <td>rank_pv &#xAD6C;&#xC131; &#x2265;35%</td>
+            <td>C296: 39.5% / C297: 43.3% / C298: 23% &mdash; &#xC9C0;&#xBC30;&#xCD95; &#xD655;&#xC778;</td>
+            <td><span class="ok">DOMINANT &#x2714;</span></td>
+          </tr>
+          <tr>
+            <td>12h rank_pv &#xC2A4;&#xB0C5;&#xC0F7; &#xC2E0;&#xC120;&#xB3C4; &#xADDC;&#xCE59;</td>
+            <td>&#xB9CC;&#xB8CC; &#xC2DC; &#xAC15;&#xC81C; &#xAC31;&#xC2E0; &#xC2DC;&#xB3C4;</td>
+            <td>18h &#xC2A4;&#xB0C5;&#xC0F7; &#xAC10;&#xC9C0; &rarr; &#xAC31;&#xC2E0; &#xC2DC;&#xB3C4; &rarr; &#xC138;&#xC158; &#xB9CC;&#xB8CC; (&#xBC18;&#xD658; &#xC5C6;&#xC74C;) &rarr; low_confidence fallback &#xC801;&#xC6A9;</td>
+            <td><span class="warn">PARTIAL &#x26A0;</span></td>
+          </tr>
+          <tr>
+            <td>Cycle 21 ALT &#xD14D;&#xC2A4;&#xD2B8; &#xC815;&#xD655;&#xB3C4; &#xADDC;&#xCE59; (ARCH-001)</td>
+            <td>5/5 &#xC774;&#xBBF8;&#xC9C0; ALT &#xC77C;&#xCE58;</td>
+            <td>C296: 5/5 match, 0 mismatch, 0 generic &mdash; &#xC644;&#xC804; PASS</td>
+            <td><span class="ok">PASS &#x2714;</span></td>
+          </tr>
+          <tr>
+            <td>Governance &#xD398;&#xC774;&#xC988; &#xC81C;&#xAC70;</td>
+            <td>P3 &#x2192; P4(&#xB9AC;&#xD3EC;&#xD2B8;) &#xC9C1;&#xD589;</td>
+            <td>P3 &#xC644;&#xB8CC; &#xD6C4; &#xBC14;&#xB85C; P4 &#xC9C4;&#xC785; &mdash; Governance &#xB2E8;&#xACC4; &#xC5C6;&#xC74C;</td>
+            <td><span class="ok">CONFIRMED &#x2714;</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:12px;font-size:11px;color:var(--muted);">
+      &#x26A0; 12h &#xAC31;&#xC2E0; &#xADDC;&#xCE59; &#xC790;&#xCCB4;&#xB294; &#xC815;&#xC0C1; &#xC791;&#xB3D9; &#x2014; &#xC138;&#xC158; &#xB9CC;&#xB8CC;&#xB294; &#xD50C;&#xB7AB;&#xD3FC; &#xD55C;&#xACC4; (&#xD574;&#xACB0;&#xCC45; &#xBC14;&#xB78F;). fallback &#xAE30;&#xB85D;&#xC740; &#xC815;&#xC0C1; &#xB3D9;&#xC791;.
+    </div>
+  </div>
+
+  <!-- GOVERNANCE RECAP (Cycle 21 — pre-34차) -->
+  <div class="section">
+    <div class="section-title">Governance &#xAC1C;&#xC694; &#x2014; Cycle 21 (33&#xCC28; &#xC774;&#xD6C4; &#xC2E4;&#xD589;, 34&#xCC28; &#xC801;&#xC6A9;)</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">Governance &#xD398;&#xC774;&#xC988;&#xB294; 34&#xCC28; &#xD30C;&#xC774;&#xD504;&#xB77C;&#xC778;&#xC5D0;&#xC11C; &#xC81C;&#xAC70;&#xB418;&#xC5C8;&#xC73C;&#xB098;, &#xC9C1;&#xC804; &#xCEE4;&#xB9AC; Cycle 21&#xC774; &#xBCF8; &#xB7F0;&#xC758; &#xAC80;&#xC99D; &#xAC15;&#xD654; &#xADDC;&#xCE59;&#xC5D0; &#xC9C1;&#xC811;&#xC801;&#xC778; &#xC601;&#xD5A5;&#xC744; &#xBBF8;&#xCB60;&#xC2B5;&#xB2C8;&#xB2E4;.</div>
+
+    <div class="gov-card">
+      <h3>&#xC2A4;&#xCFE4;&#xC904; &#x2014; 3/3 &#xAC1C; &#xC2DC;&#xD589;</h3>
+      <div class="prop-row">
+        <div class="prop-id">ARCH-001</div>
+        <div class="prop-body"><strong>content-reviewer-visual</strong> &#x2014; ALT &#xD14D;&#xC2A4;&#xD2B8; &#xC815;&#xD655;&#xB3C4; &#xC2E4;&#xC81C; &#xC774;&#xBBF8;&#xC9C0; &#xB300;&#xC870; &#xCC44;&#xD06C; &#xCD94;&#xAC00;. &#xBD88;&#xC77C;&#xCE58; &#xC2DC; layout_quality -0.5, generic &#xC2DC; -0.3.</div>
+        <div class="prop-vote">2/2 APPROVE</div>
+      </div>
+      <div class="prop-row">
+        <div class="prop-id">ARCH-002</div>
+        <div class="prop-body"><strong>researcher</strong> &#x2014; Mode 3&#xC5D0; &#xC0AC;&#xAC74;-&#xC2DC;&#xB300; &#xC2A4;&#xD0C0;&#xC77C; &#xD0C0;&#xC784;&#xB77C;&#xC778; &#xCD94;&#xAC00;. &#xC140;&#xB801; &#xC2DC;&#xB300;&#xBCC4; &#xC2A4;&#xD0C0;&#xC77C; &#xD63C;&#xB3D9; &#xBC29;&#xC9C0; (33&#xCC28; C294 &#xAC15;&#xAC15;&#xC774; &#xCE74; &#xC2A4;&#xD0C0;&#xC77C; &#xD63C;&#xB3D9; &#xC0AC;&#xB840; &#xBC29;&#xC9C0;).</div>
+        <div class="prop-vote">2/2 APPROVE</div>
+      </div>
+      <div class="prop-row">
+        <div class="prop-id">PERF-001</div>
+        <div class="prop-body"><strong>content-reviewer-fact</strong> &#x2014; &#xAD00;&#xAD8C; &#xAE30;&#xAD00; &#xC778;&#xC6A9; &#xD504;&#xB85C;&#xD1A0;&#xCF5C; (4&#xBC88;&#xC9F8; &#xD074;&#xB808;&#xC784; &#xC720;&#xD615;) &#xCD94;&#xAC00;. UNVERIFIABLE + &#xD5E4;&#xC9C0; &#xD45C;&#xD604; = HERO &#xCF58;&#xD150;&#xCE20; &#xD5C8;&#xC6A9; (&#xBD88;&#xC9C0; &#xC548;&#xD568;).</div>
+        <div class="prop-vote">2/2 APPROVE</div>
+      </div>
+    </div>
+
+    <div class="gov-card">
+      <h3>34&#xCC28; &#xC801;&#xC6A9; &#xD6A8;&#xACFC;</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px;">
+        <div>
+          <div style="color:var(--muted);margin-bottom:4px;">ARCH-001 &#xCC0C;&#xAC80; &#xACB0;&#xACFC; (C296)</div>
+          <div style="color:var(--green);">5/5 &#xC77C;&#xCE58; &mdash; &#xB2E8;&#xB3C8; PASS</div>
+          <div style="color:var(--muted);font-size:11px;">&#xC5ED;&#xB300; &#xCD5C;&#xCD08; ALT &#xC815;&#xD655;&#xB3C4; &#xC804;&#xC218; &#xC77C;&#xCE58;</div>
+        </div>
+        <div>
+          <div style="color:var(--muted);margin-bottom:4px;">PERF-001 &#xC801;&#xC6A9; &#xACB0;&#xACFC; (C296 fact &#xB9AC;&#xBDF0;)</div>
+          <div style="color:var(--green);">2&#xAC1C; UNVERIFIABLE + &#xD5E4;&#xC9C0; = &#xD1B5;&#xACFC; (&#xBE14;&#xB85D; &#xC548; &#xD568;)</div>
+          <div style="color:var(--muted);font-size:11px;">Allure Korea &#xC778;&#xC6A9;, &#xC18C;&#xBE44;&#xC790;&#xC6D0 &#xD1B5;&#xACC4; &#xD5E4;&#xC9C0; &#xC218;&#xC6A9;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEW STATS -->
+  <div class="section">
+    <div class="section-title">&#xB9AC;&#xBDF0; &#xD1B5;&#xACC4;</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+      <div class="card">
+        <div class="card-label">C296 &#xD5E4;&#xB85C; &#x2014; &#xB9AC;&#xBDF0;&#xC5B4;&#xBCC4; &#xC810;&#xC218;</div>
+        <div style="margin-top:10px;font-size:12px;">
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">AI &#xAC10;&#xC9C0;</span><span class="ok">8.75</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">&#xD329;&#xD2B8; &#xAC80;&#xC99D;</span><span>8.00</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">&#xBE44;&#xC8FC;&#xC5BC;</span><span class="ok">9.00</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">&#xCE58;&#xD504;</span><span>8.38</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;"><span style="color:var(--muted);">&#xB9AC;&#xB354;</span><span class="ok">8.75</span></div>
+        </div>
+        <div style="margin-top:10px;text-align:right;font-size:13px;font-weight:700;color:var(--green);">&#xD3C9;&#xADE0; 8.575</div>
+      </div>
+      <div class="card">
+        <div class="card-label">C297 &#x2014; &#xB9AC;&#xBDF0;&#xC5B4;&#xBCC4; &#xC810;&#xC218;</div>
+        <div style="margin-top:10px;font-size:12px;">
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">AI &#xAC10;&#xC9C0;</span><span>7.90</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">&#xD329;&#xD2B8; &#xAC80;&#xC99D;</span><span>7.60</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">&#xBE44;&#xC8FC;&#xC5BC;</span><span>7.90</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">&#xCE58;&#xD504;</span><span>7.90</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;"><span style="color:var(--muted);">&#xB9AC;&#xB354;</span><span>8.10</span></div>
+        </div>
+        <div style="margin-top:10px;text-align:right;font-size:13px;font-weight:700;color:var(--accent);">&#xD3C9;&#xADE0; 7.88</div>
+      </div>
+      <div class="card">
+        <div class="card-label">C298 &#x2014; &#xB9AC;&#xBDF0;&#xC5B4;&#xBCC4; &#xC810;&#xC218;</div>
+        <div style="margin-top:10px;font-size:12px;">
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">AI &#xAC10;&#xC9C0;</span><span class="ok">8.80</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">&#xD329;&#xD2B8; &#xAC80;&#xC99D;</span><span>7.20</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">&#xBE44;&#xC8FC;&#xC5BC;</span><span>8.00</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);"><span style="color:var(--muted);">&#xCE58;&#xD504;</span><span>7.80</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;"><span style="color:var(--muted);">&#xB9AC;&#xB354;</span><span>8.30</span></div>
+        </div>
+        <div style="margin-top:10px;text-align:right;font-size:13px;font-weight:700;color:var(--accent);">&#xD3C9;&#xADE0; 8.02</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="section">
+    <div class="section-title">&#xCEA8;&#xD398;&#xC778; &#xD0C0;&#xC784;&#xB77C;&#xC778;</div>
+    <div class="card" style="padding:28px 28px 28px 40px;">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot done"></div>
+          <div class="tl-phase">P0 &#xC2DC;&#xC791; &#xC124;&#xC815;</div>
+          <div class="tl-desc">Verification &#xCEA8;&#xD398;&#xC778; &#xCD08;&#xAE30;&#xD654;. 33&#xCC28; &#xBC31;&#xC5C5; &#xC800;&#xC7A5;. &#xAC80;&#xC99D; &#xB300;&#xC0C1; &#xADDC;&#xCE59; &#xBB38;&#xC11C;&#xD654;.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot warn"></div>
+          <div class="tl-phase">P0.6 rank_pv &#xC2E0;&#xC120;&#xB3C4; &#xCC98;&#xB9AC;</div>
+          <div class="tl-desc">&#xC2A4;&#xB0C5;&#xC0F7; 18h &#xACBD;&#xACFC; (12h &#xADDC;&#xCE59; &#xC704;&#xBC18; &#xAC10;&#xC9C0;). &#xAC31;&#xC2E0; &#xC2DC;&#xB3C4; &rarr; &#xC138;&#xC158; &#xB9CC;&#xB8CC;. low_confidence &#xD50C;&#xB798;&#xADF8; &#xC801;&#xC6A9; &#xD6C4; &#xC9C4;&#xD589;.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot done"></div>
+          <div class="tl-phase">P1 &#xB370;&#xC774;&#xD130; &#xBD84;&#xC11D; (&#xAC80;&#xC99D; &#xBAA8;&#xB4DC; &#xCD95;&#xC18C;)</div>
+          <div class="tl-desc">data-analyst&#xB9CC; &#xC2E4;&#xD589;. &#xB098;&#xBA38;&#xC9C0; 5&#xAC1C; P1 &#xC5D0;&#xC774;&#xC804;&#xD2B8; &#xAC80;&#xC99D; &#xB9E8;&#xB370;&#xC774;&#xD2B8;&#xB85C; &#xC2A4;&#xD0B5;.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot done"></div>
+          <div class="tl-phase">P2 &#xC804;&#xB7B5; &#xC218;&#xB9BD;</div>
+          <div class="tl-desc">Strategist 6&#xCD95; &#xD589;&#xB82C; &#xC801;&#xC6A9;. HERO=C296 (&#xD569;&#xACC4; 57.0). 2/3 rank_pv &#xC548;&#xCEE4;. calendar_34.json &#xC0DD;&#xC131;.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot done"></div>
+          <div class="tl-phase">P3 &#xCF58;&#xD150;&#xCE20; &#xC0DD;&#xC0B0; + &#xBC1C;&#xD589;</div>
+          <div class="tl-desc">3/3 Naver PASS 10/10. C296 IG+YT API &#xBC1C;&#xD589;. &#xC804;&#xCCB4; Round 1 &#xC720;&#xB2C8;&#xB2C8;&#xBA38;&#xC2A4; PASS. ALT &#xD14D;&#xC2A4;&#xD2B8; &#xC815;&#xD655;&#xB3C4; &#xADDC;&#xCE59; &#xCD5C;&#xCD08; &#xC801;&#xC6A9;.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot skip"></div>
+          <div class="tl-phase">P3.5 &#xCEE4;&#xBBA4;&#xB2C8;&#xD2F0; &#xB9E4;&#xB2C8;&#xC800;</div>
+          <div class="tl-desc">&#xC2A4;&#xD0B5; (Verification &#xB7F0; &#xC218;&#xB3D9; &#xC81C;&#xC5B4;).</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot skip"></div>
+          <div class="tl-phase">Governance &#xD398;&#xC774;&#xC988;</div>
+          <div class="tl-desc">&#xC81C;&#xAC70; &#xD655;&#xC778;. P3 &#xC644;&#xB8CC; &#xD6C4; &#xBC14;&#xB85C; P4(&#xB9AC;&#xD3EC;&#xD2B8;) &#xC9C4;&#xC785;.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot done"></div>
+          <div class="tl-phase">P4 &#xB9AC;&#xD3EC;&#xD2B8; &#xC0DD;&#xC131; (&#xD604;&#xC7AC;)</div>
+          <div class="tl-desc">HTML &#xB300;&#xC2DC;&#xBCF4;&#xB4DC; &#xC0DD;&#xC131; + gh-pages &#xBC30;&#xD3EC;.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">Generated by <strong>MarketClaw</strong> &mdash; Hair 34&#xCC28; VERIFICATION Run</div>
+    <div class="footer-ts">2026-05-20 &nbsp;|&nbsp; session: hair-34-20260520-verify &nbsp;|&nbsp; 3 topics published</div>
+  </div>
+
+</div><!-- /container -->
+</body>
+</html>
