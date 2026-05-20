@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketClaw Campaign Report — Hair 33차 (2026-05-20)</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card2: #273549;
+    --border: #334155;
+    --accent: #3b82f6;
+    --accent2: #60a5fa;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --red: #ef4444;
+    --purple: #a855f7;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --dim: #64748b;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  a { color: var(--accent2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── Layout ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px 60px; }
+
+  /* ── Header ── */
+  .report-header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 40px 0 32px;
+    margin-bottom: 36px;
+  }
+  .report-header .container { padding-bottom: 0; }
+  .header-meta { color: var(--muted); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .header-title { font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .header-sub { color: var(--accent2); font-size: 15px; margin-bottom: 16px; }
+  .header-badges { display: flex; gap: 10px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--card2); border: 1px solid var(--border);
+    border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 600;
+  }
+  .badge.green { border-color: var(--green); color: var(--green); }
+  .badge.blue { border-color: var(--accent); color: var(--accent2); }
+  .badge.purple { border-color: var(--purple); color: var(--purple); }
+  .badge.yellow { border-color: var(--yellow); color: var(--yellow); }
+
+  /* ── Section ── */
+  .section { margin-bottom: 32px; }
+  .section-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+    border-left: 3px solid var(--accent);
+    padding-left: 10px; margin-bottom: 16px;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px;
+  }
+  .card-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .stat-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .stat-value { font-size: 32px; font-weight: 800; color: var(--accent2); line-height: 1.1; }
+  .stat-note { font-size: 12px; color: var(--dim); }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; }
+  .data-table th {
+    background: var(--card2); color: var(--muted);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 11px 14px; border-bottom: 1px solid var(--border);
+    vertical-align: middle; font-size: 13px;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: rgba(59,130,246,0.05); }
+
+  .pill {
+    display: inline-block; border-radius: 12px; padding: 2px 10px;
+    font-size: 11px; font-weight: 700; white-space: nowrap;
+  }
+  .pill-hero { background: rgba(168,85,247,0.2); color: var(--purple); border: 1px solid var(--purple); }
+  .pill-supporting { background: rgba(59,130,246,0.12); color: var(--accent2); border: 1px solid var(--accent); }
+  .pill-pass { background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid var(--green); }
+  .pill-celeb { background: rgba(234,179,8,0.15); color: var(--yellow); border: 1px solid var(--yellow); }
+  .pill-myth { background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid var(--red); }
+
+  .score-tag {
+    display: inline-block; background: var(--card2); border-radius: 6px;
+    padding: 2px 8px; font-size: 13px; font-weight: 700; color: var(--accent2);
+  }
+
+  /* ── Score bars ── */
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .bar-label { width: 180px; font-size: 12px; color: var(--muted); flex-shrink: 0; }
+  .bar-track { flex: 1; height: 8px; background: var(--card2); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; background: var(--accent); transition: width 0.3s; }
+  .bar-fill.high { background: var(--green); }
+  .bar-fill.mid { background: var(--accent); }
+  .bar-fill.low { background: var(--yellow); }
+  .bar-val { width: 36px; font-size: 12px; font-weight: 700; color: var(--text); text-align: right; }
+
+  /* ── Review stats ── */
+  .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .review-stat {
+    background: var(--card2); border-radius: 8px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .review-stat .val { font-size: 22px; font-weight: 800; color: var(--text); }
+  .review-stat .lbl { font-size: 11px; color: var(--muted); }
+
+  /* ── Governance ── */
+  .gov-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; margin-bottom: 14px;
+  }
+  .gov-card-head {
+    background: var(--card2); padding: 12px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .gov-card-head .title { font-size: 13px; font-weight: 700; color: var(--text); }
+  .gov-card-head .meta { font-size: 11px; color: var(--muted); }
+  .gov-card-body { padding: 14px 18px; }
+
+  .proposal-row { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .proposal-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .proposal-id { font-size: 10px; color: var(--dim); font-family: monospace; }
+  .proposal-title { font-size: 13px; font-weight: 600; color: var(--text); margin: 2px 0; }
+  .proposal-meta { font-size: 12px; color: var(--muted); }
+  .vote-badge {
+    display: inline-block; padding: 1px 8px; border-radius: 10px;
+    font-size: 11px; font-weight: 700;
+    background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid var(--green);
+  }
+
+  /* ── Timeline ── */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 20px; }
+  .tl-dot {
+    position: absolute; left: -24px; top: 4px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-dot.green { background: var(--green); }
+  .tl-dot.purple { background: var(--purple); }
+  .tl-dot.yellow { background: var(--yellow); }
+  .tl-time { font-size: 11px; color: var(--dim); margin-bottom: 2px; font-family: monospace; }
+  .tl-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .tl-desc { font-size: 12px; color: var(--muted); }
+
+  /* ── Footer ── */
+  .report-footer {
+    border-top: 1px solid var(--border); padding: 24px 0;
+    margin-top: 40px; display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: gap;
+    color: var(--dim); font-size: 12px;
+  }
+  .footer-brand { font-weight: 700; color: var(--muted); }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .header-title { font-size: 20px; }
+    .stat-value { font-size: 24px; }
+    .card-grid { grid-template-columns: 1fr 1fr; }
+    .bar-label { width: 130px; font-size: 11px; }
+    .report-footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="report-header">
+  <div class="container">
+    <div class="header-meta">MarketClaw &mdash; Campaign Report</div>
+    <div class="header-title">Hair 33&#xCC28; Campaign Report</div>
+    <div class="header-sub">hair-33-20260520 &mdash; 2026&#xB144; 05&#xC6D4; 20&#xC77C; &mdash; Content-Production Mode</div>
+    <div class="header-badges">
+      <span class="badge green">&#x2713; 5/5 Published</span>
+      <span class="badge blue">Naver &#xD5EC;&#xC5B4; 5/5 PASS 10/10</span>
+      <span class="badge purple">HERO: C291 Naver + IG + YT</span>
+      <span class="badge yellow">Governance Cycle 21 &mdash; 3 Proposals Executed</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ══ SUMMARY CARDS ══ -->
+  <section class="section">
+    <div class="section-title">&#x25A0; Campaign Summary</div>
+    <div class="card-grid">
+      <div class="stat-card">
+        <span class="stat-label">Total Published</span>
+        <span class="stat-value">5</span>
+        <span class="stat-note">C291 &ndash; C295</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Avg Quality Score</span>
+        <span class="stat-value">8.19</span>
+        <span class="stat-note">Weighted overall avg</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Platforms</span>
+        <span class="stat-value">3</span>
+        <span class="stat-note">Naver &bull; Instagram &bull; YouTube</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Naver Verification</span>
+        <span class="stat-value">10/10</span>
+        <span class="stat-note">All 5 topics PASS</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Hero 5-Axis Score</span>
+        <span class="stat-value">42<span style="font-size:18px;color:var(--dim)">/50</span></span>
+        <span class="stat-note">C291 &mdash; top-rated this cycle</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Deferred Clearance</span>
+        <span class="stat-value">5/5</span>
+        <span class="stat-note">100% from 32&#xCC28;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTENT TABLE ══ -->
+  <section class="section">
+    <div class="section-title">&#x25A0; Published Content</div>
+    <div class="card" style="padding:0; overflow:hidden;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Role</th>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Score</th>
+            <th>Verify</th>
+            <th>Platforms</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-family:monospace;color:var(--dim);">C291</td>
+            <td><span class="pill pill-hero">HERO</span></td>
+            <td>
+              <a href="https://blog.naver.com/seoilgun/224290922328" target="_blank">&#xCE74;&#xB9AC;&#xB098; &#xC774; &#xBE0C;&#xB808;&#xC774;&#xB4DC; &#xC5B4;&#xB514;&#xC11C; &#xD588;&#xC5B4;</a>
+            </td>
+            <td><span class="pill pill-celeb">celeb-style</span></td>
+            <td><span class="score-tag">8.17</span></td>
+            <td><span class="pill pill-pass">PASS 10/10</span></td>
+            <td>
+              <a href="https://blog.naver.com/seoilgun/224290922328" target="_blank" style="margin-right:6px;">Naver</a>
+              <a href="https://www.instagram.com/dynamicstep.ai/reel/DYWLt9-AZWT/" target="_blank" style="margin-right:6px;">IG</a>
+              <a href="https://youtube.com/shorts/G4tdIfQJ-7c" target="_blank">YT</a>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:var(--dim);">C292</td>
+            <td><span class="pill pill-supporting">SUPPORTING</span></td>
+            <td>
+              <a href="https://blog.naver.com/seoilgun/224290923951" target="_blank">&#xCFE8;&#xC0F4;&#xD478; &#xB9E4;&#xC77C; &#xC4F0;&#xBA74; &#xD0C8;&#xBAA8;&#xC57C;?</a>
+            </td>
+            <td><span class="pill pill-myth">myth-bust</span></td>
+            <td><span class="score-tag">8.07</span></td>
+            <td><span class="pill pill-pass">PASS 10/10</span></td>
+            <td><a href="https://blog.naver.com/seoilgun/224290923951" target="_blank">Naver</a></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:var(--dim);">C293</td>
+            <td><span class="pill pill-supporting">SUPPORTING</span></td>
+            <td>
+              <a href="https://blog.naver.com/seoilgun/224290925407" target="_blank">&#xBCC0;&#xC6B0;&#xC11D; &#xD544;&#xB7EC;&#xC2A4;&#xCEF7; &#xBB50;&#xB4E0;&#xB370; &#xB2E4; &#xD55C;&#xB2E4;&#xACE0;</a>
+            </td>
+            <td><span class="pill pill-celeb">celeb-style</span></td>
+            <td><span class="score-tag">8.59</span></td>
+            <td><span class="pill pill-pass">PASS 10/10</span></td>
+            <td><a href="https://blog.naver.com/seoilgun/224290925407" target="_blank">Naver</a></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:var(--dim);">C294</td>
+            <td><span class="pill pill-supporting">SUPPORTING</span></td>
+            <td>
+              <a href="https://blog.naver.com/seoilgun/224290926747" target="_blank">&#xD55C;&#xC18C;&#xD76C; &#xCE78; &#xB2E8;&#xBC1C; &#xBBF8;&#xC6A9;&#xC2E4;&#xC5D0; &#xBB50;&#xB77C;&#xACE0; &#xD574;</a>
+            </td>
+            <td><span class="pill pill-celeb">celeb-style</span></td>
+            <td><span class="score-tag">8.30</span></td>
+            <td><span class="pill pill-pass">PASS 10/10</span></td>
+            <td><a href="https://blog.naver.com/seoilgun/224290926747" target="_blank">Naver</a></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:var(--dim);">C295</td>
+            <td><span class="pill pill-supporting">SUPPORTING</span></td>
+            <td>
+              <a href="https://blog.naver.com/seoilgun/224290928284" target="_blank">&#xC708;&#xD130; &#xC800; &#xAE08;&#xBC1C; &#xC9C4;&#xC9DC;&#xC57C;</a>
+            </td>
+            <td><span class="pill pill-celeb">celeb-style</span></td>
+            <td><span class="score-tag">7.84</span></td>
+            <td><span class="pill pill-pass">PASS 10/10</span></td>
+            <td><a href="https://blog.naver.com/seoilgun/224290928284" target="_blank">Naver</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══ QUALITY ANALYSIS ══ -->
+  <section class="section">
+    <div class="section-title">&#x25A0; Quality Analysis</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+      <!-- Score Distribution by Topic -->
+      <div class="card">
+        <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:14px;">Score per Topic</div>
+        <div class="bar-row">
+          <span class="bar-label">C291 &#xCE74;&#xB9AC;&#xB098; &#xBE0C;&#xB808;&#xC774;&#xB4DC;</span>
+          <div class="bar-track"><div class="bar-fill high" style="width:81.7%"></div></div>
+          <span class="bar-val">8.17</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">C292 &#xCFE8;&#xC0F4;&#xD478; &#xD0C8;&#xBAA8;</span>
+          <div class="bar-track"><div class="bar-fill high" style="width:80.7%"></div></div>
+          <span class="bar-val">8.07</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">C293 &#xBCC0;&#xC6B0;&#xC11D; &#xD544;&#xB7EC;&#xC2A4;&#xCEF7;</span>
+          <div class="bar-track"><div class="bar-fill high" style="width:85.9%"></div></div>
+          <span class="bar-val">8.59</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">C294 &#xD55C;&#xC18C;&#xD76C; &#xCE78; &#xB2E8;&#xBC1C;</span>
+          <div class="bar-track"><div class="bar-fill high" style="width:83.0%"></div></div>
+          <span class="bar-val">8.30</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">C295 &#xC708;&#xD130; &#xAE08;&#xBC1C;</span>
+          <div class="bar-track"><div class="bar-fill mid" style="width:78.4%"></div></div>
+          <span class="bar-val">7.84</span>
+        </div>
+      </div>
+
+      <!-- Score by Dimension (C291 HERO breakdown) -->
+      <div class="card">
+        <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:14px;">HERO (C291) Dimension Breakdown</div>
+        <div class="bar-row">
+          <span class="bar-label">Human Likeness</span>
+          <div class="bar-track"><div class="bar-fill high" style="width:85%"></div></div>
+          <span class="bar-val">8.5</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Reader Value</span>
+          <div class="bar-track"><div class="bar-fill high" style="width:85%"></div></div>
+          <span class="bar-val">8.5</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Readability</span>
+          <div class="bar-track"><div class="bar-fill high" style="width:83%"></div></div>
+          <span class="bar-val">8.3</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">SEO Optimization</span>
+          <div class="bar-track"><div class="bar-fill high" style="width:82%"></div></div>
+          <span class="bar-val">8.2</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Content Quality</span>
+          <div class="bar-track"><div class="bar-fill high" style="width:80%"></div></div>
+          <span class="bar-val">8.0</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Viral Potential</span>
+          <div class="bar-track"><div class="bar-fill mid" style="width:78%"></div></div>
+          <span class="bar-val">7.8</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Highest / Lowest -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;">
+      <div class="card" style="border-color:var(--green);">
+        <div style="font-size:11px;color:var(--green);font-weight:700;margin-bottom:6px;">&#x25B2; HIGHEST SCORE</div>
+        <div style="font-size:16px;font-weight:700;color:var(--text);">C293 &mdash; &#xBCC0;&#xC6B0;&#xC11D; &#xD544;&#xB7EC;&#xC2A4;&#xCEF7;</div>
+        <div style="font-size:28px;font-weight:800;color:var(--green);">8.59</div>
+        <div style="font-size:12px;color:var(--muted);">Human Likeness 8.8 &bull; Reader Value 8.9</div>
+      </div>
+      <div class="card" style="border-color:var(--yellow);">
+        <div style="font-size:11px;color:var(--yellow);font-weight:700;margin-bottom:6px;">&#x25BC; LOWEST SCORE</div>
+        <div style="font-size:16px;font-weight:700;color:var(--text);">C295 &mdash; &#xC708;&#xD130; &#xAE08;&#xBC1C;</div>
+        <div style="font-size:28px;font-weight:800;color:var(--yellow);">7.84</div>
+        <div style="font-size:12px;color:var(--muted);">SEO 7.5 &bull; Brand Consistency 7.5</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ REVIEW STATS ══ -->
+  <section class="section">
+    <div class="section-title">&#x25A0; Review Board Statistics</div>
+    <div class="review-grid">
+      <div class="review-stat">
+        <span class="val">1.2</span>
+        <span class="lbl">Avg Review Rounds</span>
+      </div>
+      <div class="review-stat">
+        <span class="val" style="color:var(--green);">5/5</span>
+        <span class="lbl">Topics Passed (100%)</span>
+      </div>
+      <div class="review-stat">
+        <span class="val" style="color:var(--yellow);">1</span>
+        <span class="lbl">Topics Needing Round 2 (C291)</span>
+      </div>
+      <div class="review-stat">
+        <span class="val" style="color:var(--green);">0</span>
+        <span class="lbl">Discarded</span>
+      </div>
+      <div class="review-stat">
+        <span class="val">7.82</span>
+        <span class="lbl">Avg Review Score (all reviewers)</span>
+      </div>
+      <div class="review-stat">
+        <span class="val" style="color:var(--purple);">2</span>
+        <span class="lbl">Round-1 Fails on C291 (fact + visual)</span>
+      </div>
+    </div>
+
+    <!-- C291 round 2 note -->
+    <div class="card" style="margin-top:14px;border-color:var(--purple);">
+      <div style="font-size:12px;font-weight:700;color:var(--purple);margin-bottom:6px;">C291 Review Note &mdash; Round 1 FAIL, Round 2 PASS</div>
+      <div style="font-size:13px;color:var(--muted);">
+        <b style="color:var(--text);">content-reviewer-fact</b> (6.5) failed: Allure Korea &#xBE0C;&#xB808;&#xC774;&#xB4DC; &#xD2B8;&#xB80C;&#xB4DC; &#xADC0;&#xC18D; UNVERIFIABLE &bull;
+        &#xB300;&#xD55C;&#xBAA8;&#xBC1C;&#xD559;&#xD68C; bbs &#xC9C1;&#xC811; &#xC778;&#xC6A9; UNVERIFIABLE &rarr; &#xC644;&#xD654; &#xD45C;&#xD604;&#xC73C;&#xB85C; &#xC218;&#xC815;.<br>
+        <b style="color:var(--text);">content-reviewer-visual</b> (6.2) failed: celeb2.jpg alt &#xBD88;&#xC77C;&#xCE58; &bull; celeb4.jpg IVE &#xC6D0;&#xC601; &#xC2E0;&#xC6D0; FALSE (2019 &#xC774;&#xBBF8;&#xC9C0;) + &#xC2F1;&#xAE00;&#xBE0C;&#xB808;&#xC774;&#xB4DC; &#xC8FC;&#xC81C; &#xBD88;&#xC77C;&#xCE58; &rarr; &#xC774;&#xBBF8;&#xC9C0; &#xAD50;&#xCCB4; + alt &#xC218;&#xC815;.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ GOVERNANCE RECAP ══ -->
+  <section class="section">
+    <div class="section-title">&#x25A0; Governance Recap &mdash; Cycle 21</div>
+
+    <!-- Trigger + Audit -->
+    <div class="gov-card" style="margin-bottom:16px;">
+      <div class="gov-card-head">
+        <span class="title">Cycle 21 &mdash; Trigger T1 (Campaign Completion)</span>
+        <span class="meta">2026-05-20 &bull; Auditors: gov-architect, gov-performance, gov-risk</span>
+      </div>
+      <div class="gov-card-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
+          <div>
+            <div style="font-size:11px;color:var(--accent2);font-weight:700;margin-bottom:4px;">gov-architect</div>
+            <div style="font-size:12px;color:var(--muted);">content-reviewer-visual &#xC5D0; alt-vs-actual-image &#xCCB4;&#xD06C; &#xBBF8;&#xBE44; (C291 &#xC2E4;&#xD328; &#xC6D0;&#xC778;) &bull; researcher Mode 3&#xC5D0; event-era style timeline &#xBBF8;&#xC2A4; (C294 writer &#xD55C;&#xC18C;&#xD76C; &#xCE78;/2024 &#xD63C;&#xB3D9;)</div>
+          </div>
+          <div>
+            <div style="font-size:11px;color:var(--green);font-weight:700;margin-bottom:4px;">gov-performance</div>
+            <div style="font-size:12px;color:var(--muted);">content-reviewer-fact&#xC758; Claim Protocol&#xC5D0; &#xD55C;&#xAD6D; &#xAD8C;&#xC704; &#xAE30;&#xAD00; &#xC778;&#xC6A9; &#xD56D;&#xBAA9; &#xBBF8;&#xBE44; &bull; HERO &#xBAA8;&#xB4DC;&#xC758; UNVERIFIABLE+hedged &#xCF54;&#xD589 &#xADDC;&#xCE59; &#xBD80;&#xC7AC;</div>
+          </div>
+          <div>
+            <div style="font-size:11px;color:var(--yellow);font-weight:700;margin-bottom:4px;">gov-risk</div>
+            <div style="font-size:12px;color:var(--muted);">3 proposals &#xBAA8;&#xB450; &#xBC18;&#xACBD; LOW &bull; Cycle 19 &#xC9C1;&#xB82C;&#xD654; &#xADDC;&#xCE59; 33&#xCC28; &#xC815;&#xC0C1; &#xC791;&#xB3D9; &#xD655;&#xC778; &bull; writer-ko 7K+ HERO &#xACC4;&#xC18D; &#xC548;&#xC815;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proposals -->
+    <div class="gov-card">
+      <div class="gov-card-head">
+        <span class="title">Executed Proposals (3/3)</span>
+        <span class="meta">All 2/2 APPROVE + proposer ABSTAIN</span>
+      </div>
+      <div class="gov-card-body">
+
+        <div class="proposal-row">
+          <div class="proposal-id">PROP-2026-05-20-C21-ARCH-001</div>
+          <div class="proposal-title">content-reviewer-visual &mdash; Add explicit alt-vs-actual-image accuracy check</div>
+          <div class="proposal-meta">
+            Proposer: gov-architect &bull; Type: MODIFY_SKILL &bull;
+            <span class="vote-badge">2/2 APPROVE</span>
+          </div>
+          <div style="font-size:12px;color:var(--dim);margin-top:4px;">
+            &#xC774;&#xBBF8;&#xC9C0; &#xC2E4;&#xC81C; &#xC120;&#xBCF4; alt &#xD544;&#xB4DC; &#xBB34;&#xACB0;&#xC131; &#xCCB4;&#xD06C; &#xCD94;&#xAC00;. mismatch -0.5 / generic -0.3 &#xAC10;&#xC810;. alt_accuracy + suggested_alt &#xCD9C;&#xB825; &#xD544;&#xB4DC; &#xCD94;&#xAC00;.
+            Cooldown: content-reviewer-visual &#xB85C;&#xD06C; until 2026-05-27.
+          </div>
+        </div>
+
+        <div class="proposal-row">
+          <div class="proposal-id">PROP-2026-05-20-C21-ARCH-002</div>
+          <div class="proposal-title">researcher &mdash; Add Event-Era Style Timeline to Mode 3 output</div>
+          <div class="proposal-meta">
+            Proposer: gov-architect &bull; Type: MODIFY_SKILL &bull;
+            <span class="vote-badge">2/2 APPROVE</span>
+          </div>
+          <div style="font-size:12px;color:var(--dim);margin-top:4px;">
+            Mode 3&#xC5D0; Step 2a &#xC2A4;&#xD0C0;&#xC77C; &#xD0C0;&#xC784;&#xB77C;&#xC778; &#xC0DD;&#xC131; &#xCD94;&#xAC00;. celeb_photos.json&#xC5D0; style_timeline &#xBC30;&#xC5F4; &#xCD9C;&#xB825;.
+            &#xC138;&#xB808;&#xB2E8; &#xB2E4;&#xB978; &#xC774;&#xBCA4;&#xD2B8; 2&#xAC74;+ &#xC2DC; &#xD544;&#xC218;. &#xD558;&#xC704; &#xD638;&#xD658;.
+            Cooldown: researcher &#xB85C;&#xD06C; until 2026-05-27.
+          </div>
+        </div>
+
+        <div class="proposal-row">
+          <div class="proposal-id">PROP-2026-05-20-C21-PERF-001</div>
+          <div class="proposal-title">content-reviewer-fact &mdash; Add Authority Institution Citation Protocol (claim type 4)</div>
+          <div class="proposal-meta">
+            Proposer: gov-performance &bull; Type: MODIFY_SKILL &bull;
+            <span class="vote-badge">2/2 APPROVE</span>
+          </div>
+          <div style="font-size:12px;color:var(--dim);margin-top:4px;">
+            &#xB300;&#xD55C;&#xBAA8;&#xBC1C;&#xD559;&#xD68C;&#xB4F1; &#xAD8C;&#xC704; &#xAE30;&#xAD00; &#xC778;&#xC6A9; &#xCCA8;&#xBD80; &#xD504;&#xB85C;&#xD1A0;&#xCF5C; (claim type 4). UNVERIFIABLE + hedged = HERO &#xBAA8;&#xB4DC; &#xD5C8;&#xC6A9;. UNVERIFIABLE + assertive = FAIL.
+            Cooldown: content-reviewer-fact &#xB85C;&#xD06C; until 2026-05-27.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Deferred -->
+    <div style="margin-top:12px;padding:12px 16px;background:var(--card2);border-radius:8px;border:1px solid var(--border);font-size:12px;color:var(--muted);">
+      <b style="color:var(--text);">Deferred to Cycle 22:</b>
+      seo-optimizer schema normalization hardening (cooldown clears 2026-05-26) &bull;
+      Standing constraint: HERO word count = 500-800 chars (user-rejected 7K+ on 2026-05-19, do not re-propose)
+    </div>
+  </section>
+
+  <!-- ══ TIMELINE ══ -->
+  <section class="section">
+    <div class="section-title">&#x25A0; Campaign Timeline</div>
+    <div class="card">
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-dot blue"></div>
+          <div class="tl-time">2026-05-20 07:03 KST</div>
+          <div class="tl-title">P0 &mdash; Auto-plan</div>
+          <div class="tl-desc">33&#xCC28; &#xC2DC;&#xC791;. 32&#xCC28; &#xB2E4;&#xC74C;&#xB0A0; &#xC790;&#xB3D9; &#xACFC;&#xAC70; &#xB370;&#xC774;&#xD130; &#xBD84;&#xC11D;. &#xACFC;&#xAC70; &#xC804;&#xC774; 5/5 &#xD655;&#xC778;. YT &#xC5BC;&#xC74C; &#xD050; &#xBE44;&#xC5B4;&#xC788;&#xC74C;.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot blue"></div>
+          <div class="tl-time">07:10 &ndash; 09:00 KST</div>
+          <div class="tl-title">P1 &mdash; 6&#xB300; &#xBCD1;&#xB82C; &#xC5D0;&#xC774;&#xC804;&#xD2B8; &#xBD84;&#xC11D;</div>
+          <div class="tl-desc">data-analyst + researcher + ent-researcher + idea-bgrade + idea-trend + viral-scout &#xB3D9;&#xC2DC; &#xC2E4;&#xD589;.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot blue"></div>
+          <div class="tl-time">10:30 KST</div>
+          <div class="tl-title">P2 &mdash; &#xC804;&#xB7B5;&#xAC00; &#xD5C4;&#xBCF4; &#xC120;&#xC815;</div>
+          <div class="tl-desc">C291 &#xCE74;&#xB9AC;&#xB098; LEMONADE &#xBE0C;&#xB808;&#xC774;&#xB4DC; HERO &#xD655;&#xC815; (5-axis 42/50). &#xC2A4;&#xD2B8;&#xB9AC;&#xD06C; 14&#xC5B0;&#xC18D; &#xBD10;&#xC544; &#xD5A5;uba54id &#xCE98;&#xB808;&#xBE0C; &#xD53C;&#xBC97;.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot purple"></div>
+          <div class="tl-time">10:30 &ndash; 23:00 KST</div>
+          <div class="tl-title">P3 &mdash; &#xCF58;&#xD150;&#xCE20; &#xC81C;&#xC791; + &#xBC1C;&#xD589;</div>
+          <div class="tl-desc">C291 &#xB9AC;&#xBDF0; 1&#xB77C;&#xC6B4;&#xB4DC; FAIL (fact+visual) &rarr; &#xC218;&#xC815; &rarr; &#xB9AC;&#xBDF0; 2&#xB77C;&#xC6B4;&#xB4DC; PASS. C292&ndash;C295 &#xB9AC;&#xBDF0; 1&#xB77C;&#xC6B4;&#xB4DC; PASS. &#xB124;&#xC774;&#xBC84; 5/5 PASS 10/10.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot purple"></div>
+          <div class="tl-time">23:42 KST</div>
+          <div class="tl-title">HERO IG Reel + YT Shorts &#xBC1C;&#xD589;</div>
+          <div class="tl-desc">C291 Shorts 18&#xCD08;, 1.1MB. IG + YT API &#xBC1C;&#xD589; &#xC644;&#xB8CC;.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot yellow"></div>
+          <div class="tl-time">2026-05-20 00:10 KST</div>
+          <div class="tl-title">P4 &mdash; Governance Cycle 21</div>
+          <div class="tl-desc">3&#xAC1C; &#xC81C;&#xC548; &#xBAA8;&#xB450; &#xAC00;&#xACB0; &#xBC0F; &#xC2E4;&#xD589;. content-reviewer-visual / researcher / content-reviewer-fact SKILL.md &#xC5C5;&#xB370;&#xC774;&#xD2B8;.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot green"></div>
+          <div class="tl-time">2026-05-20 (P5)</div>
+          <div class="tl-title">P5 &mdash; &#xB9AC;&#xD3EC;&#xD2B8; &#xC0DD;&#xC131; (&#xD604;&#xC7AC; &#xB2E8;&#xACC4;)</div>
+          <div class="tl-desc">HTML &#xCE94;&#xD398;&#xC778; &#xB9AC;&#xD3EC;&#xD2B8; &#xC0DD;&#xC131; &rarr; gh-pages &#xBC30;&#xD3EC; &rarr; Slack &#xC54C;&#xB9BC;.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STREAK DECISION NOTE ══ -->
+  <section class="section">
+    <div class="section-title">&#x25A0; Strategic Decision &mdash; Streak Break</div>
+    <div class="card" style="border-color:var(--purple);">
+      <div style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:8px;">
+        14&#xC5F0;&#xC18D; myth-bust &#xC2A4;&#xD2B8;&#xB9AC;&#xD06C; &#xC885;&#xB8CC; &rarr; &#xCE5C;&#xB808;&#xBE0C; &#xD53C;&#xBC97; (4&#xB300; &#xC5D0;&#xC774;&#xC804;&#xD2B8; &#xC77C;&#xCE58;)
+      </div>
+      <div style="font-size:12px;color:var(--muted);">
+        C212&ndash;C289 14&#xC5F0;&#xC18D; myth-bust HERO &#xD6C4; &mdash; data-analyst + researcher + ent-researcher + trend-hacker 4&#xC5D0;&#xC774;&#xC804;&#xD2B8;&#xAC00; &#xC77C;&#xCE58;&#xD558;&#xC5EC;
+        C291 &#xCE74;&#xB9AC;&#xB098; LEMONADE &#xBE0C;&#xB808;&#xC774;&#xB4DC;&#xB97C; HERO&#xB85C; &#xC120;&#xC815;.
+        LEMONADE 5/29 &#xBC1C;&#xB9E4; D-1 &#xC708;&#xB3C4;&#xC6B0; (5/28) = &#xD68C;&#xBCF5; &#xBD88;&#xAC00; &#xAE30;&#xD68C; &mdash; &#xBBF8;&#xD480; &#xC2DC; &#xC601;&#xC6D0; &#xC†;&#xC2E4;.
+        myth-bust pool&#xC5D0; 5+&#xAC1C; &#xD6C4;&#xBCF4;&#xAC00; &#xAC74;&#xAC15;&#xD558;&#xAC8C; &#xC794;&#xB958; &rarr; 34&#xCC28;&#xC5D0;&#xC11C; myth-bust &#xC2A4;&#xD2B8;&#xB9AC;&#xD06C; &#xC7AC;&#xAC1C;.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <div class="report-footer">
+    <div>
+      <span class="footer-brand">Generated by MarketClaw</span>
+      &mdash; report-generator agent
+    </div>
+    <div>Campaign: hair-33-20260520 &bull; 2026-05-20T00:10:00+09:00</div>
+  </div>
+
+</div><!-- /container -->
+</body>
+</html>
